@@ -164,7 +164,7 @@ bool CPlayer2D::Reset()
 	animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
 	//CS: Init the color to white
-	currentColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
+	//currentColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 
 	return true;
 }
@@ -212,7 +212,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		animatedSprites->PlayAnimation("left", -1, 1.0f);
 
 		//CS: Change Color
-		currentColor = glm::vec4(1.0, 0.0, 0.0, 1.0);
+		//currentColor = glm::vec4(1.0, 0.0, 0.0, 1.0);
 	}
 	else if (cKeyboardController->IsKeyDown(GLFW_KEY_D))
 	{
@@ -248,7 +248,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		animatedSprites->PlayAnimation("right", -1, 1.0f);
 
 		//CS: Change Color
-		currentColor = glm::vec4(1.0, 1.0, 0.0, 1.0);
+		//currentColor = glm::vec4(1.0, 1.0, 0.0, 1.0);
 	}
 	if (cKeyboardController->IsKeyDown(GLFW_KEY_W))
 	{
@@ -276,7 +276,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
 		//CS: Change Color
-		currentColor = glm::vec4(0.0, 1.0, 1.0, 0.5);
+		//currentColor = glm::vec4(0.0, 1.0, 1.0, 0.5);
 	}
 	else if (cKeyboardController->IsKeyDown(GLFW_KEY_S))
 	{
@@ -305,7 +305,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
 		//CS: Change Color
-		currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
+		//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
 	}
 	if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 	{
