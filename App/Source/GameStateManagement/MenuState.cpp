@@ -146,7 +146,7 @@ bool CMenuState::Update(const double dElapsedTime)
 			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
 		}
 
-		// Add codes for Instructiom button here
+		// Add codes for Instruction button here
 		if (ImGui::ImageButton((ImTextureID)instructionButtonData.textureID,
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1,1,1,1)))
 		{
@@ -215,7 +215,7 @@ void CMenuState::Render(void)
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-	cout << "CMenuState::Render()\n" << endl;
+	//cout << "CMenuState::Render()\n" << endl;
 }
 
 /**

@@ -76,7 +76,7 @@ bool CInstructionState::Init(void)
  */
 bool CInstructionState::Update(const double dElapsedTime)
 {
-	cout << "CIntroState::Update()\n" << endl;
+	//cout << "CIntroState::Update()\n" << endl;
 	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_SPACE))
 	{
 		// Reset the CKeyboardController

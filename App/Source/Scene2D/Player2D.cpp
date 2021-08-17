@@ -43,6 +43,7 @@ CPlayer2D::CPlayer2D(void)
 	vec2UVCoordinate = glm::vec2(0.0f);
 
 	PhaseWalking = false;
+	PhaseTimer = 0;
 }
 
 /**
@@ -398,9 +399,29 @@ void CPlayer2D::Update(const double dElapsedTime)
 	if (CGameManager::GetInstance()->bPlayerMedieval == true && cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 	{
 		PhaseWalking = true;
+
 		cout << "Phasing" << endl;
 		
 	}
+	
+	if (PhaseWalking == true)
+	{
+		PhaseTimer +=  1 * dElapsedTime;
+
+		if (PhaseTimer >= 3)
+		{
+			PhaseWalking = false;
+			cout << "Leaving Phase" << endl;
+			PhaseTimer = 0;
+		}
+		else if (PhaseWalking == true && cKeyboardController->IsKeyPressed(GLFW_KEY_Q))
+		{
+			PhaseWalking = false;
+			cout << "Leaving Phase" << endl;
+			PhaseTimer = 0;
+		}
+	}
+
 
 	
 
@@ -668,6 +689,14 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		if (i32vec2NumMicroSteps.x == 0)
 		{
 
+			if (PhaseWalking == true)
+			{
+				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100)
+				{
+					return true;
+				}
+			}
+
 			// If the grid is not accessible, then return false
 			if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100)
 			{
@@ -677,6 +706,15 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		// If the new position is between 2 columns, then check both columns as well
 		else if (i32vec2NumMicroSteps.x != 0)
 		{
+			if (PhaseWalking == true)
+			{
+				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))
+				{
+					return true;
+				}
+			}
+
 			// If the 2 grids are not accessible, then return false
 			if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100) ||
 				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))

@@ -70,7 +70,7 @@ bool CGameStateManager::Update(const double dElapsedTime)
 	// Update the active CGameState
 	if (activeGameState)
 	{
-		cout << "activeGameState->Update" << endl;
+		//cout << "activeGameState->Update" << endl;
 		if (activeGameState->Update(dElapsedTime) == false)
 			return false;
 		else

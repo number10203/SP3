@@ -76,6 +76,7 @@ protected:
 
 	
 	bool PhaseWalking;
+	float PhaseTimer;
 
 
 	glm::i32vec2 i32vec2OldIndex;
