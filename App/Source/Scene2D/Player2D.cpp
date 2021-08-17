@@ -401,14 +401,19 @@ void CPlayer2D::Update(const double dElapsedTime)
 		PhaseWalking = true;
 
 		cout << "Phasing" << endl;
-		
 	}
+	else if (CGameManager::GetInstance()->bPlayerMedieval == false)
+	{
+		PhaseWalking = false;
+		PhaseTimer = 0;
+	}
+	
 	
 	if (PhaseWalking == true)
 	{
 		PhaseTimer +=  1 * dElapsedTime;
 
-		if (PhaseTimer >= 3)
+		if (PhaseTimer >= 0.5)
 		{
 			PhaseWalking = false;
 			cout << "Leaving Phase" << endl;
@@ -950,21 +955,12 @@ void CPlayer2D::InteractWithMap(void)
  */
 void CPlayer2D::UpdateHealthLives(void)
 {
-	// Update health and lives
+	// Update health 
 	cInventoryItem = cInventoryManager->GetItem("Health");
-	// Check if a life is lost
+	// Check if Health is 0
 	if (cInventoryItem->GetCount() <= 0)
 	{
-		// Reset the Health to max value
-		cInventoryItem->iItemCount = cInventoryItem->GetMaxCount();
-		// But we reduce the lives by 1.
-		cInventoryItem = cInventoryManager->GetItem("Lives");
-		cInventoryItem->Remove(1);
-		// Check if there is no lives left...
-		if (cInventoryItem->GetCount() < 0)
-		{
-			// Player loses the game
-			CGameManager::GetInstance()->bPlayerLost = true;
-		}
+		// Player loses the game
+		CGameManager::GetInstance()->bPlayerLost = true;
 	}
 }
