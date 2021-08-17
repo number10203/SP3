@@ -50,4 +50,5 @@ protected:
 	CBackgroundEntity* background;
 	ButtonData startButtonData;
 	ButtonData exitButtonData;
+	ButtonData instructionButtonData;
 };

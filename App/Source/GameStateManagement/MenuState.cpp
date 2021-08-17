@@ -64,7 +64,7 @@ bool CMenuState::Init(void)
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
 
 	//Create Background Entity
-	background = new CBackgroundEntity("Image/MenuBackground.png");
+	background = new CBackgroundEntity("Image/Menus/MainMenu.png");
 	background->SetShader("2DShader");
 	background->Init();
 
@@ -84,10 +84,15 @@ bool CMenuState::Init(void)
 
 	// Load the images for buttons
 	CImageLoader* il = CImageLoader::GetInstance();
-	startButtonData.fileName = "Image\\GUI\\PlayButton.png";
+	// Start Button
+	startButtonData.fileName = "Image\\GUI\\StartButton.png";
 	startButtonData.textureID = il->LoadTextureGetID(startButtonData.fileName.c_str(), false);
+	// Exit Button
 	exitButtonData.fileName = "Image\\GUI\\ExitButton.png";
 	exitButtonData.textureID = il->LoadTextureGetID(exitButtonData.fileName.c_str(), false);
+	// Instruction Button
+	instructionButtonData.fileName = "Image\\GUI\\InstructionButton.png";
+	instructionButtonData.textureID = il->LoadTextureGetID(instructionButtonData.fileName.c_str(), false);
 
 	return true;
 }
@@ -140,6 +145,20 @@ bool CMenuState::Update(const double dElapsedTime)
 			cout << "Loading PlayGameState" << endl;
 			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
 		}
+
+		// Add codes for Instructiom button here
+		if (ImGui::ImageButton((ImTextureID)instructionButtonData.textureID,
+			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0)))
+		{
+			// Reset the CKeyboardController
+			CKeyboardController::GetInstance()->Reset();
+
+			// Load the menu state
+			cout << "Switching to Instruction State" << endl;
+			CGameStateManager::GetInstance()->SetActiveGameState("InstructionState");
+
+		}
+
 		// Add codes for Exit button here
 		if (ImGui::ImageButton((ImTextureID)exitButtonData.textureID,
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0)))
@@ -154,6 +173,8 @@ bool CMenuState::Update(const double dElapsedTime)
 		}
 		ImGui::End();
 	}
+
+
 
 	//For keyboard controls
 	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_SPACE))

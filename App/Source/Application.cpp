@@ -36,6 +36,8 @@ using namespace std;
 #include "GameStateManagement/IntroState.h"
 // Include CMenuState
 #include "GameStateManagement/MenuState.h"
+// Include CInstructionState
+#include "GameStateManagement/InstructionState.h"
 // Include CPlayGameState
 #include "GameStateManagement/PlayGameState.h"
 // Include CPauseState
@@ -242,6 +244,7 @@ bool Application::Init(void)
 	// Create the Game States
 	CGameStateManager::GetInstance()->AddGameState("IntroState", new CIntroState());
 	CGameStateManager::GetInstance()->AddGameState("MenuState", new CMenuState());
+	CGameStateManager::GetInstance()->AddGameState("InstructionState", new CInstructionState);
 	CGameStateManager::GetInstance()->AddGameState("PlayGameState", new CPlayGameState());
 	CGameStateManager::GetInstance()->AddGameState("PauseState", new CPauseState());
 

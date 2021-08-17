@@ -12,6 +12,7 @@ CGameStateManager::CGameStateManager(void)
 	, nextGameState(nullptr)
 	, prevGameState(nullptr)
 	, pauseGameState(nullptr)
+
 {
 }
 
