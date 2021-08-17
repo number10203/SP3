@@ -48,5 +48,5 @@ protected:
 	};
 
 	ButtonData startButtonData;
-	ButtonData exitButtonData;
+	ButtonData backButtonData;
 };

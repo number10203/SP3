@@ -86,8 +86,8 @@ bool CPauseState::Init(void)
 	CImageLoader* il = CImageLoader::GetInstance();
 	startButtonData.fileName = "Image\\GUI\\PlayButton.png";
 	startButtonData.textureID = il->LoadTextureGetID(startButtonData.fileName.c_str(), false);
-	exitButtonData.fileName = "Image\\GUI\\ExitButton.png";
-	exitButtonData.textureID = il->LoadTextureGetID(exitButtonData.fileName.c_str(), false);
+	backButtonData.fileName = "Image\\GUI\\ExitButton.png";
+	backButtonData.textureID = il->LoadTextureGetID(backButtonData.fileName.c_str(), false);
 
 	return true;
 }
@@ -144,16 +144,17 @@ bool CPauseState::Update(const double dElapsedTime)
 			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
 		}
 		// Add codes for Exit button here
-		if (ImGui::ImageButton((ImTextureID)exitButtonData.textureID,
+		if (ImGui::ImageButton((ImTextureID)backButtonData.textureID,
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0)))
 		{
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the menu state
-			cout << "Quitting the game from MenuState" << endl;
+			cout << "Going to Main Menu" << endl;
+			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 
-			return false;
+			
 		}
 	ImGui::End();
 	}

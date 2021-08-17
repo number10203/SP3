@@ -17,6 +17,9 @@
 // Include CInventoryManager
 #include "InventoryManager.h"
 
+// Include CGameManager
+#include "GameManager.h"
+
 // Include GLEW
 #ifndef GLEW_STATIC
 #include <GL/glew.h>
@@ -81,4 +84,5 @@ protected:
 	CInventoryManager* cInventoryManager;
 	// The handler containing the instance of CInventoryItem
 	CInventoryItem* cInventoryItem;
+	
 };

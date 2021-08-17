@@ -20,6 +20,15 @@ public:
 	// Initialise this class instance
 	void Init(void);
 
+
+	// Boolean flag to indicate if the player is in Medieval Dimension
+	bool bPlayerMedieval;
+	// Boolean flag to indicate if the player is in Home Dimension
+	bool bPlayerHome;
+	// Boolean flag to indicate if the player is in Sky Dimension
+	bool bPlayerSky;
+	// Boolean flag to indicate if the player is in Cave Dimension
+	bool bPlayerCave;
 	// Boolean flag to indicate if the player won the game
 	bool bPlayerWon;
 	// Boolean flag to indicate if the player lost the game

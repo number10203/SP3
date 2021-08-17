@@ -41,6 +41,8 @@ CPlayer2D::CPlayer2D(void)
 
 	// Initialise vec2UVCoordinate
 	vec2UVCoordinate = glm::vec2(0.0f);
+
+	PhaseWalking = false;
 }
 
 /**
@@ -125,8 +127,26 @@ bool CPlayer2D::Init(void)
 	cInventoryItem->vec2Size = glm::vec2(25, 25);
 
 	// Add a Health icon as one of the inventory items
-	cInventoryItem = cInventoryManager->Add("Health", "Image/Scene2D_Health.tga", 100, 100);
+	cInventoryItem = cInventoryManager->Add("Health", "Image/HUD/Health.tga", 100, 100);
 	cInventoryItem->vec2Size = glm::vec2(25, 25);
+
+	// Add a DImension icon as one of the inventory items to showcase the current dimension (Medieval)
+	cInventoryItem = cInventoryManager->Add("DimensionMedeival", "Image/HUD/Medieval.tga", 100, 0);
+	cInventoryItem->vec2Size = glm::vec2(25, 25);
+
+	// Add a DImension icon as one of the inventory items to showcase the current dimension (Home)
+	cInventoryItem = cInventoryManager->Add("DimensionHome", "Image/HUD/Home.tga", 100, 0);
+	cInventoryItem->vec2Size = glm::vec2(25, 25);
+
+	// Add a DImension icon as one of the inventory items to showcase the current dimension (Ascend)
+	cInventoryItem = cInventoryManager->Add("DimensionSky", "Image/HUD/Ascend.tga", 100, 0);
+	cInventoryItem->vec2Size = glm::vec2(25, 25);
+
+	// Add a DImension icon as one of the inventory items to showcase the current dimension
+	cInventoryItem = cInventoryManager->Add("DimensionCave", "Image/HUD/Cave.tga", 100, 0);
+	cInventoryItem->vec2Size = glm::vec2(25, 25);
+
+
 
 	jumpCount = 0;
 
@@ -329,6 +349,53 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 		}
 	}
+
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
+	{
+		CGameManager::GetInstance()->bPlayerHome = true;
+		CGameManager::GetInstance()->bPlayerMedieval = false;
+		CGameManager::GetInstance()->bPlayerCave = false;
+		CGameManager::GetInstance()->bPlayerSky = false;
+		cout << "Home Mode" << endl;
+	}
+
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
+	{
+		CGameManager::GetInstance()->bPlayerHome = false;
+		CGameManager::GetInstance()->bPlayerMedieval = true;
+		CGameManager::GetInstance()->bPlayerCave = false;
+		CGameManager::GetInstance()->bPlayerSky = false;
+		cout << "Medieval Mode" << endl;
+	}
+
+
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
+	{
+		CGameManager::GetInstance()->bPlayerHome = false;
+		CGameManager::GetInstance()->bPlayerMedieval = false;
+		CGameManager::GetInstance()->bPlayerCave = true;
+		CGameManager::GetInstance()->bPlayerSky = false;
+		cout << "Cave Mode" << endl;
+	}
+
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
+	{
+		CGameManager::GetInstance()->bPlayerHome = false;
+		CGameManager::GetInstance()->bPlayerMedieval = false;
+		CGameManager::GetInstance()->bPlayerCave = false;
+		CGameManager::GetInstance()->bPlayerSky = true;
+		cout << "Sky Mode" << endl;
+	}
+
+
+	
+	if (CGameManager::GetInstance()->bPlayerMedieval == true && cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
+	{
+		PhaseWalking = true;
+		cout << "Phasing" << endl;
+	}
+
+	
 
 	// Update Jump or Fall
 	//CS: Will cause error when debugging. Set to default elapsed time

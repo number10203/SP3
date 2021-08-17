@@ -142,26 +142,90 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 	ImGui::PopStyleColor();
 	ImGui::End();
 
-	// Render the Lives
-	ImGuiWindowFlags livesWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
-		ImGuiWindowFlags_NoBackground |
-		ImGuiWindowFlags_NoTitleBar |
-		ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoScrollbar;
-	ImGui::Begin("Lives", NULL, livesWindowFlags);
-	ImGui::SetWindowPos(ImVec2(cSettings->iWindowWidth * 0.85f, cSettings->iWindowHeight * 0.03f));
-	ImGui::SetWindowSize(ImVec2(100.0f * relativeScale_x, 25.0f * relativeScale_y));
-	cInventoryItem = cInventoryManager->GetItem("Lives");
-	ImGui::Image((void*)(intptr_t)cInventoryItem->GetTextureID(),
-		ImVec2(cInventoryItem->vec2Size.x * relativeScale_x, cInventoryItem->vec2Size.y * relativeScale_y),
-		ImVec2(0, 1), ImVec2(1, 0));
-	ImGui::SameLine();
-	ImGui::SetWindowFontScale(1.5f * relativeScale_y);
-	ImGui::TextColored(ImVec4(1, 1, 0, 1), "%d / %d",
-		cInventoryItem->GetCount(), cInventoryItem->GetMaxCount());
-	ImGui::End();
+	
+	if (CGameManager::GetInstance()->bPlayerMedieval == true)
+	{
+
+
+		// Render the Diemnsion State
+		ImGuiWindowFlags MedievalWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
+			ImGuiWindowFlags_NoBackground |
+			ImGuiWindowFlags_NoTitleBar |
+			ImGuiWindowFlags_NoMove |
+			ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoCollapse |
+			ImGuiWindowFlags_NoScrollbar;
+		ImGui::Begin("DimensionMedieval", NULL, MedievalWindowFlags);
+		ImGui::SetWindowPos(ImVec2(cSettings->iWindowWidth * 0.90f, cSettings->iWindowHeight * 0.03f));
+		ImGui::SetWindowSize(ImVec2(100.0f * relativeScale_x, 25.0f * relativeScale_y));
+		cInventoryItem = cInventoryManager->GetItem("DimensionMedeival");
+		ImGui::Image((void*)(intptr_t)cInventoryItem->GetTextureID(),
+			ImVec2(cInventoryItem->vec2Size.x * relativeScale_x, cInventoryItem->vec2Size.y * relativeScale_y),
+			ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::SameLine();
+		ImGui::End();
+	}
+	else if (CGameManager::GetInstance()->bPlayerHome == true)
+	{
+		// Render the Diemnsion State
+		ImGuiWindowFlags TestingWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
+			ImGuiWindowFlags_NoBackground |
+			ImGuiWindowFlags_NoTitleBar |
+			ImGuiWindowFlags_NoMove |
+			ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoCollapse |
+			ImGuiWindowFlags_NoScrollbar;
+		ImGui::Begin("Dimensionhome", NULL, TestingWindowFlags);
+		ImGui::SetWindowPos(ImVec2(cSettings->iWindowWidth * 0.90f, cSettings->iWindowHeight * 0.03f));
+		ImGui::SetWindowSize(ImVec2(100.0f * relativeScale_x, 25.0f * relativeScale_y));
+		cInventoryItem = cInventoryManager->GetItem("DimensionHome");
+		ImGui::Image((void*)(intptr_t)cInventoryItem->GetTextureID(),
+			ImVec2(cInventoryItem->vec2Size.x * relativeScale_x, cInventoryItem->vec2Size.y * relativeScale_y),
+			ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::SameLine();
+		ImGui::End();
+	}
+	else if (CGameManager::GetInstance()->bPlayerCave == true)
+	{
+		// Render the Diemnsion State
+		ImGuiWindowFlags TestingWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
+			ImGuiWindowFlags_NoBackground |
+			ImGuiWindowFlags_NoTitleBar |
+			ImGuiWindowFlags_NoMove |
+			ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoCollapse |
+			ImGuiWindowFlags_NoScrollbar;
+		ImGui::Begin("DimensionCave", NULL, TestingWindowFlags);
+		ImGui::SetWindowPos(ImVec2(cSettings->iWindowWidth * 0.90f, cSettings->iWindowHeight * 0.03f));
+		ImGui::SetWindowSize(ImVec2(100.0f * relativeScale_x, 25.0f * relativeScale_y));
+		cInventoryItem = cInventoryManager->GetItem("DimensionCave");
+		ImGui::Image((void*)(intptr_t)cInventoryItem->GetTextureID(),
+			ImVec2(cInventoryItem->vec2Size.x * relativeScale_x, cInventoryItem->vec2Size.y * relativeScale_y),
+			ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::SameLine();
+		ImGui::End();
+	}
+	else if (CGameManager::GetInstance()->bPlayerSky == true)
+	{
+		// Render the Diemnsion State
+		ImGuiWindowFlags TestingWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
+			ImGuiWindowFlags_NoBackground |
+			ImGuiWindowFlags_NoTitleBar |
+			ImGuiWindowFlags_NoMove |
+			ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoCollapse |
+			ImGuiWindowFlags_NoScrollbar;
+		ImGui::Begin("DimensionSky", NULL, TestingWindowFlags);
+		ImGui::SetWindowPos(ImVec2(cSettings->iWindowWidth * 0.90f, cSettings->iWindowHeight * 0.03f));
+		ImGui::SetWindowSize(ImVec2(100.0f * relativeScale_x, 25.0f * relativeScale_y));
+		cInventoryItem = cInventoryManager->GetItem("DimensionSky");
+		ImGui::Image((void*)(intptr_t)cInventoryItem->GetTextureID(),
+			ImVec2(cInventoryItem->vec2Size.x * relativeScale_x, cInventoryItem->vec2Size.y * relativeScale_y),
+			ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::SameLine();
+		ImGui::End();
+	}
+
 
 	// Render the inventory items
 	cInventoryItem = cInventoryManager->GetItem("Tree");

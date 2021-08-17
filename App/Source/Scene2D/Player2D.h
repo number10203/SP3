@@ -73,6 +73,10 @@ protected:
 		NUM_DIRECTIONS
 	};
 
+	
+	bool PhaseWalking;
+
+
 	glm::i32vec2 i32vec2OldIndex;
 
 	// Handler to the CMap2D instance
