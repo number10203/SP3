@@ -327,7 +327,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		//CS: Change Color
 		//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
 	}
-	if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_C))
 	{
 		if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::IDLE)
 		{
