@@ -395,7 +395,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 	}
 
 
-	
+	// PHASE RUNNING ABILITY
 	if (CGameManager::GetInstance()->bPlayerMedieval == true && cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 	{
 		PhaseWalking = true;
@@ -407,8 +407,6 @@ void CPlayer2D::Update(const double dElapsedTime)
 		PhaseWalking = false;
 		PhaseTimer = 0;
 	}
-	
-	
 	if (PhaseWalking == true)
 	{
 		PhaseTimer +=  1 * dElapsedTime;
@@ -943,7 +941,7 @@ void CPlayer2D::InteractWithMap(void)
 		break;
 	case 99:
 		// Level has been completed
-		CGameManager::GetInstance()->bLevelCompleted = true;
+		CGameManager::GetInstance()->bPlayerWon = true;
 		break;
 	default:
 		break;

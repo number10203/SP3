@@ -80,6 +80,9 @@
     <ClCompile Include="Source\GameStateManagement\InstructionState.cpp">
       <Filter>GameStateManagement</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameStateManagement\WinState.cpp">
+      <Filter>GameStateManagement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -140,6 +143,9 @@
       <Filter>GameStateManagement</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameStateManagement\InstructionState.h">
+      <Filter>GameStateManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateManagement\WinState.h">
       <Filter>GameStateManagement</Filter>
     </ClInclude>
   </ItemGroup>

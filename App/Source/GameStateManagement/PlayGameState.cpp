@@ -58,6 +58,10 @@ bool CPlayGameState::Init(void)
  */
 bool CPlayGameState::Update(const double dElapsedTime)
 {
+	if (CGameManager::GetInstance()->bPlayerWon == true)
+	{
+		CGameStateManager::GetInstance()->SetActiveGameState("WinState");
+	}
 	//if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE))
 	//{
 	//	// Reset the CKeyboardController

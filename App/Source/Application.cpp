@@ -38,6 +38,8 @@ using namespace std;
 #include "GameStateManagement/MenuState.h"
 // Include CInstructionState
 #include "GameStateManagement/InstructionState.h"
+// Include CLoseState
+#include "GameStateManagement/WinState.h"
 // Include CPlayGameState
 #include "GameStateManagement/PlayGameState.h"
 // Include CPauseState
@@ -247,6 +249,7 @@ bool Application::Init(void)
 	CGameStateManager::GetInstance()->AddGameState("InstructionState", new CInstructionState);
 	CGameStateManager::GetInstance()->AddGameState("PlayGameState", new CPlayGameState());
 	CGameStateManager::GetInstance()->AddGameState("PauseState", new CPauseState());
+	CGameStateManager::GetInstance()->AddGameState("WinState", new CWinState());
 
 	// Set the active scene
 	CGameStateManager::GetInstance()->SetActiveGameState("IntroState");
