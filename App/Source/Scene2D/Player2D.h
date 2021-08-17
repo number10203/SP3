@@ -62,6 +62,7 @@ public:
 
 	// PostRender
 	void PostRender(void);
+	
 
 protected:
 	enum DIRECTION
@@ -131,5 +132,7 @@ protected:
 
 	// Update the health and lives
 	void UpdateHealthLives(void);
+
+	int PlayerDimension;
 };
 
