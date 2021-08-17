@@ -153,9 +153,6 @@ bool CPlayer2D::Init(void)
 	// Get the handler to the CSoundController
 	cSoundController = CSoundController::GetInstance();
 
-	//1 = home, 2 = medival, 3 = end, 4 = asendent
-	PlayerDimension = 1;
-
 	return true;
 }
 
@@ -353,30 +350,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		//}
 	}
 
-	if (cKeyboardController->IsKeyReleased(GLFW_KEY_U))
-	{
-		//home dimension
-		PlayerDimension = 1;
-		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-	}
-	else if(cKeyboardController->IsKeyReleased(GLFW_KEY_I))
-	{
-		//Medival dimension
-		PlayerDimension = 2;
-		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-	}
-	else if (cKeyboardController->IsKeyReleased(GLFW_KEY_O))
-	{
-		//end dimension
-		PlayerDimension = 3;
-		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-	}
-	else if (cKeyboardController->IsKeyReleased(GLFW_KEY_P))
-	{
-		//ascendent dimension
-		PlayerDimension = 4;
-		cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
-	}
+	
 
 	if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
 	{
@@ -385,6 +359,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		CGameManager::GetInstance()->bPlayerCave = false;
 		CGameManager::GetInstance()->bPlayerSky = false;
 		cout << "Home Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 	}
 
 	if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
@@ -394,6 +369,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		CGameManager::GetInstance()->bPlayerCave = false;
 		CGameManager::GetInstance()->bPlayerSky = false;
 		cout << "Medieval Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 	}
 
 
@@ -404,6 +380,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		CGameManager::GetInstance()->bPlayerCave = true;
 		CGameManager::GetInstance()->bPlayerSky = false;
 		cout << "Cave Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 	}
 
 	if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
@@ -413,6 +390,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		CGameManager::GetInstance()->bPlayerCave = false;
 		CGameManager::GetInstance()->bPlayerSky = true;
 		cout << "Sky Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
 	}
 
 

@@ -133,6 +133,5 @@ protected:
 	// Update the health and lives
 	void UpdateHealthLives(void);
 
-	int PlayerDimension;
 };
 
