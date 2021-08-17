@@ -399,6 +399,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 	{
 		PhaseWalking = true;
 		cout << "Phasing" << endl;
+		
 	}
 
 	
@@ -572,6 +573,14 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		// If the new position is fully within a row, then check this row only
 		if (i32vec2NumMicroSteps.y == 0)
 		{
+			if (PhaseWalking == true)
+			{
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
+				{
+					return true;
+				}
+			}
+
 			// If the grid is not accessible, then return false
 			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
 			{
@@ -581,6 +590,15 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		// If the new position is between 2 rows, then check both rows as well
 		else if (i32vec2NumMicroSteps.y != 0)
 		{
+			if (PhaseWalking == true)
+			{
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100))
+				{
+					return true;
+				}
+			}
+
 			// If the 2 grids are not accessible, then return false
 			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
 				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100))
@@ -601,6 +619,14 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		// If the new position is fully within a row, then check this row only
 		if (i32vec2NumMicroSteps.y == 0)
 		{
+
+			if (PhaseWalking == true)
+			{
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100)
+				{
+					return true;
+				}
+			}
 			// If the grid is not accessible, then return false
 			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100)
 			{
@@ -610,6 +636,16 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		// If the new position is between 2 rows, then check both rows as well
 		else if (i32vec2NumMicroSteps.y != 0)
 		{
+
+			if (PhaseWalking == true)
+			{
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))
+				{
+					return true;
+				}
+			}
+
 			// If the 2 grids are not accessible, then return false
 			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100) ||
 				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))
@@ -631,6 +667,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		// If the new position is fully within a column, then check this column only
 		if (i32vec2NumMicroSteps.x == 0)
 		{
+
 			// If the grid is not accessible, then return false
 			if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100)
 			{
@@ -654,6 +691,15 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		if (i32vec2NumMicroSteps.x == 0)
 		{
 			// If the grid is not accessible, then return false
+
+			if (PhaseWalking == true)
+			{
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
+				{
+					return true;
+				}
+			}
+
 			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
 			{
 				return false;
@@ -662,6 +708,16 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		// If the new position is between 2 columns, then check both columns as well
 		else if (i32vec2NumMicroSteps.x != 0)
 		{
+
+			if (PhaseWalking == true)
+			{
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100))
+				{
+					return true;
+				}
+			}
+
 			// If the 2 grids are not accessible, then return false
 			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
 				(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100))

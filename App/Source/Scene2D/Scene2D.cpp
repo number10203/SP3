@@ -258,12 +258,7 @@ void CScene2D::Render(void)
 		enemyVector[i]->PostRender();
 	}
 
-	// Call the CPlayer2D's PreRender()
-	cPlayer2D->PreRender();
-	// Call the CPlayer2D's Render()
-	cPlayer2D->Render();
-	// Call the CPlayer2D's PostRender()
-	cPlayer2D->PostRender();
+	
 	
 	// Call the Map2D's PreRender()
 	cMap2D->PreRender();
@@ -278,6 +273,14 @@ void CScene2D::Render(void)
 	cGUI_Scene2D->Render();
 	// Call the cGUI_Scene2D's PostRender()
 	cGUI_Scene2D->PostRender();
+
+	// Call the CPlayer2D's PreRender()
+	cPlayer2D->PreRender();
+	// Call the CPlayer2D's Render()
+	cPlayer2D->Render();
+	// Call the CPlayer2D's PostRender()
+	cPlayer2D->PostRender();
+
 }
 
 /**
