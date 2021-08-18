@@ -133,6 +133,16 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
 	}
+	
+	// Phasing Block
+	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 202) == false)
+	{
+		std::cout << "Failed to load Phase block tile texture" << std::endl;
+		return false;
+	}
+
+
+
 
 	// Initialise the variables for AStar
 	m_weight = 1;

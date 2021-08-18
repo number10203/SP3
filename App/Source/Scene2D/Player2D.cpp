@@ -659,7 +659,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202)
 				{
 					return true;
 				}
@@ -676,8 +676,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 202))
 				{
 					return true;
 				}
@@ -707,7 +707,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100)
+				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202)
 				{
 					return true;
 				}
@@ -724,8 +724,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 200))
 				{
 					return true;
 				}
@@ -748,7 +748,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202)
 				{
 					return true;
 				}
@@ -765,8 +765,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202))
 				{
 					return true;
 				}
@@ -966,6 +966,8 @@ void CPlayer2D::InteractWithMap(void)
  */
 void CPlayer2D::UpdateHealthLives(void)
 {
+	
+
 	// Update health 
 	cInventoryItem = cInventoryManager->GetItem("Health");
 	// Check if Health is 0
