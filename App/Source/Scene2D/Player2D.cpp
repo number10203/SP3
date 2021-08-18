@@ -330,6 +330,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 	}
 	if (cKeyboardController->IsKeyPressed(GLFW_KEY_C))
 	{
+		cout << "Creative Mode" << endl;
+
 		if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::IDLE)
 		{
 			cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
@@ -425,6 +427,17 @@ void CPlayer2D::Update(const double dElapsedTime)
 		}
 	}
 
+	if (CGameManager::GetInstance()->bPlayerCave = true)
+	{
+		if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
+		{
+			cout << "Grappling Left" << endl;
+		}
+		else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
+		{
+			cout << "Grappling Right" << endl;
+		}
+	}
 
 	
 
