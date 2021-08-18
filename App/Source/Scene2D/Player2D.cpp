@@ -143,7 +143,7 @@ bool CPlayer2D::Init(void)
 	cInventoryItem = cInventoryManager->Add("DimensionSky", "Image/HUD/Ascend.tga", 100, 0);
 	cInventoryItem->vec2Size = glm::vec2(25, 25);
 
-	// Add a DImension icon as one of the inventory items to showcase the current dimension
+	// Add a DImension icon as one of the inventory items to showcase the current dimension (cave)
 	cInventoryItem = cInventoryManager->Add("DimensionCave", "Image/HUD/Cave.tga", 100, 0);
 	cInventoryItem->vec2Size = glm::vec2(25, 25);
 
@@ -427,7 +427,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		}
 	}
 
-	if (CGameManager::GetInstance()->bPlayerCave = true)
+	if (CGameManager::GetInstance()->bPlayerCave == true)
 	{
 		if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 		{
@@ -954,7 +954,7 @@ void CPlayer2D::InteractWithMap(void)
 		break;
 	case 99:
 		// Level has been completed
-		CGameManager::GetInstance()->bPlayerWon = true;
+		CGameManager::GetInstance()->bLevelCompleted = true;
 		break;
 	default:
 		break;

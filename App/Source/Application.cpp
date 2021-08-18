@@ -256,7 +256,7 @@ bool Application::Init(void)
 	CGameStateManager::GetInstance()->AddGameState("PauseState", new CPauseState());
 	CGameStateManager::GetInstance()->AddGameState("WinState", new CWinState());
 	CGameStateManager::GetInstance()->AddGameState("LoseState", new CLoseState());
-	//CGameStateManager::GetInstance()->AddGameState("Sound2State", new CSoundState2());
+	
 	// Set the active scene
 	CGameStateManager::GetInstance()->SetActiveGameState("IntroState");
 
