@@ -92,10 +92,10 @@ bool CGameStateManager::Update(const double dElapsedTime)
  */
 void CGameStateManager::Render(void)
 {
-	if (pauseGameState)
-		pauseGameState->Render();
 	if (activeGameState)
 		activeGameState->Render();
+	if (pauseGameState)
+		pauseGameState->Render();
 }
 
 /**
