@@ -251,11 +251,12 @@ bool Application::Init(void)
 	CGameStateManager::GetInstance()->AddGameState("IntroState", new CIntroState());
 	CGameStateManager::GetInstance()->AddGameState("MenuState", new CMenuState());
 	CGameStateManager::GetInstance()->AddGameState("InstructionState", new CInstructionState);
+	CGameStateManager::GetInstance()->AddGameState("SoundState", new CSoundState());
 	CGameStateManager::GetInstance()->AddGameState("PlayGameState", new CPlayGameState());
 	CGameStateManager::GetInstance()->AddGameState("PauseState", new CPauseState());
 	CGameStateManager::GetInstance()->AddGameState("WinState", new CWinState());
 	CGameStateManager::GetInstance()->AddGameState("LoseState", new CLoseState());
-	CGameStateManager::GetInstance()->AddGameState("SoundState", new CSoundState());
+	//CGameStateManager::GetInstance()->AddGameState("Sound2State", new CSoundState2());
 	// Set the active scene
 	CGameStateManager::GetInstance()->SetActiveGameState("IntroState");
 

@@ -93,6 +93,10 @@ bool CMenuState::Init(void)
 	// Instruction Button
 	instructionButtonData.fileName = "Image\\GUI\\InstructionButton.png";
 	instructionButtonData.textureID = il->LoadTextureGetID(instructionButtonData.fileName.c_str(), false);
+	// Sound Button
+	soundButtonData.fileName = "Image\\GUI\\SoundButton.png";
+	soundButtonData.textureID = il->LoadTextureGetID(soundButtonData.fileName.c_str(), false);
+
 
 	return true;
 }
@@ -116,8 +120,8 @@ bool CMenuState::Update(const double dElapsedTime)
 	window_flags |= ImGuiWindowFlags_NoCollapse;
 	window_flags |= ImGuiWindowFlags_NoNav;
 
-	float buttonWidth = 256;
-	float buttonHeight = 128;
+	float buttonWidth = 128;
+	float buttonHeight = 64;
 
 	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
 	{
@@ -159,6 +163,19 @@ bool CMenuState::Update(const double dElapsedTime)
 
 		}
 
+		// Add codes for Sound button here
+		if (ImGui::ImageButton((ImTextureID)soundButtonData.textureID,
+			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
+		{
+			// Reset the CKeyboardController
+			CKeyboardController::GetInstance()->Reset();
+
+			// Load the Instruction state
+			cout << "Switching to Sound State" << endl;
+			CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
+
+		}
+
 		// Add codes for Exit button here
 		if (ImGui::ImageButton((ImTextureID)exitButtonData.textureID,
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
@@ -185,6 +202,26 @@ bool CMenuState::Update(const double dElapsedTime)
 		// Load the menu state
 		cout << "Loading PlayGameState" << endl;
 		CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
+		return true;
+	}
+	else if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_I))
+	{
+		// Reset the CKeyboardController
+		CKeyboardController::GetInstance()->Reset();
+
+		// Load the menu state
+		cout << "Loading InstructionState" << endl;
+		CGameStateManager::GetInstance()->SetActiveGameState("InstructionState");
+		return true;
+	}
+	else if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_S))
+	{
+		// Reset the CKeyboardController
+		CKeyboardController::GetInstance()->Reset();
+
+		// Load the menu state
+		cout << "Loading SoundState" << endl;
+		CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
 		return true;
 	}
 	else if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE))

@@ -80,16 +80,6 @@ bool CPlayGameState::Update(const double dElapsedTime)
 		CGameStateManager::GetInstance()->SetActiveGameState("LoseState");
 	}
 	
-	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F9))
-	{
-		// Reset the CKeyboardController
-		CKeyboardController::GetInstance()->Reset();
-
-		// Load the Sound State
-		cout << "Loading Sound Menu" << endl;
-		CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
-	}
-
 	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F10))
 	{
 		// Reset the CKeyboardController

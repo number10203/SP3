@@ -51,4 +51,5 @@ protected:
 	ButtonData startButtonData;
 	ButtonData exitButtonData;
 	ButtonData instructionButtonData;
+	ButtonData soundButtonData;
 };

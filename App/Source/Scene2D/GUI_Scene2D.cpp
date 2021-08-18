@@ -248,9 +248,14 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 		cInventoryItem->GetCount(), cInventoryItem->GetMaxCount());
 	ImGui::End();
 	ImGui::PopStyleColor();
-
+	
 	if (CGameStateManager::GetInstance()->CheckPauseGameState() == false)
+	{
 		ImGui::End();
+	}
+		
+
+
 }
 
 
