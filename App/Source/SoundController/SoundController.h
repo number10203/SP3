@@ -56,6 +56,8 @@ public:
 	// Set Listener direction
 	void SetListenerDirection(const float x, const float y, const float z);
 
+	void StopAllSounds();
+
 protected:
 	// Constructor
 	CSoundController(void);

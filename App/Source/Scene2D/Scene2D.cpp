@@ -158,6 +158,13 @@ bool CScene2D::Init(void)
 
 	// Load the sounds into CSoundController
 	cSoundController = CSoundController::GetInstance();
+
+	// SOUND PLAYLIST
+
+	//BACKGROUND MUSIC
+
+	// MISC SOUNDS
+	
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Bell.ogg"), 1, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 2, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Jump.ogg"), 3, true);

@@ -298,3 +298,8 @@ int CSoundController::GetNumOfSounds(void) const
 {
 	return soundMap.size();
 }
+
+void CSoundController::StopAllSounds()
+{
+	cSoundEngine->stopAllSounds();
+}
