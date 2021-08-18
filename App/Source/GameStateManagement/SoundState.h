@@ -47,7 +47,10 @@ public:
 	virtual void Destroy(void);
 
 protected:
+	
+
 	CBackgroundEntity* background;
+
 	ButtonData3 backButtonData;
 	ButtonData3 VolUpButtonData;
 	ButtonData3 VolDownButtonData;

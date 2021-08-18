@@ -44,6 +44,7 @@ using namespace std;
  */
 CSoundState::CSoundState(void)
 	: background(NULL)
+	
 {
 }
 
@@ -52,7 +53,7 @@ CSoundState::CSoundState(void)
  */
 CSoundState::~CSoundState(void)
 {
-
+	
 }
 
 /**
@@ -97,7 +98,7 @@ bool CSoundState::Init(void)
 	VolDownButtonData.fileName = "Image\\GUI\\VolumeDownButton.png";
 	VolDownButtonData.textureID = il->LoadTextureGetID(VolDownButtonData.fileName.c_str(), false);
 
-
+	
 	return true;
 }
 
@@ -144,8 +145,8 @@ bool CSoundState::Update(const double dElapsedTime)
 		{
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
-			
 			CSoundController::GetInstance()->MasterVolumeIncrease();
+			CSoundController::GetInstance()->PlaySoundByID(2);
 
 		}
 
@@ -155,8 +156,8 @@ bool CSoundState::Update(const double dElapsedTime)
 		{
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
-
 			CSoundController::GetInstance()->MasterVolumeDecrease();
+			CSoundController::GetInstance()->PlaySoundByID(2);
 
 		}
 
@@ -168,8 +169,8 @@ bool CSoundState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the Instruction state
-			cout << "Switching to Menu State" << endl;
-			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
+			cout << "Switching to play State" << endl;
+			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
 
 		}
 		ImGui::End();

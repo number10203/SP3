@@ -154,6 +154,7 @@ bool CPlayer2D::Init(void)
 	// Get the handler to the CSoundController
 	cSoundController = CSoundController::GetInstance();
 
+
 	return true;
 }
 
@@ -255,7 +256,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		// If the new position is not feasible, then revert to old position
 		if (CheckPosition(RIGHT) == false)
 		{
-			i32vec2NumMicroSteps.x = 0;
+		i32vec2NumMicroSteps.x = 0;
 		}
 
 		//// Check if player is in mid-air, such as walking off a platform
@@ -354,6 +355,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 	}
 
 	
+
 
 	if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
 	{
