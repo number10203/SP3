@@ -1,0 +1,7 @@
+1-black
+2,3,4,5-up,right,down,left
+6,7,8,9-NW,NE,SE,SW
+10,11,12,13-iNW,iNE,iSE,iSW
+14-phaseblack
+15-hookblock
+16,17,18-cloud
