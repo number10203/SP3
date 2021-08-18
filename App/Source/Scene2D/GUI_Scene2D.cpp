@@ -249,13 +249,8 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 	ImGui::End();
 	ImGui::PopStyleColor();
 	
-	if (CGameStateManager::GetInstance()->CheckPauseGameState() == false)
-	{
-		ImGui::End();
-	}
-		
-
-
+	ImGui::End();
+	
 }
 
 

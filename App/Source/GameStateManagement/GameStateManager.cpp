@@ -77,7 +77,7 @@ bool CGameStateManager::Update(const double dElapsedTime)
 		{
 			if (pauseGameState)
 			{
-				cout << "pauseGameState->Update" << endl;
+				//cout << "pauseGameState->Update" << endl;
 				pauseGameState->Update(dElapsedTime);
 			}
 		}
@@ -208,11 +208,4 @@ bool CGameStateManager::SetPauseGameState(const std::string& _name)
 void CGameStateManager::OffPauseGameState(void)
 {
 	pauseGameState = nullptr;
-}
-
-bool CGameStateManager::CheckPauseGameState(void)
-{
-	if (pauseGameState == nullptr)
-		return false;
-	return true;
 }

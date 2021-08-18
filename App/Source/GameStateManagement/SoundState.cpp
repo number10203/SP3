@@ -146,7 +146,7 @@ bool CSoundState::Update(const double dElapsedTime)
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 			CSoundController::GetInstance()->MasterVolumeIncrease();
-			CSoundController::GetInstance()->PlaySoundByID(2);
+			CSoundController::GetInstance()->PlaySoundByID(4);
 
 		}
 
@@ -157,7 +157,7 @@ bool CSoundState::Update(const double dElapsedTime)
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 			CSoundController::GetInstance()->MasterVolumeDecrease();
-			CSoundController::GetInstance()->PlaySoundByID(2);
+			CSoundController::GetInstance()->PlaySoundByID(4);
 
 		}
 
@@ -170,7 +170,7 @@ bool CSoundState::Update(const double dElapsedTime)
 
 			// Load the Instruction state
 			cout << "Switching to play State" << endl;
-			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
+			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 
 		}
 		ImGui::End();

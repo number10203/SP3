@@ -47,6 +47,6 @@ protected:
 		unsigned textureID;
 	};
 
-	ButtonData startButtonData;
-	ButtonData backButtonData;
+	ButtonData VolumeIncreaseButtonData;
+	ButtonData VolumeDecreaseButtonData;
 };

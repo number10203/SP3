@@ -33,6 +33,9 @@
 // Include CKeyboardController
 #include "Inputs/KeyboardController.h"
 
+// Include SoundController
+#include "../SoundController/SoundController.h"
+
 #include <iostream>
 using namespace std;
 
@@ -63,31 +66,13 @@ bool CPauseState::Init(void)
 	CShaderManager::GetInstance()->Use("2DShader");
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
 
-	////Create Background Entity
-	//background = new CBackgroundEntity("Image/MenuBackground.png");
-	//background->SetShader("2DShader");
-	//background->Init();
-
-	//// Setup Dear ImGui context
-	//IMGUI_CHECKVERSION();
-	//ImGui::CreateContext();
-	//ImGuiIO& io = ImGui::GetIO(); (void)io;
-
-	//// Setup Dear ImGui style
-	//ImGui::StyleColorsDark();
-	////ImGui::StyleColorsClassic();
-
-	//// Setup Platform/Renderer bindings
-	//ImGui_ImplGlfw_InitForOpenGL(CSettings::GetInstance()->pWindow, true);
-	//const char* glsl_version = "#version 330";
-	//ImGui_ImplOpenGL3_Init(glsl_version);
 
 	// Load the images for buttons
 	CImageLoader* il = CImageLoader::GetInstance();
-	startButtonData.fileName = "Image\\GUI\\PlayButton.png";
-	startButtonData.textureID = il->LoadTextureGetID(startButtonData.fileName.c_str(), false);
-	backButtonData.fileName = "Image\\GUI\\ExitButton.png";
-	backButtonData.textureID = il->LoadTextureGetID(backButtonData.fileName.c_str(), false);
+	VolumeIncreaseButtonData.fileName = "Image\\GUI\\VolumeUpButton.png";
+	VolumeIncreaseButtonData.textureID = il->LoadTextureGetID(VolumeIncreaseButtonData.fileName.c_str(), false);
+	VolumeDecreaseButtonData.fileName = "Image\\GUI\\VolumeDownButton.png";
+	VolumeDecreaseButtonData.textureID = il->LoadTextureGetID(VolumeDecreaseButtonData.fileName.c_str(), false);
 
 	return true;
 }
@@ -97,14 +82,6 @@ bool CPauseState::Init(void)
  */
 bool CPauseState::Update(const double dElapsedTime)
 {
-	//// Start the Dear ImGui frame
-	//ImGui_ImplOpenGL3_NewFrame();
-	//ImGui_ImplGlfw_NewFrame();
-	//ImGui::NewFrame();
-
-		// Display the FPS
-	ImGui::TextColored(ImVec4(0, 1, 1, 1), "HELLO WORLD!!!!!!!!!!!!");
-
 	ImGuiWindowFlags window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoTitleBar;
 	window_flags |= ImGuiWindowFlags_NoScrollbar;
@@ -132,33 +109,35 @@ bool CPauseState::Update(const double dElapsedTime)
 		ImGuiStyle& style = ImGui::GetStyle();
 		style.FrameRounding = 200.0f;
 		
-		// Add codes for Start button here
-		if (ImGui::ImageButton((ImTextureID)startButtonData.textureID, 
+		// Display words
+		ImGui::TextColored(ImVec4(1, 1, 1, 1), "In-game Menu");
+
+		// Add codes for Up button here
+		if (ImGui::ImageButton((ImTextureID)VolumeIncreaseButtonData.textureID, 
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0)))
 		{
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 
-			// Load the menu state
-			cout << "Loading PlayGameState" << endl;
-			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
+			CSoundController::GetInstance()->MasterVolumeIncrease();
+			CSoundController::GetInstance()->PlaySoundByID(4);
+		
+
 		}
-		// Add codes for Exit button here
-		if (ImGui::ImageButton((ImTextureID)backButtonData.textureID,
+		// Add codes for Down button here
+		if (ImGui::ImageButton((ImTextureID)VolumeDecreaseButtonData.textureID,
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0)))
 		{
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 
-			// Load the menu state
-			cout << "Going to Main Menu" << endl;
-			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
-
-			
+			CSoundController::GetInstance()->MasterVolumeDecrease();
+			CSoundController::GetInstance()->PlaySoundByID(4);
+		
 		}
 	ImGui::End();
 	}
-	ImGui::End();
+	
 
 	//For keyboard controls
 	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F10))
@@ -183,14 +162,8 @@ void CPauseState::Render(void)
 	// Clear the screen and buffer
 	glClearColor(0.0f, 0.55f, 1.00f, 1.00f);
 
-	////Render Background
-	//background->Render();
 
-	//// Rendering
-	//ImGui::Render();
-	//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-	cout << "CPauseState::Render()\n" << endl;
+	//cout << "CPauseState::Render()\n" << endl;
 }
 
 /**
@@ -198,17 +171,5 @@ void CPauseState::Render(void)
  */
 void CPauseState::Destroy(void)
 {
-	//// Delete the background
-	//if (background)
-	//{
-	//	delete background;
-	//	background = NULL;
-	//}
-
-	//// Cleanup
-	//ImGui_ImplOpenGL3_Shutdown();
-	//ImGui_ImplGlfw_Shutdown();
-	//ImGui::DestroyContext();
-
-	cout << "CPauseState::Destroy()\n" << endl;
+	//cout << "CPauseState::Destroy()\n" << endl;
 }

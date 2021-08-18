@@ -28,7 +28,6 @@ public:
 	bool CheckGameStateExist(const std::string& _name);
 	bool SetPauseGameState(const std::string& _name);
 	void OffPauseGameState(void);
-	bool CheckPauseGameState(void);
 
 protected:
 	// Constructor

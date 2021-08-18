@@ -58,17 +58,17 @@ bool CPlayGameState::Init(void)
  */
 bool CPlayGameState::Update(const double dElapsedTime)
 {
-	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE))
-	{
-		// Reset the CKeyboardController
-		CKeyboardController::GetInstance()->Reset();
+	//if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE))
+	//{
+	//	// Reset the CKeyboardController
+	//	CKeyboardController::GetInstance()->Reset();
 
-		// Load the menu state
-		cout << "Loading MenuState" << endl;
-		CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
-		CGameStateManager::GetInstance()->OffPauseGameState();
-		return true;
-	}
+	//	// Load the menu state
+	//	cout << "Loading MenuState" << endl;
+	//	CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
+	//	CGameStateManager::GetInstance()->OffPauseGameState();
+	//	return true;
+	//}
 
 	if (CGameManager::GetInstance()->bPlayerWon == true)
 	{
@@ -80,15 +80,15 @@ bool CPlayGameState::Update(const double dElapsedTime)
 		CGameStateManager::GetInstance()->SetActiveGameState("LoseState");
 	}
 	
-	/*if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F10))
+	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F10))
 	{
-		 Reset the CKeyboardController
+		 //Reset the CKeyboardController
 		CKeyboardController::GetInstance()->Reset();
 
-		 Load the menu state
-		cout << "Loading SoundState" << endl;
-		CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
-	}*/
+		 //Load the menu state
+		cout << "Loading In-Game SoundState" << endl;
+		CGameStateManager::GetInstance()->SetPauseGameState("PauseState");
+	}
 
 	// Call the cScene2D's Update method
 	cScene2D->Update(dElapsedTime);
