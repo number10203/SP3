@@ -98,23 +98,91 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 
 	// Load and create textures
 	// Load the ground texture
-	if (LoadTexture("Image/Scene2D_GroundTile.tga", 100) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Black.tga", 1) == false)
 	{
-		std::cout << "Failed to load ground tile texture" << std::endl;
+		std::cout << "Failed to load black tile texture" << std::endl;
 		return false;
 	}
 	// Load the tree texture
-	if (LoadTexture("Image/Scene2D_TreeTile.tga", 2) == false)
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_up.tga", 2) == false)
 	{
-		std::cout << "Failed to load tree tile texture" << std::endl;
+		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
 	}
-	// Load the Life texture
-	if (LoadTexture("Image/Scene2D_Lives.tga", 10) == false)
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_right.tga", 3) == false)
 	{
-		std::cout << "Failed to load Scene2D_Lives tile texture" << std::endl;
+		std::cout << "Failed to load right tile texture" << std::endl;
 		return false;
 	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_down.tga", 4) == false)
+	{
+		std::cout << "Failed to load down tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_left.tga", 5) == false)
+	{
+		std::cout << "Failed to load left tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_NW.tga", 6) == false)
+	{
+		std::cout << "Failed to load NW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_NE.tga", 7) == false)
+	{
+		std::cout << "Failed to load NE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_SE.tga", 8) == false)
+	{
+		std::cout << "Failed to load se tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_SW.tga", 9) == false)
+	{
+		std::cout << "Failed to load sw tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_inverseNW.tga", 10) == false)
+	{
+		std::cout << "Failed to load iNW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_inverseNE.tga", 11) == false)
+	{
+		std::cout << "Failed to load iNE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_inverseSE.tga", 12) == false)
+	{
+		std::cout << "Failed to load iSE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/City/TGA/Citywall_inverseSW.tga", 13) == false)
+	{
+		std::cout << "Failed to load iSW tile texture" << std::endl;
+		return false;
+	}
+	// Phasing Block
+	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 14) == false)
+	{
+		std::cout << "Failed to load Phase block tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Special/TGA/HookBlock.tga", 15) == false)
+	{
+		std::cout << "Failed to load Hookblock tile texture" << std::endl;
+		return false;
+	}
+
+	if (LoadTexture("Image/Tiles/City/TGA/City.tga", 19) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+		return false;
+	}
+
+
 	// Load the spike texture
 	if (LoadTexture("Image/Scene2D_Spikes.tga", 20) == false)
 	{
@@ -133,16 +201,6 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
 	}
-	
-	// Phasing Block
-	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 202) == false)
-	{
-		std::cout << "Failed to load Phase block tile texture" << std::endl;
-		return false;
-	}
-
-
-
 
 	// Initialise the variables for AStar
 	m_weight = 1;
