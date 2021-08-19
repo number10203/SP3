@@ -418,7 +418,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 	{
 		PhaseTimer +=  1 * dElapsedTime;
 
-		if (PhaseTimer >= 0.5)
+		if (PhaseTimer >= 0.3)
 		{
 			PhaseWalking = false;
 			cout << "Leaving Phase" << endl;
@@ -982,4 +982,5 @@ void CPlayer2D::UpdateHealthLives(void)
 		// Player loses the game
 		CGameManager::GetInstance()->bPlayerLost = true;
 	}
+	// Die if player is stuck in a wall
 }
