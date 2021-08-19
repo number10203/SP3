@@ -43,8 +43,6 @@ CPlayer2D::CPlayer2D(void)
 	vec2UVCoordinate = glm::vec2(0.0f);
 
 	PhaseWalking = false;
-	PhaseTimer = 0;
-
 	Timer = 0;
 }
 
@@ -149,7 +147,7 @@ bool CPlayer2D::Init(void)
 	cInventoryItem = cInventoryManager->Add("DimensionCave", "Image/HUD/Cave.tga", 100, 0);
 	cInventoryItem->vec2Size = glm::vec2(25, 25);
 
-	Timer = 0;
+
 
 	jumpCount = 0;
 
@@ -423,34 +421,16 @@ void CPlayer2D::Update(const double dElapsedTime)
 		
 
 		// PHASE RUNNING ABILITY
-		if (CGameManager::GetInstance()->bPlayerMedieval == true && cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
+		if (CGameManager::GetInstance()->bPlayerMedieval == true)
 		{
 			PhaseWalking = true;
-
-			cout << "Phasing" << endl;
 		}
 		else if (CGameManager::GetInstance()->bPlayerMedieval == false)
 		{
 			PhaseWalking = false;
-			PhaseTimer = 0;
 		}
-		if (PhaseWalking == true)
-		{
-			PhaseTimer += 1 * dElapsedTime;
-
-			if (PhaseTimer >= 0.3)
-			{
-				PhaseWalking = false;
-				cout << "Leaving Phase" << endl;
-				PhaseTimer = 0;
-			}
-			else if (PhaseWalking == true && cKeyboardController->IsKeyPressed(GLFW_KEY_Q))
-			{
-				PhaseWalking = false;
-				cout << "Leaving Phase" << endl;
-				PhaseTimer = 0;
-			}
-		}
+		
+		
 
 		if (CGameManager::GetInstance()->bPlayerCave == true)
 		{
@@ -656,7 +636,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202)
 				{
 					return true;
 				}
@@ -673,8 +653,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202))
 				{
 					return true;
 				}
@@ -705,7 +685,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202)
 				{
 					return true;
 				}
@@ -722,8 +702,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 202))
 				{
 					return true;
 				}
@@ -753,7 +733,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202)
 				{
 					return true;
 				}
@@ -770,8 +750,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 202))
 				{
 					return true;
 				}
@@ -794,7 +774,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202)
 				{
 					return true;
 				}
@@ -811,8 +791,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202))
 				{
 					return true;
 				}

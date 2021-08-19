@@ -79,7 +79,7 @@ protected:
 
 	
 	bool PhaseWalking;
-	float PhaseTimer;
+	
 
 	bool Grapple_Right = false;
 	bool Grapple_Left = false;
