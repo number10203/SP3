@@ -160,8 +160,7 @@ bool CScene2D::Init(void)
 	cSoundController = CSoundController::GetInstance();
 	cSoundController->Init();
 	// SOUND PLAYLIST
-
-	//BACKGROUND MUSIC
+	//BACKGROUND MUSIC 1 - 10
 	
 	// MENU SOUNDS 10 - 20
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LoseSound.ogg"), 10, true);
@@ -229,6 +228,7 @@ bool CScene2D::Update(const double dElapsedTime)
 	if (cGameManager->bLevelCompleted == true)
 	{
 		CGameStateManager::GetInstance()->SetActiveGameState("LevelCompletedState");
+		cSoundController->StopAllSounds();
 		cSoundController->PlaySoundByID(12);
 		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel()+1);
 		cPlayer2D->Reset();
@@ -241,12 +241,14 @@ bool CScene2D::Update(const double dElapsedTime)
 	{
 		// End the game and switch to Win screen
 		CGameStateManager::GetInstance()->SetActiveGameState("WinState");
+		cSoundController->StopAllSounds();
 		cSoundController->PlaySoundByID(11);
 	}
 	// Check if the game should be ended
 	else if (cGameManager->bPlayerLost == true)
 	{
 		CGameStateManager::GetInstance()->SetActiveGameState("LoseState");
+		cSoundController->StopAllSounds();
 		cSoundController->PlaySoundByID(10);
 		return false;
 	}
