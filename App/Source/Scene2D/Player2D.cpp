@@ -460,8 +460,6 @@ void CPlayer2D::Update(const double dElapsedTime)
 					//Move towards the hookblock
 					cout << "Grappling Left" << endl;
 				}
-
-				//cout << "Grappling" << endl;
 			}
 		}
 
