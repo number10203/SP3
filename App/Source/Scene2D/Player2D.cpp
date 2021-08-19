@@ -198,272 +198,290 @@ bool CPlayer2D::Reset()
 
 void CPlayer2D::Update(const double dElapsedTime)
 {
-	if (CGameManager::GetInstance()->bLevelPaused == false)
+
+	// Store the old position
+	i32vec2OldIndex = i32vec2Index;
+
+	// Get keyboard updates
+	if (cKeyboardController->IsKeyDown(GLFW_KEY_A))
 	{
-		// Store the old position
-		i32vec2OldIndex = i32vec2Index;
-
-		// Get keyboard updates
-		if (cKeyboardController->IsKeyDown(GLFW_KEY_A))
+		// Calculate the new position to the left
+		if (i32vec2Index.x >= 0)
 		{
-			// Calculate the new position to the left
-			if (i32vec2Index.x >= 0)
+			i32vec2NumMicroSteps.x--;
+			if (i32vec2NumMicroSteps.x < 0)
 			{
-				i32vec2NumMicroSteps.x--;
-				if (i32vec2NumMicroSteps.x < 0)
-				{
-					i32vec2NumMicroSteps.x = ((int)cSettings->NUM_STEPS_PER_TILE_XAXIS) - 1;
-					i32vec2Index.x--;
-				}
+				i32vec2NumMicroSteps.x = ((int)cSettings->NUM_STEPS_PER_TILE_XAXIS) - 1;
+				i32vec2Index.x--;
 			}
-
-			// Constraint the player's position within the screen boundary
-			Constraint(LEFT);
-
-			// If the new position is not feasible, then revert to old position
-			if (CheckPosition(LEFT) == false)
-			{
-				i32vec2Index = i32vec2OldIndex;
-				i32vec2NumMicroSteps.x = 0;
-			}
-
-			//// Check if player is in mid-air, such as walking off a platform
-			//if (IsMidAir() == true)
-			//{
-			//	if (cPhysics2D.GetStatus() != CPhysics2D::STATUS::JUMP)
-			//		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-			//}
-
-			//CS: Play the "left" animation
-			animatedSprites->PlayAnimation("left", -1, 1.0f);
-
-			//CS: Change Color
-			//currentColor = glm::vec4(1.0, 0.0, 0.0, 1.0);
 		}
-		else if (cKeyboardController->IsKeyDown(GLFW_KEY_D))
+
+		// Constraint the player's position within the screen boundary
+		Constraint(LEFT);
+
+		// If the new position is not feasible, then revert to old position
+		if (CheckPosition(LEFT) == false)
 		{
-			// Calculate the new position to the right
-			if (i32vec2Index.x < (int)cSettings->NUM_TILES_XAXIS)
-			{
-				i32vec2NumMicroSteps.x++;
+			i32vec2Index = i32vec2OldIndex;
+			i32vec2NumMicroSteps.x = 0;
+		}
 
-				if (i32vec2NumMicroSteps.x >= cSettings->NUM_STEPS_PER_TILE_XAXIS)
-				{
-					i32vec2NumMicroSteps.x = 0;
-					i32vec2Index.x++;
-				}
-			}
+		//// Check if player is in mid-air, such as walking off a platform
+		//if (IsMidAir() == true)
+		//{
+		//	if (cPhysics2D.GetStatus() != CPhysics2D::STATUS::JUMP)
+		//		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+		//}
 
-			// Constraint the player's position within the screen boundary
-			Constraint(RIGHT);
+		//CS: Play the "left" animation
+		animatedSprites->PlayAnimation("left", -1, 1.0f);
 
-			// If the new position is not feasible, then revert to old position
-			if (CheckPosition(RIGHT) == false)
+		//CS: Change Color
+		//currentColor = glm::vec4(1.0, 0.0, 0.0, 1.0);
+	}
+	else if (cKeyboardController->IsKeyDown(GLFW_KEY_D))
+	{
+		// Calculate the new position to the right
+		if (i32vec2Index.x < (int)cSettings->NUM_TILES_XAXIS)
+		{
+			i32vec2NumMicroSteps.x++;
+
+			if (i32vec2NumMicroSteps.x >= cSettings->NUM_STEPS_PER_TILE_XAXIS)
 			{
 				i32vec2NumMicroSteps.x = 0;
+				i32vec2Index.x++;
 			}
-
-			//// Check if player is in mid-air, such as walking off a platform
-			//if (IsMidAir() == true)
-			//{
-			//	if (cPhysics2D.GetStatus() != CPhysics2D::STATUS::JUMP)
-			//		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-			//}
-
-			//CS: Play the "right" animation
-			animatedSprites->PlayAnimation("right", -1, 1.0f);
-
-			//CS: Change Color
-			//currentColor = glm::vec4(1.0, 1.0, 0.0, 1.0);
 		}
-		if (cKeyboardController->IsKeyDown(GLFW_KEY_W))
+
+		// Constraint the player's position within the screen boundary
+		Constraint(RIGHT);
+
+		// If the new position is not feasible, then revert to old position
+		if (CheckPosition(RIGHT) == false)
 		{
-			// Calculate the new position up
-			if (i32vec2Index.y < (int)cSettings->NUM_TILES_YAXIS)
-			{
-				i32vec2NumMicroSteps.y++;
-				if (i32vec2NumMicroSteps.y > cSettings->NUM_STEPS_PER_TILE_YAXIS)
-				{
-					i32vec2NumMicroSteps.y = 0;
-					i32vec2Index.y++;
-				}
-			}
+		i32vec2NumMicroSteps.x = 0;
+		}
 
-			// Constraint the player's position within the screen boundary
-			Constraint(UP);
+		//// Check if player is in mid-air, such as walking off a platform
+		//if (IsMidAir() == true)
+		//{
+		//	if (cPhysics2D.GetStatus() != CPhysics2D::STATUS::JUMP)
+		//		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+		//}
 
-			// If the new position is not feasible, then revert to old position
-			if (CheckPosition(UP) == false)
+		//CS: Play the "right" animation
+		animatedSprites->PlayAnimation("right", -1, 1.0f);
+
+		//CS: Change Color
+		//currentColor = glm::vec4(1.0, 1.0, 0.0, 1.0);
+	}
+	if (cKeyboardController->IsKeyDown(GLFW_KEY_W))
+	{
+		// Calculate the new position up
+		if (i32vec2Index.y < (int)cSettings->NUM_TILES_YAXIS)
+		{
+			i32vec2NumMicroSteps.y++;
+			if (i32vec2NumMicroSteps.y > cSettings->NUM_STEPS_PER_TILE_YAXIS)
 			{
 				i32vec2NumMicroSteps.y = 0;
+				i32vec2Index.y++;
 			}
-
-			//CS: Play the "idle" animation
-			animatedSprites->PlayAnimation("idle", -1, 1.0f);
-
-			//CS: Change Color
-			//currentColor = glm::vec4(0.0, 1.0, 1.0, 0.5);
 		}
-		else if (cKeyboardController->IsKeyDown(GLFW_KEY_S))
+
+		// Constraint the player's position within the screen boundary
+		Constraint(UP);
+
+		// If the new position is not feasible, then revert to old position
+		if (CheckPosition(UP) == false)
 		{
-			// Calculate the new position down
-			if (i32vec2Index.y >= 0)
-			{
-				i32vec2NumMicroSteps.y--;
-				if (i32vec2NumMicroSteps.y < 0)
-				{
-					i32vec2NumMicroSteps.y = ((int)cSettings->NUM_STEPS_PER_TILE_YAXIS) - 1;
-					i32vec2Index.y--;
-				}
-			}
-
-			// Constraint the player's position within the screen boundary
-			Constraint(DOWN);
-
-			// If the new position is not feasible, then revert to old position
-			if (CheckPosition(DOWN) == false)
-			{
-				i32vec2Index = i32vec2OldIndex;
-				i32vec2NumMicroSteps.y = 0;
-			}
-
-			//CS: Play the "idle" animation
-			animatedSprites->PlayAnimation("idle", -1, 1.0f);
-
-			//CS: Change Color
-			//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
+			i32vec2NumMicroSteps.y = 0;
 		}
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_C))
-		{
-			cout << "Creative Mode" << endl;
 
-			if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::IDLE)
+		//CS: Play the "idle" animation
+		animatedSprites->PlayAnimation("idle", -1, 1.0f);
+
+		//CS: Change Color
+		//currentColor = glm::vec4(0.0, 1.0, 1.0, 0.5);
+	}
+	else if (cKeyboardController->IsKeyDown(GLFW_KEY_S))
+	{
+		// Calculate the new position down
+		if (i32vec2Index.y >= 0)
+		{
+			i32vec2NumMicroSteps.y--;
+			if (i32vec2NumMicroSteps.y < 0)
+			{
+				i32vec2NumMicroSteps.y = ((int)cSettings->NUM_STEPS_PER_TILE_YAXIS) - 1;
+				i32vec2Index.y--;
+			}
+		}
+
+		// Constraint the player's position within the screen boundary
+		Constraint(DOWN);
+
+		// If the new position is not feasible, then revert to old position
+		if (CheckPosition(DOWN) == false)
+		{
+			i32vec2Index = i32vec2OldIndex;
+			i32vec2NumMicroSteps.y = 0;
+		}
+
+		//CS: Play the "idle" animation
+		animatedSprites->PlayAnimation("idle", -1, 1.0f);
+
+		//CS: Change Color
+		//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
+	}
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_C))
+	{
+		cout << "Creative Mode" << endl;
+
+		if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::IDLE)
+		{
+			cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
+			cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 3.5f));
+			jumpCount += 1;
+			// Play a jump sound
+			cSoundController->PlaySoundByID(3);
+		}
+		else
+		{
+			if (jumpCount < 2)
 			{
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
-				cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 3.5f));
+				cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 1.5f));
 				jumpCount += 1;
 				// Play a jump sound
 				cSoundController->PlaySoundByID(3);
 			}
-			else
-			{
-				if (jumpCount < 2)
-				{
-					cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
-					cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 1.5f));
-					jumpCount += 1;
-					// Play a jump sound
-					cSoundController->PlaySoundByID(3);
-				}
-			}
 		}
+	}
+
+	
 
 
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
+	{
+		CGameManager::GetInstance()->bPlayerHome = true;
+		CGameManager::GetInstance()->bPlayerMedieval = false;
+		CGameManager::GetInstance()->bPlayerCave = false;
+		CGameManager::GetInstance()->bPlayerSky = false;
+		cout << "Home Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+	}
+
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
+	{
+		CGameManager::GetInstance()->bPlayerHome = false;
+		CGameManager::GetInstance()->bPlayerMedieval = true;
+		CGameManager::GetInstance()->bPlayerCave = false;
+		CGameManager::GetInstance()->bPlayerSky = false;
+		cout << "Medieval Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+	}
 
 
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
-		{
-			CGameManager::GetInstance()->bPlayerHome = true;
-			CGameManager::GetInstance()->bPlayerMedieval = false;
-			CGameManager::GetInstance()->bPlayerCave = false;
-			CGameManager::GetInstance()->bPlayerSky = false;
-			cout << "Home Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-		}
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
+	{
+		CGameManager::GetInstance()->bPlayerHome = false;
+		CGameManager::GetInstance()->bPlayerMedieval = false;
+		CGameManager::GetInstance()->bPlayerCave = true;
+		CGameManager::GetInstance()->bPlayerSky = false;
+		cout << "Cave Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+	}
 
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
-		{
-			CGameManager::GetInstance()->bPlayerHome = false;
-			CGameManager::GetInstance()->bPlayerMedieval = true;
-			CGameManager::GetInstance()->bPlayerCave = false;
-			CGameManager::GetInstance()->bPlayerSky = false;
-			cout << "Medieval Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-		}
-
-
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
-		{
-			CGameManager::GetInstance()->bPlayerHome = false;
-			CGameManager::GetInstance()->bPlayerMedieval = false;
-			CGameManager::GetInstance()->bPlayerCave = true;
-			CGameManager::GetInstance()->bPlayerSky = false;
-			cout << "Cave Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-		}
-
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
-		{
-			CGameManager::GetInstance()->bPlayerHome = false;
-			CGameManager::GetInstance()->bPlayerMedieval = false;
-			CGameManager::GetInstance()->bPlayerCave = false;
-			CGameManager::GetInstance()->bPlayerSky = true;
-			cout << "Sky Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
-		}
+	if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
+	{
+		CGameManager::GetInstance()->bPlayerHome = false;
+		CGameManager::GetInstance()->bPlayerMedieval = false;
+		CGameManager::GetInstance()->bPlayerCave = false;
+		CGameManager::GetInstance()->bPlayerSky = true;
+		cout << "Sky Mode" << endl;
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
+	}
 
 
-		// PHASE RUNNING ABILITY
-		if (CGameManager::GetInstance()->bPlayerMedieval == true && cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
-		{
-			PhaseWalking = true;
+	// PHASE RUNNING ABILITY
+	if (CGameManager::GetInstance()->bPlayerMedieval == true && cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
+	{
+		PhaseWalking = true;
 
-			cout << "Phasing" << endl;
-		}
-		else if (CGameManager::GetInstance()->bPlayerMedieval == false)
+		cout << "Phasing" << endl;
+	}
+	else if (CGameManager::GetInstance()->bPlayerMedieval == false)
+	{
+		PhaseWalking = false;
+		PhaseTimer = 0;
+	}
+	if (PhaseWalking == true)
+	{
+		PhaseTimer +=  1 * dElapsedTime;
+
+		if (PhaseTimer >= 0.3)
 		{
 			PhaseWalking = false;
+			cout << "Leaving Phase" << endl;
 			PhaseTimer = 0;
 		}
-		if (PhaseWalking == true)
+		else if (PhaseWalking == true && cKeyboardController->IsKeyPressed(GLFW_KEY_Q))
 		{
-			PhaseTimer += 1 * dElapsedTime;
+			PhaseWalking = false;
+			cout << "Leaving Phase" << endl;
+			PhaseTimer = 0;
+		}
+	}
 
-			if (PhaseTimer >= 0.3)
-			{
-				PhaseWalking = false;
-				cout << "Leaving Phase" << endl;
-				PhaseTimer = 0;
-			}
-			else if (PhaseWalking == true && cKeyboardController->IsKeyPressed(GLFW_KEY_Q))
-			{
-				PhaseWalking = false;
-				cout << "Leaving Phase" << endl;
-				PhaseTimer = 0;
-			}
+	if (CGameManager::GetInstance()->bPlayerCave == true)
+	{
+		if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
+		{
+			Grapple_Right = false;
+			Grapple_Left = true;
+			cout << "Grapple Left" << endl;
+		}
+		else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
+		{
+			Grapple_Right = true;
+			Grapple_Left = false;
+			cout << "Grapple Right" << endl;
 		}
 
-		if (CGameManager::GetInstance()->bPlayerCave == true)
+		if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 		{
-			if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
+			if ((Grapple_Left == false) && (Grapple_Right == true))
 			{
-				cout << "Grappling Left" << endl;
-			}
-			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
-			{
+				//Move towards the hookblock
 				cout << "Grappling Right" << endl;
 			}
+			else if ((Grapple_Left == true) && (Grapple_Right == false))
+			{
+				//Move towards the hookblock
+				cout << "Grappling Left" << endl;
+			}
+
+			//cout << "Grappling" << endl;
 		}
-
-
-
-		// Update Jump or Fall
-		//CS: Will cause error when debugging. Set to default elapsed time
-		UpdateJumpFall(dElapsedTime);
-
-		// Interact with the Map
-		InteractWithMap();
-
-		// Update the Health and Lives
-		UpdateHealthLives();
-
-		//CS: Update the animated sprite
-		animatedSprites->Update(dElapsedTime);
-
-		// Update the UV Coordinates
-		vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x * cSettings->MICRO_STEP_XAXIS);
-		vec2UVCoordinate.y = cSettings->ConvertIndexToUVSpace(cSettings->y, i32vec2Index.y, false, i32vec2NumMicroSteps.y * cSettings->MICRO_STEP_YAXIS);
 	}
+
+	
+
+	// Update Jump or Fall
+	//CS: Will cause error when debugging. Set to default elapsed time
+	UpdateJumpFall(dElapsedTime);
+
+	// Interact with the Map
+	InteractWithMap();
+
+	// Update the Health and Lives
+	UpdateHealthLives();
+
+	//CS: Update the animated sprite
+	animatedSprites->Update(dElapsedTime);
+
+	// Update the UV Coordinates
+	vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x*cSettings->MICRO_STEP_XAXIS);
+	vec2UVCoordinate.y = cSettings->ConvertIndexToUVSpace(cSettings->y, i32vec2Index.y, false, i32vec2NumMicroSteps.y*cSettings->MICRO_STEP_YAXIS);
 }
 
 /**
@@ -985,5 +1003,4 @@ void CPlayer2D::UpdateHealthLives(void)
 		CGameManager::GetInstance()->bPlayerLost = true;
 	}
 	// Die if player is stuck in a wall
-
 }
