@@ -170,7 +170,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Phase block tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Special/TGA/HookBlock.tga", 15) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Hook_Block.tga", 15) == false)
 	{
 		std::cout << "Failed to load Hookblock tile texture" << std::endl;
 		return false;
