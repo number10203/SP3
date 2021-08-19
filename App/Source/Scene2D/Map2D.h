@@ -141,6 +141,23 @@ public:
 		"Image/Tiles/Cave/TGA/Cavewall_inverseSW.tga",
 	};
 
+	string skyArray[13]
+	{
+		"Image/Tiles/Sky/TGA/Sky.tga",
+		"Image/Tiles/Sky/TGA/Skywall_up.tga",
+		"Image/Tiles/Sky/TGA/Skywall_right.tga",
+		"Image/Tiles/Sky/TGA/Skywall_down.tga",
+		"Image/Tiles/Sky/TGA/Skywall_left.tga",
+		"Image/Tiles/Sky/TGA/Skywall_NW.tga",
+		"Image/Tiles/Sky/TGA/Skywall_NE.tga",
+		"Image/Tiles/Sky/TGA/Skywall_SE.tga",
+		"Image/Tiles/Sky/TGA/Skywall_SW.tga",
+		"Image/Tiles/Sky/TGA/Skywall_inverseNW.tga",
+		"Image/Tiles/Sky/TGA/Skywall_inverseNE.tga",
+		"Image/Tiles/Sky/TGA/Skywall_inverseSE.tga",
+		"Image/Tiles/Sky/TGA/Skywall_inverseSW.tga",
+	};
+
 
 	// Update
 	void Update(const double dElapsedTime);
