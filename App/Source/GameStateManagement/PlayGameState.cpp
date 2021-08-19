@@ -74,9 +74,9 @@ bool CPlayGameState::Update(const double dElapsedTime)
 	{
 		 //Reset the CKeyboardController
 		CKeyboardController::GetInstance()->Reset();
-
+		CGameManager::GetInstance()->bLevelPaused = false;
 		 //Load the menu state
-		cout << "Loading In-Game SoundState" << endl;
+		cout << "Loading / Unloading In-Game SoundState" << endl;
 		CGameStateManager::GetInstance()->SetPauseGameState("PauseState");
 
 	}

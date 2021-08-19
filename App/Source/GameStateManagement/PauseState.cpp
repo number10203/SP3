@@ -62,7 +62,7 @@ CPauseState::~CPauseState(void)
 bool CPauseState::Init(void)
 {
 	cout << "CPauseState::Init()\n" << endl;
-
+	cout << "Paused" << endl;
 	CShaderManager::GetInstance()->Use("2DShader");
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
 
@@ -76,6 +76,7 @@ bool CPauseState::Init(void)
 	ExitButtonData.fileName = "Image\\GUI\\ExitButton.png";
 	ExitButtonData.textureID = il->LoadTextureGetID(ExitButtonData.fileName.c_str(), false);
 	
+	CGameManager::GetInstance()->bLevelPaused = true;
 
 	return true;
 }
@@ -145,10 +146,11 @@ bool CPauseState::Update(const double dElapsedTime)
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 
+
 			// Load the menu state
 			cout << "Quitting the game" << endl;
 
-			return false;
+			return false; 
 
 		}
 	ImGui::End();
@@ -161,10 +163,9 @@ bool CPauseState::Update(const double dElapsedTime)
 		// Reset the CKeyboardController
 		CKeyboardController::GetInstance()->Reset();
 
-	
-
 		// Load the menu state
 		cout << "UnLoading PauseState" << endl;
+		cout << "Removing Pause" << endl;
 		CGameStateManager::GetInstance()->SetPauseGameState(nullptr);
 		return true;
 	}

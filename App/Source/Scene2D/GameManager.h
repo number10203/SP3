@@ -35,7 +35,8 @@ public:
 	bool bPlayerLost;
 	// Boolean flag to indicate if the level is completed
 	bool bLevelCompleted;
-
+	// Boolean flag to indicate if the level is paused
+	bool bLevelPaused;
 	// Boolean flag to indicate if the level is be replayed
 	bool bLevelToReplay;
 	// Boolean flag to indicate if the game is be restarted
