@@ -250,7 +250,6 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 	//ImGui::PopStyleColor();
 	
 	ImGui::End();
-	
 }
 
 

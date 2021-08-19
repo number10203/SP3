@@ -114,7 +114,7 @@ bool CPauseState::Update(const double dElapsedTime)
 		style.FrameRounding = 200.0f;
 		
 		// Display words
-		ImGui::TextColored(ImVec4(1, 1, 1, 1), "In-game Menu");
+		ImGui::TextColored(ImVec4(1, 1, 1, 1), "Pause Menu");
 
 		// Add codes for Up button here
 		if (ImGui::ImageButton((ImTextureID)VolumeIncreaseButtonData.textureID, 
@@ -151,7 +151,6 @@ bool CPauseState::Update(const double dElapsedTime)
 			cout << "Quitting the game" << endl;
 
 			return false; 
-
 		}
 	ImGui::End();
 	}
@@ -165,7 +164,6 @@ bool CPauseState::Update(const double dElapsedTime)
 
 		// Load the menu state
 		cout << "UnLoading PauseState" << endl;
-		cout << "Removing Pause" << endl;
 		CGameStateManager::GetInstance()->SetPauseGameState(nullptr);
 		return true;
 	}

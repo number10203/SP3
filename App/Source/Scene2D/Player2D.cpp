@@ -44,6 +44,8 @@ CPlayer2D::CPlayer2D(void)
 
 	PhaseWalking = false;
 	PhaseTimer = 0;
+
+	Timer = 0;
 }
 
 /**
@@ -147,7 +149,7 @@ bool CPlayer2D::Init(void)
 	cInventoryItem = cInventoryManager->Add("DimensionCave", "Image/HUD/Cave.tga", 100, 0);
 	cInventoryItem->vec2Size = glm::vec2(25, 25);
 
-
+	Timer = 0;
 
 	jumpCount = 0;
 
@@ -360,48 +362,65 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 
 
-
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
+		if (CGameManager::GetInstance()->bPlayerCooldown == false)
 		{
-			CGameManager::GetInstance()->bPlayerHome = true;
-			CGameManager::GetInstance()->bPlayerMedieval = false;
-			CGameManager::GetInstance()->bPlayerCave = false;
-			CGameManager::GetInstance()->bPlayerSky = false;
-			cout << "Home Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+			if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
+			{
+				CGameManager::GetInstance()->bPlayerHome = true;
+				CGameManager::GetInstance()->bPlayerMedieval = false;
+				CGameManager::GetInstance()->bPlayerCave = false;
+				CGameManager::GetInstance()->bPlayerSky = false;
+				cout << "Home Mode" << endl;
+				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+				CGameManager::GetInstance()->bPlayerCooldown = true;
+			}
+			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
+			{
+				CGameManager::GetInstance()->bPlayerHome = false;
+				CGameManager::GetInstance()->bPlayerMedieval = true;
+				CGameManager::GetInstance()->bPlayerCave = false;
+				CGameManager::GetInstance()->bPlayerSky = false;
+				cout << "Medieval Mode" << endl;
+				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+				CGameManager::GetInstance()->bPlayerCooldown = true;
+			}
+			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
+			{
+				CGameManager::GetInstance()->bPlayerHome = false;
+				CGameManager::GetInstance()->bPlayerMedieval = false;
+				CGameManager::GetInstance()->bPlayerCave = true;
+				CGameManager::GetInstance()->bPlayerSky = false;
+				cout << "Cave Mode" << endl;
+				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+				CGameManager::GetInstance()->bPlayerCooldown = true;
+			}
+			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
+			{
+				CGameManager::GetInstance()->bPlayerHome = false;
+				CGameManager::GetInstance()->bPlayerMedieval = false;
+				CGameManager::GetInstance()->bPlayerCave = false;
+				CGameManager::GetInstance()->bPlayerSky = true;
+				cout << "Sky Mode" << endl;
+				cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
+				CGameManager::GetInstance()->bPlayerCooldown = true;
+			}
 		}
-
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
+		else if (CGameManager::GetInstance()->bPlayerCooldown == true)
 		{
-			CGameManager::GetInstance()->bPlayerHome = false;
-			CGameManager::GetInstance()->bPlayerMedieval = true;
-			CGameManager::GetInstance()->bPlayerCave = false;
-			CGameManager::GetInstance()->bPlayerSky = false;
-			cout << "Medieval Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+			cout << "Cooldown Applied" << endl;
+			
+			Timer += 1 * dElapsedTime;
+			if (Timer >= 0.5)
+			{
+				cout << "Cooldown Gone" << endl;
+				Timer = 0;
+				CGameManager::GetInstance()->bPlayerCooldown = false;
+			}
 		}
-
-
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
-		{
-			CGameManager::GetInstance()->bPlayerHome = false;
-			CGameManager::GetInstance()->bPlayerMedieval = false;
-			CGameManager::GetInstance()->bPlayerCave = true;
-			CGameManager::GetInstance()->bPlayerSky = false;
-			cout << "Cave Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-		}
-
-		if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
-		{
-			CGameManager::GetInstance()->bPlayerHome = false;
-			CGameManager::GetInstance()->bPlayerMedieval = false;
-			CGameManager::GetInstance()->bPlayerCave = false;
-			CGameManager::GetInstance()->bPlayerSky = true;
-			cout << "Sky Mode" << endl;
-			cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
-		}
-
+		
+		
+			
+		
 
 		// PHASE RUNNING ABILITY
 		if (CGameManager::GetInstance()->bPlayerMedieval == true && cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
