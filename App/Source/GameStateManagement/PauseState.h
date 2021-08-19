@@ -49,5 +49,6 @@ protected:
 
 	ButtonData VolumeIncreaseButtonData;
 	ButtonData VolumeDecreaseButtonData;
+	ButtonData ExitButtonData;
 	
 };

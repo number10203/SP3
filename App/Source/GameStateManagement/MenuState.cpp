@@ -120,8 +120,8 @@ bool CMenuState::Update(const double dElapsedTime)
 	window_flags |= ImGuiWindowFlags_NoCollapse;
 	window_flags |= ImGuiWindowFlags_NoNav;
 
-	float buttonWidth = 128;
-	float buttonHeight = 64;
+	float buttonWidth = 256;
+	float buttonHeight = 128;
 
 	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
 	{
@@ -131,7 +131,7 @@ bool CMenuState::Update(const double dElapsedTime)
 		// Create a window called "Hello, world!" and append into it.
 		ImGui::Begin("Main Menu", NULL, window_flags);
 		ImGui::SetWindowPos(ImVec2(CSettings::GetInstance()->iWindowWidth/2.0 - buttonWidth/2.0, 
-			CSettings::GetInstance()->iWindowHeight/3.0));				// Set the top-left of the window at (10,10)
+			CSettings::GetInstance()->iWindowHeight/9.0));				// Set the top-left of the window at (10,10)
 		ImGui::SetWindowSize(ImVec2(CSettings::GetInstance()->iWindowWidth, CSettings::GetInstance()->iWindowHeight));
 
 		//Added rounding for nicer effect
