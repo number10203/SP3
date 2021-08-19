@@ -162,16 +162,20 @@ bool CScene2D::Init(void)
 	// SOUND PLAYLIST
 
 	//BACKGROUND MUSIC
-
-	// MISC SOUNDS
 	
-	// MENU SOUNDS 20 - 40
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LoseSound.ogg"), 20, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\WinGameSound.ogg"), 21, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LevelCompleteSound.ogg"), 22, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\Test.ogg"), 23, true);
-
-	//
+	// MENU SOUNDS 10 - 20
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LoseSound.ogg"), 10, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\WinGameSound.ogg"), 11, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LevelCompleteSound.ogg"), 12, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\Test.ogg"), 13, true);
+	// HOME SOUND 20 - 30
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Home\\HomeAlertSound.ogg"), 20, true);
+	// MEDIEVAL SOUND 30 - 40
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Medieval\\MedievalAlertSound.ogg"), 30, true);
+	// CAVE SOUND 40 - 50
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Cave\\CaveAlertSound.ogg"), 40, true);
+	// SKY 50-60
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sky\\SkyAlertSound.ogg"), 50, true);
 
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Bell.ogg"), 1, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 2, true);
@@ -225,7 +229,7 @@ bool CScene2D::Update(const double dElapsedTime)
 	if (cGameManager->bLevelCompleted == true)
 	{
 		CGameStateManager::GetInstance()->SetActiveGameState("LevelCompletedState");
-		cSoundController->PlaySoundByID(22);
+		cSoundController->PlaySoundByID(12);
 		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel()+1);
 		cPlayer2D->Reset();
 		cGameManager->bLevelCompleted = false;
@@ -237,13 +241,13 @@ bool CScene2D::Update(const double dElapsedTime)
 	{
 		// End the game and switch to Win screen
 		CGameStateManager::GetInstance()->SetActiveGameState("WinState");
-		cSoundController->PlaySoundByID(21);
+		cSoundController->PlaySoundByID(11);
 	}
 	// Check if the game should be ended
 	else if (cGameManager->bPlayerLost == true)
 	{
 		CGameStateManager::GetInstance()->SetActiveGameState("LoseState");
-		cSoundController->PlaySoundByID(20);
+		cSoundController->PlaySoundByID(10);
 		return false;
 	}
 

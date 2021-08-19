@@ -358,8 +358,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 		}
 
-
-
+		// DIMENSION SWAPPING
+		{
 		if (CGameManager::GetInstance()->bPlayerCooldown == false)
 		{
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
@@ -371,6 +371,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 				cout << "Home Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 				CGameManager::GetInstance()->bPlayerCooldown = true;
+				cout << "Cooldown Applied" << endl;
+				cSoundController->PlaySoundByID(20);
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
 			{
@@ -381,6 +383,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 				cout << "Medieval Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 				CGameManager::GetInstance()->bPlayerCooldown = true;
+				cout << "Cooldown Applied" << endl;
+				cSoundController->PlaySoundByID(30);
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
 			{
@@ -391,6 +395,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 				cout << "Cave Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 				CGameManager::GetInstance()->bPlayerCooldown = true;
+				cout << "Cooldown Applied" << endl;
+				cSoundController->PlaySoundByID(40);
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
 			{
@@ -401,37 +407,38 @@ void CPlayer2D::Update(const double dElapsedTime)
 				cout << "Sky Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
 				CGameManager::GetInstance()->bPlayerCooldown = true;
+				cout << "Cooldown Applied" << endl;
+				cSoundController->PlaySoundByID(50);
 			}
 		}
 		else if (CGameManager::GetInstance()->bPlayerCooldown == true)
 		{
-			cout << "Cooldown Applied" << endl;
-			
+
+
 			Timer += 1 * dElapsedTime;
-			if (Timer >= 0.5)
+			if (Timer >= 1)
 			{
 				cout << "Cooldown Gone" << endl;
 				Timer = 0;
 				CGameManager::GetInstance()->bPlayerCooldown = false;
 			}
 		}
-		
-		
-			
-		
+	}
+
 
 		// PHASE RUNNING ABILITY
-		if (CGameManager::GetInstance()->bPlayerMedieval == true)
 		{
-			PhaseWalking = true;
-		}
-		else if (CGameManager::GetInstance()->bPlayerMedieval == false)
-		{
-			PhaseWalking = false;
+			if (CGameManager::GetInstance()->bPlayerMedieval == true)
+			{
+				PhaseWalking = true;
+			}
+			else if (CGameManager::GetInstance()->bPlayerMedieval == false)
+			{
+				PhaseWalking = false;
+			}
 		}
 		
-		
-
+		// GRABBLE ABILITY
 		if (CGameManager::GetInstance()->bPlayerCave == true)
 		{
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))

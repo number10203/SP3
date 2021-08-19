@@ -146,7 +146,7 @@ bool CSoundState::Update(const double dElapsedTime)
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 			CSoundController::GetInstance()->MasterVolumeIncrease();
-			CSoundController::GetInstance()->PlaySoundByID(23);
+			CSoundController::GetInstance()->PlaySoundByID(13);
 
 		}
 
@@ -157,7 +157,7 @@ bool CSoundState::Update(const double dElapsedTime)
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 			CSoundController::GetInstance()->MasterVolumeDecrease();
-			CSoundController::GetInstance()->PlaySoundByID(23);
+			CSoundController::GetInstance()->PlaySoundByID(13);
 
 		}
 

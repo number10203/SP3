@@ -124,7 +124,7 @@ bool CPauseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			CSoundController::GetInstance()->MasterVolumeIncrease();
-			CSoundController::GetInstance()->PlaySoundByID(23);
+			CSoundController::GetInstance()->PlaySoundByID(13);
 		
 
 		}
@@ -136,7 +136,7 @@ bool CPauseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			CSoundController::GetInstance()->MasterVolumeDecrease();
-			CSoundController::GetInstance()->PlaySoundByID(23);
+			CSoundController::GetInstance()->PlaySoundByID(13);
 		
 		}
 		// Add codes for Exit button here
