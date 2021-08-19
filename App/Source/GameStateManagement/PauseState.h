@@ -12,6 +12,8 @@
 #include "Primitives/Mesh.h"
 #include "../Scene2D/BackgroundEntity.h"
 
+#include "../Scene2D/GameManager.h"
+
 #include <string>
 
  // Include IMGUI
@@ -49,5 +51,8 @@ protected:
 
 	ButtonData VolumeIncreaseButtonData;
 	ButtonData VolumeDecreaseButtonData;
+	ButtonData ExitButtonData;
+
+
 	
 };

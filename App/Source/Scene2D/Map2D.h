@@ -80,6 +80,66 @@ public:
 				const unsigned int uiNumRows = 24,
 				const unsigned int uiNumCols = 32);
 
+	enum dimension
+	{
+		HOME,
+		MEDI,
+		CAVE,
+		SKY,
+		DIMENSION_NUM
+	};
+
+	string homeArray[13]
+	{
+		"Image/Tiles/City/TGA/City.tga",
+		"Image/Tiles/City/TGA/Citywall_up.tga",
+		"Image/Tiles/City/TGA/Citywall_right.tga",
+		"Image/Tiles/City/TGA/Citywall_down.tga",
+		"Image/Tiles/City/TGA/Citywall_left.tga",
+		"Image/Tiles/City/TGA/Citywall_NW.tga",
+		"Image/Tiles/City/TGA/Citywall_NE.tga",
+		"Image/Tiles/City/TGA/Citywall_SE.tga",
+		"Image/Tiles/City/TGA/Citywall_SW.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseNW.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseNE.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseSE.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseSW.tga",
+	};
+
+	string mediArray[13]
+	{
+		"Image/Tiles/Medieval/TGA/Medi.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_up.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_right.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_down.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_left.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_NW.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_NE.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_SE.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_SW.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_inverseNW.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_inverseNE.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_inverseSE.tga",
+		"Image/Tiles/Medieval/TGA/Mediwall_inverseSW.tga",
+	};
+
+	string caveArray[13]
+	{
+		"Image/Tiles/Cave/TGA/Cave.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_up.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_right.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_down.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_left.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_NW.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_NE.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_SE.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_SW.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_inverseNW.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_inverseNE.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_inverseSE.tga",
+		"Image/Tiles/Cave/TGA/Cavewall_inverseSW.tga",
+	};
+
 	// Update
 	void Update(const double dElapsedTime);
 

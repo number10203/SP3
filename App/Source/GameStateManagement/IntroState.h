@@ -32,4 +32,7 @@ public:
 
 protected:
 	CBackgroundEntity* background;
+
+	bool Started;
+	float TimerToStart;
 };

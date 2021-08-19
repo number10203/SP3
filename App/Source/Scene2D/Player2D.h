@@ -81,6 +81,9 @@ protected:
 	bool PhaseWalking;
 	float PhaseTimer;
 
+	bool Grapple_Right = false;
+	bool Grapple_Left = false;
+
 
 	glm::i32vec2 i32vec2OldIndex;
 

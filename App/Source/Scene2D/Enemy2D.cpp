@@ -23,6 +23,8 @@ using namespace std;
 #include "Map2D.h"
 // Include math.h
 #include <math.h>
+// Include GameManager
+#include "GameManager.h"
 
 /**
  @brief Constructor This constructor has protected access modifier as this class will be a Singleton
@@ -130,113 +132,117 @@ bool CEnemy2D::Init(void)
  */
 void CEnemy2D::Update(const double dElapsedTime)
 {
-	if (!bIsActive)
-		return;
-
-	switch (sCurrentFSM)
+	if (CGameManager::GetInstance()->bLevelPaused == false)
 	{
-	case IDLE:
-		if (iFSMCounter > iMaxFSMCounter)
-		{
-			sCurrentFSM = PATROL;
-			iFSMCounter = 0;
-			cout << "Switching to Patrol State" << endl;
-		}
-		iFSMCounter++;
-		break;
-	case PATROL:
-		if (iFSMCounter > iMaxFSMCounter)
-		{
-			sCurrentFSM = IDLE;
-			iFSMCounter = 0;
-			cout << "Switching to Idle State" << endl;
-		}
-		else if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
-		{
-			sCurrentFSM = ATTACK;
-			iFSMCounter = 0;
-		}
-		else
-		{
-			// Patrol around
-			// Update the Enemy2D's position for patrol
-			UpdatePosition();
-		}
-		iFSMCounter++;
-		break;
-	case ATTACK:
-		if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
-		{
-			// Calculate a path to the player
-			//cMap2D->PrintSelf();
-			//cout << "StartPos: " << i32vec2Index.x << ", " << i32vec2Index.y << endl;
-			//cout << "TargetPos: " << cPlayer2D->i32vec2Index.x << ", " 
-			//		<< cPlayer2D->i32vec2Index.y << endl;
-			auto path = cMap2D->PathFind(	i32vec2Index, 
-											cPlayer2D->i32vec2Index, 
-											heuristic::euclidean, 
-											10);
-			//cout << "=== Printing out the path ===" << endl;
 
-			// Calculate new destination
-			bool bFirstPosition = true;
-			for (const auto& coord : path)
-			{
-				//std::cout << coord.x << "," << coord.y << "\n";
-				if (bFirstPosition == true)
-				{
-					// Set a destination
-					i32vec2Destination = coord;
-					// Calculate the direction between enemy2D and this destination
-					i32vec2Direction = i32vec2Destination - i32vec2Index;
-					bFirstPosition = false;
-				}
-				else
-				{
-					if ((coord - i32vec2Destination) == i32vec2Direction)
-					{
-						// Set a destination
-						i32vec2Destination = coord;
-					}
-					else
-						break;
-				}
-			}
+		if (!bIsActive)
+			return;
 
-			//cout << "i32vec2Destination : " << i32vec2Destination.x 
-			//		<< ", " << i32vec2Destination.y << endl;
-			//cout << "i32vec2Direction : " << i32vec2Direction.x 
-			//		<< ", " << i32vec2Direction.y << endl;
-			//system("pause");
-
-			// Attack
-			// Update direction to move towards for attack
-			//UpdateDirection();
-
-			// Update the Enemy2D's position for attack
-			UpdatePosition();
-		}
-		else
+		switch (sCurrentFSM)
 		{
+		case IDLE:
 			if (iFSMCounter > iMaxFSMCounter)
 			{
 				sCurrentFSM = PATROL;
 				iFSMCounter = 0;
-				cout << "ATTACK : Reset counter: " << iFSMCounter << endl;
+				cout << "Switching to Patrol State" << endl;
 			}
 			iFSMCounter++;
+			break;
+		case PATROL:
+			if (iFSMCounter > iMaxFSMCounter)
+			{
+				sCurrentFSM = IDLE;
+				iFSMCounter = 0;
+				cout << "Switching to Idle State" << endl;
+			}
+			else if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
+			{
+				sCurrentFSM = ATTACK;
+				iFSMCounter = 0;
+			}
+			else
+			{
+				// Patrol around
+				// Update the Enemy2D's position for patrol
+				UpdatePosition();
+			}
+			iFSMCounter++;
+			break;
+		case ATTACK:
+			if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
+			{
+				// Calculate a path to the player
+				//cMap2D->PrintSelf();
+				//cout << "StartPos: " << i32vec2Index.x << ", " << i32vec2Index.y << endl;
+				//cout << "TargetPos: " << cPlayer2D->i32vec2Index.x << ", " 
+				//		<< cPlayer2D->i32vec2Index.y << endl;
+				auto path = cMap2D->PathFind(i32vec2Index,
+					cPlayer2D->i32vec2Index,
+					heuristic::euclidean,
+					10);
+				//cout << "=== Printing out the path ===" << endl;
+
+				// Calculate new destination
+				bool bFirstPosition = true;
+				for (const auto& coord : path)
+				{
+					//std::cout << coord.x << "," << coord.y << "\n";
+					if (bFirstPosition == true)
+					{
+						// Set a destination
+						i32vec2Destination = coord;
+						// Calculate the direction between enemy2D and this destination
+						i32vec2Direction = i32vec2Destination - i32vec2Index;
+						bFirstPosition = false;
+					}
+					else
+					{
+						if ((coord - i32vec2Destination) == i32vec2Direction)
+						{
+							// Set a destination
+							i32vec2Destination = coord;
+						}
+						else
+							break;
+					}
+				}
+
+				//cout << "i32vec2Destination : " << i32vec2Destination.x 
+				//		<< ", " << i32vec2Destination.y << endl;
+				//cout << "i32vec2Direction : " << i32vec2Direction.x 
+				//		<< ", " << i32vec2Direction.y << endl;
+				//system("pause");
+
+				// Attack
+				// Update direction to move towards for attack
+				//UpdateDirection();
+
+				// Update the Enemy2D's position for attack
+				UpdatePosition();
+			}
+			else
+			{
+				if (iFSMCounter > iMaxFSMCounter)
+				{
+					sCurrentFSM = PATROL;
+					iFSMCounter = 0;
+					cout << "ATTACK : Reset counter: " << iFSMCounter << endl;
+				}
+				iFSMCounter++;
+			}
+			break;
+		default:
+			break;
 		}
-		break;
-	default:
-		break;
+
+		// Update Jump or Fall
+		UpdateJumpFall(dElapsedTime);
+
+		// Update the UV Coordinates
+		vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x * cSettings->MICRO_STEP_XAXIS);
+		vec2UVCoordinate.y = cSettings->ConvertIndexToUVSpace(cSettings->y, i32vec2Index.y, false, i32vec2NumMicroSteps.y * cSettings->MICRO_STEP_YAXIS);
 	}
-
-	// Update Jump or Fall
-	UpdateJumpFall(dElapsedTime);
-
-	// Update the UV Coordinates
-	vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x*cSettings->MICRO_STEP_XAXIS);
-	vec2UVCoordinate.y = cSettings->ConvertIndexToUVSpace(cSettings->y, i32vec2Index.y, false, i32vec2NumMicroSteps.y*cSettings->MICRO_STEP_YAXIS);
 }
 
 /**

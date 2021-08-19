@@ -42,7 +42,8 @@ using namespace std;
 CIntroState::CIntroState(void)
 	: background(NULL)
 {
-
+	Started = false;
+	TimerToStart = 0;
 }
 
 /**
@@ -62,6 +63,8 @@ bool CIntroState::Init(void)
 	// Include Shader Manager
 	CShaderManager::GetInstance()->Use("2DShader");
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
+
+	Started = true;
 
 	//Create Background Entity
 	background = new CBackgroundEntity("Image/Menus/IntroductionMenu.png");
@@ -87,6 +90,18 @@ bool CIntroState::Update(const double dElapsedTime)
 		CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 		return true;
 	}
+	else if (Started)
+	{
+		TimerToStart += 1 * dElapsedTime;
+		if (TimerToStart >= 3)
+		{
+			cout << "Loading MenuState" << endl;
+			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
+			return true;
+		}
+	}
+
+
 
 	return true;
 }

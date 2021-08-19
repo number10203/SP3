@@ -62,7 +62,7 @@ CPauseState::~CPauseState(void)
 bool CPauseState::Init(void)
 {
 	cout << "CPauseState::Init()\n" << endl;
-
+	cout << "Paused" << endl;
 	CShaderManager::GetInstance()->Use("2DShader");
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
 
@@ -73,6 +73,10 @@ bool CPauseState::Init(void)
 	VolumeIncreaseButtonData.textureID = il->LoadTextureGetID(VolumeIncreaseButtonData.fileName.c_str(), false);
 	VolumeDecreaseButtonData.fileName = "Image\\GUI\\VolumeDownButton.png";
 	VolumeDecreaseButtonData.textureID = il->LoadTextureGetID(VolumeDecreaseButtonData.fileName.c_str(), false);
+	ExitButtonData.fileName = "Image\\GUI\\ExitButton.png";
+	ExitButtonData.textureID = il->LoadTextureGetID(ExitButtonData.fileName.c_str(), false);
+	
+	CGameManager::GetInstance()->bLevelPaused = true;
 
 	return true;
 }
@@ -102,7 +106,7 @@ bool CPauseState::Update(const double dElapsedTime)
 		// Create a window called "Hello, world!" and append into it.
 		ImGui::Begin("Main Menu", NULL, window_flags);
 		ImGui::SetWindowPos(ImVec2(CSettings::GetInstance()->iWindowWidth/2.0 - buttonWidth/2.0, 
-			CSettings::GetInstance()->iWindowHeight/3.0));				// Set the top-left of the window at (10,10)
+			CSettings::GetInstance()->iWindowHeight/6.0));				// Set the top-left of the window at (10,10)
 		ImGui::SetWindowSize(ImVec2(CSettings::GetInstance()->iWindowWidth, CSettings::GetInstance()->iWindowHeight));
 
 		//Added rounding for nicer effect
@@ -114,7 +118,7 @@ bool CPauseState::Update(const double dElapsedTime)
 
 		// Add codes for Up button here
 		if (ImGui::ImageButton((ImTextureID)VolumeIncreaseButtonData.textureID, 
-			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0)))
+			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0),int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
 		{
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
@@ -126,7 +130,7 @@ bool CPauseState::Update(const double dElapsedTime)
 		}
 		// Add codes for Down button here
 		if (ImGui::ImageButton((ImTextureID)VolumeDecreaseButtonData.textureID,
-			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0)))
+			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
 		{
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
@@ -134,6 +138,20 @@ bool CPauseState::Update(const double dElapsedTime)
 			CSoundController::GetInstance()->MasterVolumeDecrease();
 			CSoundController::GetInstance()->PlaySoundByID(23);
 		
+		}
+		// Add codes for Exit button here
+		if (ImGui::ImageButton((ImTextureID)ExitButtonData.textureID,
+			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
+		{
+			// Reset the CKeyboardController
+			CKeyboardController::GetInstance()->Reset();
+
+
+			// Load the menu state
+			cout << "Quitting the game" << endl;
+
+			return false; 
+
 		}
 	ImGui::End();
 	}
@@ -145,10 +163,9 @@ bool CPauseState::Update(const double dElapsedTime)
 		// Reset the CKeyboardController
 		CKeyboardController::GetInstance()->Reset();
 
-	
-
 		// Load the menu state
 		cout << "UnLoading PauseState" << endl;
+		cout << "Removing Pause" << endl;
 		CGameStateManager::GetInstance()->SetPauseGameState(nullptr);
 		return true;
 	}
