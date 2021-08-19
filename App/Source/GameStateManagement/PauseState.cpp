@@ -45,7 +45,7 @@ using namespace std;
 CPauseState::CPauseState(void)
 	//: background(NULL)
 {
-
+	
 }
 
 /**
@@ -120,7 +120,7 @@ bool CPauseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			CSoundController::GetInstance()->MasterVolumeIncrease();
-			CSoundController::GetInstance()->PlaySoundByID(4);
+			CSoundController::GetInstance()->PlaySoundByID(23);
 		
 
 		}
@@ -132,7 +132,7 @@ bool CPauseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			CSoundController::GetInstance()->MasterVolumeDecrease();
-			CSoundController::GetInstance()->PlaySoundByID(4);
+			CSoundController::GetInstance()->PlaySoundByID(23);
 		
 		}
 	ImGui::End();
@@ -144,6 +144,8 @@ bool CPauseState::Update(const double dElapsedTime)
 	{
 		// Reset the CKeyboardController
 		CKeyboardController::GetInstance()->Reset();
+
+	
 
 		// Load the menu state
 		cout << "UnLoading PauseState" << endl;

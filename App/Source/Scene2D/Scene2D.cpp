@@ -165,10 +165,18 @@ bool CScene2D::Init(void)
 
 	// MISC SOUNDS
 	
+	// MENU SOUNDS 20 - 40
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LoseSound.ogg"), 20, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\WinGameSound.ogg"), 21, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LevelCompleteSound.ogg"), 22, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\Test.ogg"), 23, true);
+
+	//
+
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Bell.ogg"), 1, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 2, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Jump.ogg"), 3, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Test.ogg"), 4, true);
+	
 
 	return true;
 }
@@ -215,20 +223,26 @@ bool CScene2D::Update(const double dElapsedTime)
 	// Check if the game should go to the next level
 	if (cGameManager->bLevelCompleted == true)
 	{
+		
+		cSoundController->PlaySoundByID(22);
 		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel()+1);
 		cPlayer2D->Reset();
 		cGameManager->bLevelCompleted = false;
+		CGameStateManager::GetInstance()->SetActiveGameState("LevelCompletedState");
 	}
 
 	// Check if the game has been won by the player
 	if (cGameManager->bPlayerWon == true)
 	{
 		// End the game and switch to Win screen
+		CGameStateManager::GetInstance()->SetActiveGameState("WinState");
+		cSoundController->PlaySoundByID(21);
 	}
 	// Check if the game should be ended
 	else if (cGameManager->bPlayerLost == true)
 	{
-		cSoundController->PlaySoundByID(2);
+		CGameStateManager::GetInstance()->SetActiveGameState("LoseState");
+		cSoundController->PlaySoundByID(20);
 		return false;
 	}
 

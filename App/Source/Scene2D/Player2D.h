@@ -40,6 +40,9 @@ class CMap2D;
 // Include SoundController
 #include "..\SoundController\SoundController.h"
 
+// Include GameStateBase
+#include "../GameStateManagement/GameStateBase.h"
+
 class CPlayer2D : public CSingletonTemplate<CPlayer2D>, public CEntity2D
 {
 	friend CSingletonTemplate<CPlayer2D>;
@@ -106,6 +109,8 @@ protected:
 
 	// Handler to the CSoundController
 	CSoundController* cSoundController;
+
+
 
 	// Constructor
 	CPlayer2D(void);

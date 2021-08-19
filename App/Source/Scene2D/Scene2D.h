@@ -46,6 +46,9 @@
 // Include SoundController
 #include "..\SoundController\SoundController.h"
 
+// Include GameStateManager
+#include "../GameStateManagement/GameStateManager.h"
+
 class CScene2D : public CSingletonTemplate<CScene2D>
 {
 	friend CSingletonTemplate<CScene2D>;

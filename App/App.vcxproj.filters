@@ -89,6 +89,9 @@
     <ClCompile Include="Source\GameStateManagement\SoundState.cpp">
       <Filter>GameStateManagement</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameStateManagement\LevelCompleted.cpp">
+      <Filter>GameStateManagement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -158,6 +161,9 @@
       <Filter>GameStateManagement</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameStateManagement\SoundState.h">
+      <Filter>GameStateManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameStateManagement\LevelCompleted.h">
       <Filter>GameStateManagement</Filter>
     </ClInclude>
   </ItemGroup>

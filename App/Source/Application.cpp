@@ -48,6 +48,8 @@ using namespace std;
 #include "GameStateManagement/PauseState.h"
 // Include CSoundState
 #include "GameStateManagement/SoundState.h"
+// Include CLevelCompletedState
+#include "GameStateManagement/LevelCompleted.h"
 
 /**
  @brief Define an error callback
@@ -256,6 +258,7 @@ bool Application::Init(void)
 	CGameStateManager::GetInstance()->AddGameState("PauseState", new CPauseState());
 	CGameStateManager::GetInstance()->AddGameState("WinState", new CWinState());
 	CGameStateManager::GetInstance()->AddGameState("LoseState", new CLoseState());
+	CGameStateManager::GetInstance()->AddGameState("LevelCompletedState", new CLevelCompletedState());
 	
 	// Set the active scene
 	CGameStateManager::GetInstance()->SetActiveGameState("IntroState");

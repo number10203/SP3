@@ -194,8 +194,11 @@ bool CPlayer2D::Reset()
 /**
  @brief Update this instance
  */
+
+
 void CPlayer2D::Update(const double dElapsedTime)
 {
+
 	// Store the old position
 	i32vec2OldIndex = i32vec2Index;
 
@@ -956,6 +959,7 @@ void CPlayer2D::InteractWithMap(void)
 		break;
 	case 99:
 		// Level has been completed
+		//CGameManager::GetInstance()->bPlayerWon = true;
 		CGameManager::GetInstance()->bLevelCompleted = true;
 		break;
 	default:

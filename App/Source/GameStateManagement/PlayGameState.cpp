@@ -70,16 +70,6 @@ bool CPlayGameState::Update(const double dElapsedTime)
 	//	return true;
 	//}
 
-	if (CGameManager::GetInstance()->bPlayerWon == true)
-	{
-		CGameStateManager::GetInstance()->SetActiveGameState("WinState");
-	}
-
-	if (CGameManager::GetInstance()->bPlayerLost == true)
-	{
-		CGameStateManager::GetInstance()->SetActiveGameState("LoseState");
-	}
-	
 	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F10))
 	{
 		 //Reset the CKeyboardController
@@ -88,6 +78,7 @@ bool CPlayGameState::Update(const double dElapsedTime)
 		 //Load the menu state
 		cout << "Loading In-Game SoundState" << endl;
 		CGameStateManager::GetInstance()->SetPauseGameState("PauseState");
+
 	}
 
 	// Call the cScene2D's Update method
