@@ -436,11 +436,31 @@ void CPlayer2D::Update(const double dElapsedTime)
 	{
 		if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 		{
-			cout << "Grappling Left" << endl;
+			Grapple_Right = false;
+			Grapple_Left = true;
+			cout << "Grapple Left" << endl;
 		}
 		else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
 		{
-			cout << "Grappling Right" << endl;
+			Grapple_Right = true;
+			Grapple_Left = false;
+			cout << "Grapple Right" << endl;
+		}
+
+		if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
+		{
+			if ((Grapple_Left == false) && (Grapple_Right == true))
+			{
+				//Move towards the hookblock
+				cout << "Grappling Right" << endl;
+			}
+			else if ((Grapple_Left == true) && (Grapple_Right == false))
+			{
+				//Move towards the hookblock
+				cout << "Grappling Left" << endl;
+			}
+
+			//cout << "Grappling" << endl;
 		}
 	}
 
