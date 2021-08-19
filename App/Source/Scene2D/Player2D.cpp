@@ -639,14 +639,14 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
 				{
 					return true;
 				}
 			}
 
 			// If the grid is not accessible, then return false
-			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x)<=100)
 			{
 				return false;
 			}
@@ -656,16 +656,18 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14))
 				{
 					return true;
 				}
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
-				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100))
+			if (((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0)
+				&&((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100)))
+				|| ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 0)&&
+				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100)))
 			{
 				return false;
 			}
@@ -686,13 +688,13 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14)
 				{
 					return true;
 				}
 			}
 			// If the grid is not accessible, then return false
-			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) > 0 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100)
 			{
 				return false;
 			}
@@ -703,16 +705,16 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 202))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
 				{
 					return true;
 				}
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100) ||
-				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))
+			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >0)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100) ||
+				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >0)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) <= 100))
 			{
 				return false;
 			}
@@ -734,14 +736,14 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202)
+				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14)
 				{
 					return true;
 				}
 			}
 
 			// If the grid is not accessible, then return false
-			if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 0 && cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100)
 			{
 				return false;
 			}
@@ -751,16 +753,16 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 200))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
 				{
 					return true;
 				}
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) >= 100) ||
-				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >= 100))
+			if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100) ||
+				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) <= 100))
 			{
 				return false;
 			}
@@ -775,13 +777,13 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
 				{
 					return true;
 				}
 			}
 
-			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100)
 			{
 				return false;
 			}
@@ -792,16 +794,16 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202) ||
-					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) ||
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14))
 				{
 					return true;
 				}
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) >= 100) ||
-				(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >= 100))
+			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100) ||
+				(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100))
 			{
 				return false;
 			}
@@ -953,22 +955,22 @@ void CPlayer2D::InteractWithMap(void)
 {
 	switch (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x))
 	{
-	case 2:
-		// Erase the tree from this position
-		cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
-		// Increase the Tree by 1
-		cInventoryItem = cInventoryManager->GetItem("Tree");
-		cInventoryItem->Add(1);
-		// Play a bell sound
-		cSoundController->PlaySoundByID(1);
-		break;
-	case 10:
-		// Increase the lives by 1
-		cInventoryItem = cInventoryManager->GetItem("Lives");
-		cInventoryItem->Add(1);
-		// Erase the life from this position
-		cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
-		break;
+	//case 2:
+	//	// Erase the tree from this position
+	//	cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
+	//	// Increase the Tree by 1
+	//	cInventoryItem = cInventoryManager->GetItem("Tree");
+	//	cInventoryItem->Add(1);
+	//	// Play a bell sound
+	//	cSoundController->PlaySoundByID(1);
+	//	break;
+	//case 10:
+	//	// Increase the lives by 1
+	//	cInventoryItem = cInventoryManager->GetItem("Lives");
+	//	cInventoryItem->Add(1);
+	//	// Erase the life from this position
+	//	cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
+	//	break;
 	case 20:
 		// Decrease the health by 1
 		cInventoryItem = cInventoryManager->GetItem("Health");
