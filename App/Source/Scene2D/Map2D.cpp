@@ -184,7 +184,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 
 
 	// Load the spike texture
-	if (LoadTexture("Image/Scene2D_Spikes.tga", 20) == false)
+	if (LoadTexture("Image/Scene2D_Spikes.tga", 203) == false)
 	{
 		std::cout << "Failed to load Scene2D_Spikes tile texture" << std::endl;
 		return false;
@@ -196,7 +196,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		return false;
 	}
 	// Load the Exit texture
-	if (LoadTexture("Image/Scene2D_Exit.tga", 99) == false)
+	if (LoadTexture("Image/Scene2D_Exit.tga", 201) == false)
 	{
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
