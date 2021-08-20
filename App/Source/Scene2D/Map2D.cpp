@@ -165,7 +165,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		return false;
 	}
 	// Phasing Block
-	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 202) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 14) == false)
 	{
 		std::cout << "Failed to load Phase block tile texture" << std::endl;
 		return false;
@@ -174,8 +174,21 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 	{
 		std::cout << "Failed to load Hookblock tile texture" << std::endl;
 		return false;
+	}if (LoadTexture("Image/Tiles/Special/TGA/Cloud1.tga", 16) == false)
+	{
+		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
+		return false;
 	}
-
+	if (LoadTexture("Image/Tiles/Special/TGA/Cloud2.tga", 17) == false)
+	{
+		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Special/TGA/Cloud3.tga", 18) == false)
+	{
+		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
+		return false;
+	}
 	if (LoadTexture("Image/Tiles/City/TGA/City.tga", 19) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
