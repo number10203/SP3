@@ -89,7 +89,7 @@ bool CSoundState::Init(void)
 	CImageLoader* il = CImageLoader::GetInstance();
 	
 	// Goback button
-	backButtonData.fileName = "Image\\GUI\\RetryButton.png";
+	backButtonData.fileName = "Image\\GUI\\BackButton.png";
 	backButtonData.textureID = il->LoadTextureGetID(backButtonData.fileName.c_str(), false);
 	// Sound Up Button
 	VolUpButtonData.fileName = "Image\\GUI\\VolumeUpButton.png";
