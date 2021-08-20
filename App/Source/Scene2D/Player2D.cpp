@@ -1058,7 +1058,7 @@ void CPlayer2D::InteractWithMap(void)
 		cInventoryItem = cInventoryManager->GetItem("Health");
 		cInventoryItem->Add(1);
 		break;
-	case 99:
+	case 201:
 		// Level has been completed
 		//CGameManager::GetInstance()->bPlayerWon = true;
 		CGameManager::GetInstance()->bLevelCompleted = true;
