@@ -482,16 +482,16 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 		}
 
-
+		// PHASING
 		if (CGameManager::GetInstance()->bPlayerMedieval == true)
 		{
 			PhaseWalking = true;
 		}
-
-		if (CGameManager::GetInstance()->bPlayerMedieval == false)
+		else
 		{
-			cout << "IFJGHSUI" << endl;
+			PhaseWalking = false;
 		}
+
 	
 		
 		// GRABBLE ABILITY
@@ -526,6 +526,20 @@ void CPlayer2D::Update(const double dElapsedTime)
 		}
 
 
+		// Update Death
+		if (CGameManager::GetInstance()->bPlayerDeath == true)
+		{
+			animatedSprites->PlayAnimation("death", -1, 1.0f);
+			DeathTimer += 1 * dElapsedTime;
+			if (DeathTimer >= 1)
+			{
+				// Player loses, goes to lose screen
+				CGameManager::GetInstance()->bPlayerLost = true;
+				DeathTimer = 0;
+				CGameManager::GetInstance()->bPlayerDeath = false;
+			}
+		}
+
 
 		// Update Jump or Fall
 		//CS: Will cause error when debugging. Set to default elapsed time
@@ -541,19 +555,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		animatedSprites->Update(dElapsedTime);
 
 
-		// Update Death
-		if (CGameManager::GetInstance()->bPlayerDeath == true)
-		{
-			animatedSprites->PlayAnimation("death", -1, 1.0f);
-			DeathTimer += 1 * dElapsedTime;
-			if (DeathTimer >= 1)
-			{
-				// Player loses, goes to lose screen
-				CGameManager::GetInstance()->bPlayerLost = true;
-				DeathTimer = 0;
-				CGameManager::GetInstance()->bPlayerDeath = false;
-			}
-		}
+		
 
 		// Update the UV Coordinates
 		vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x * cSettings->MICRO_STEP_XAXIS);
@@ -1078,6 +1080,9 @@ void CPlayer2D::UpdateHealthLives(void)
 	// Check if Health is 0
 	if (cInventoryItem->GetCount() <= 0)
 	{
+		// Alerts player death
+		CGameManager::GetInstance()->bPlayerDeath = true;
+
 		bool DeathSound = true;
 		if (DeathSound == true && count == 0)
 		{
@@ -1085,8 +1090,7 @@ void CPlayer2D::UpdateHealthLives(void)
 			count++;
 		}
 		
-		// Alerts player death
-		CGameManager::GetInstance()->bPlayerDeath = true;
+		
 		
 	}
 	// Die if player is stuck in a wall
