@@ -86,6 +86,7 @@ protected:
 
 
 	float DeathTimer;
+	float count;
 
 	glm::i32vec2 i32vec2OldIndex;
 

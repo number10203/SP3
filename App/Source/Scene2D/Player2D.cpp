@@ -42,11 +42,12 @@ CPlayer2D::CPlayer2D(void)
 	// Initialise vec2UVCoordinate
 	vec2UVCoordinate = glm::vec2(0.0f);
 
+	//Phasing 
 	PhaseWalking = false;
 	Timer = 0;
-
 	//Death
 	DeathTimer = 0;
+	count = 0;
 }
 
 /**
@@ -1031,7 +1032,14 @@ void CPlayer2D::UpdateHealthLives(void)
 	// Check if Health is 0
 	if (cInventoryItem->GetCount() <= 0)
 	{
-		// Alers player death
+		bool DeathSound = true;
+		if (DeathSound == true && count == 0)
+		{
+			cSoundController->PlaySoundByID(61);
+			count++;
+		}
+		
+		// Alerts player death
 		CGameManager::GetInstance()->bPlayerDeath = true;
 		
 	}
