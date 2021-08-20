@@ -1,7 +1,7 @@
 ﻿/**
  Player2D
  By: Toh Da Jun
- Date: Mar 2020
+ Date: Mar 140
  */
 #include "Player2D.h"
 
@@ -668,7 +668,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
 				{
 					return true;
 				}
@@ -685,8 +685,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14))
 				{
 					return true;
 				}
@@ -717,7 +717,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14)
 				{
 					return true;
 				}
@@ -734,8 +734,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 202))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
 				{
 					return true;
 				}
@@ -765,7 +765,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202)
+				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14)
 				{
 					return true;
 				}
@@ -782,8 +782,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 202) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 202))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
 				{
 					return true;
 				}
@@ -806,7 +806,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
 				{
 					return true;
 				}
@@ -823,8 +823,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 202) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 202))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14))
 				{
 					return true;
 				}

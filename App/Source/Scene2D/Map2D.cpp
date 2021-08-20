@@ -165,7 +165,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		return false;
 	}
 	// Phasing Block
-	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 202) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 14) == false)
 	{
 		std::cout << "Failed to load Phase block tile texture" << std::endl;
 		return false;
