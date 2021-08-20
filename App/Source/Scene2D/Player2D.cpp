@@ -44,6 +44,9 @@ CPlayer2D::CPlayer2D(void)
 
 	PhaseWalking = false;
 	Timer = 0;
+
+	//Death
+	DeathTimer = 0;
 }
 
 /**
@@ -100,17 +103,23 @@ bool CPlayer2D::Init(void)
 	glBindVertexArray(VAO);
 	
 	// Load the player texture
-	if (LoadTexture("Image/scene2d_player.png", iTextureID) == false)
+	if (LoadTexture("Image/Player/Player.png", iTextureID) == false)
 	{
 		std::cout << "Failed to load player tile texture" << std::endl;
 		return false;
 	}
 	
 	//CS: Create the animated sprite and setup the animation 
-	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(3, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
-	animatedSprites->AddAnimation("idle", 0, 2);
-	animatedSprites->AddAnimation("right", 3, 5);
-	animatedSprites->AddAnimation("left", 6, 8);
+	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(9, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
+	animatedSprites->AddAnimation("idle", 0, 3);
+	animatedSprites->AddAnimation("right", 3, 6);
+	animatedSprites->AddAnimation("death", 6, 9);
+	animatedSprites->AddAnimation("skyidle", 9, 12);
+	animatedSprites->AddAnimation("skyleft", 12, 15);
+	animatedSprites->AddAnimation("skyright", 15, 18);
+	animatedSprites->AddAnimation("left", 18, 21);
+	animatedSprites->AddAnimation("phaseleft", 21, 24);
+	animatedSprites->AddAnimation("phaseright", 24, 27);
 	//CS: Play the "idle" animation as default
 	animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
@@ -483,6 +492,21 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 		//CS: Update the animated sprite
 		animatedSprites->Update(dElapsedTime);
+
+
+		// Update Death
+		if (CGameManager::GetInstance()->bPlayerDeath == true)
+		{
+			animatedSprites->PlayAnimation("death", -1, 1.0f);
+			DeathTimer += 1 * dElapsedTime;
+			if (DeathTimer >= 1)
+			{
+				// Player loses, goes to lose screen
+				CGameManager::GetInstance()->bPlayerLost = true;
+				DeathTimer = 0;
+				CGameManager::GetInstance()->bPlayerDeath = false;
+			}
+		}
 
 		// Update the UV Coordinates
 		vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x * cSettings->MICRO_STEP_XAXIS);
@@ -975,7 +999,7 @@ void CPlayer2D::InteractWithMap(void)
 	//	// Erase the life from this position
 	//	cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
 	//	break;
-	case 20:
+	case 203:
 		// Decrease the health by 1
 		cInventoryItem = cInventoryManager->GetItem("Health");
 		cInventoryItem->Remove(1);
@@ -1007,8 +1031,9 @@ void CPlayer2D::UpdateHealthLives(void)
 	// Check if Health is 0
 	if (cInventoryItem->GetCount() <= 0)
 	{
-		// Player loses the game
-		CGameManager::GetInstance()->bPlayerLost = true;
+		// Alers player death
+		CGameManager::GetInstance()->bPlayerDeath = true;
+		
 	}
 	// Die if player is stuck in a wall
 }

@@ -85,6 +85,8 @@ protected:
 	bool Grapple_Left = false;
 
 
+	float DeathTimer;
+
 	glm::i32vec2 i32vec2OldIndex;
 
 	// Handler to the CMap2D instance

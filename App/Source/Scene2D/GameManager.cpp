@@ -14,7 +14,8 @@ CGameManager::CGameManager(void)
 	, bLevelPaused(false)
 	, bPlayerCooldown(false)
 	, bLevelToReplay(false)
-	, bGameToRestart(false) {
+	, bGameToRestart(false)
+	, bPlayerDeath(false) {
 }
 
 /**
@@ -38,5 +39,6 @@ void CGameManager::Init(void)
 	bPlayerCooldown = false;
 	bLevelToReplay = false;
 	bGameToRestart = false;
+	bPlayerDeath = false;
 }
 
