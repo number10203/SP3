@@ -286,63 +286,63 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//CS: Change Color
 			//currentColor = glm::vec4(1.0, 1.0, 0.0, 1.0);
 		}
-		if (cKeyboardController->IsKeyDown(GLFW_KEY_W))
-		{
-			// Calculate the new position up
-			if (i32vec2Index.y < (int)cSettings->NUM_TILES_YAXIS)
-			{
-				i32vec2NumMicroSteps.y++;
-				if (i32vec2NumMicroSteps.y > cSettings->NUM_STEPS_PER_TILE_YAXIS)
-				{
-					i32vec2NumMicroSteps.y = 0;
-					i32vec2Index.y++;
-				}
-			}
+		//if (cKeyboardController->IsKeyDown(GLFW_KEY_W))
+		//{
+		//	// Calculate the new position up
+		//	if (i32vec2Index.y < (int)cSettings->NUM_TILES_YAXIS)
+		//	{
+		//		i32vec2NumMicroSteps.y++;
+		//		if (i32vec2NumMicroSteps.y > cSettings->NUM_STEPS_PER_TILE_YAXIS)
+		//		{
+		//			i32vec2NumMicroSteps.y = 0;
+		//			i32vec2Index.y++;
+		//		}
+		//	}
 
-			// Constraint the player's position within the screen boundary
-			Constraint(UP);
+		//	// Constraint the player's position within the screen boundary
+		//	Constraint(UP);
 
-			// If the new position is not feasible, then revert to old position
-			if (CheckPosition(UP) == false)
-			{
-				i32vec2NumMicroSteps.y = 0;
-			}
+		//	// If the new position is not feasible, then revert to old position
+		//	if (CheckPosition(UP) == false)
+		//	{
+		//		i32vec2NumMicroSteps.y = 0;
+		//	}
 
-			//CS: Play the "idle" animation
-			animatedSprites->PlayAnimation("idle", -1, 1.0f);
+		//	//CS: Play the "idle" animation
+		//	animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
-			//CS: Change Color
-			//currentColor = glm::vec4(0.0, 1.0, 1.0, 0.5);
-		}
-		else if (cKeyboardController->IsKeyDown(GLFW_KEY_S))
-		{
-			// Calculate the new position down
-			if (i32vec2Index.y >= 0)
-			{
-				i32vec2NumMicroSteps.y--;
-				if (i32vec2NumMicroSteps.y < 0)
-				{
-					i32vec2NumMicroSteps.y = ((int)cSettings->NUM_STEPS_PER_TILE_YAXIS) - 1;
-					i32vec2Index.y--;
-				}
-			}
+		//	//CS: Change Color
+		//	//currentColor = glm::vec4(0.0, 1.0, 1.0, 0.5);
+		//}
+		//else if (cKeyboardController->IsKeyDown(GLFW_KEY_S))
+		//{
+		//	// Calculate the new position down
+		//	if (i32vec2Index.y >= 0)
+		//	{
+		//		i32vec2NumMicroSteps.y--;
+		//		if (i32vec2NumMicroSteps.y < 0)
+		//		{
+		//			i32vec2NumMicroSteps.y = ((int)cSettings->NUM_STEPS_PER_TILE_YAXIS) - 1;
+		//			i32vec2Index.y--;
+		//		}
+		//	}
 
-			// Constraint the player's position within the screen boundary
-			Constraint(DOWN);
+		//	// Constraint the player's position within the screen boundary
+		//	Constraint(DOWN);
 
-			// If the new position is not feasible, then revert to old position
-			if (CheckPosition(DOWN) == false)
-			{
-				i32vec2Index = i32vec2OldIndex;
-				i32vec2NumMicroSteps.y = 0;
-			}
+		//	// If the new position is not feasible, then revert to old position
+		//	if (CheckPosition(DOWN) == false)
+		//	{
+		//		i32vec2Index = i32vec2OldIndex;
+		//		i32vec2NumMicroSteps.y = 0;
+		//	}
 
-			//CS: Play the "idle" animation
-			animatedSprites->PlayAnimation("idle", -1, 1.0f);
+		//	//CS: Play the "idle" animation
+		//	animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
-			//CS: Change Color
-			//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
-		}
+		//	//CS: Change Color
+		//	//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
+		//}
 		if (cKeyboardController->IsKeyPressed(GLFW_KEY_C))
 		{
 			cout << "Creative Mode" << endl;
