@@ -33,6 +33,8 @@
 // Include CKeyboardController
 #include "Inputs/KeyboardController.h"
 
+
+
 #include <iostream>
 using namespace std;
 
@@ -41,6 +43,7 @@ using namespace std;
  */
 CIntroState::CIntroState(void)
 	: background(NULL)
+
 {
 	Started = false;
 	TimerToStart = 0;
