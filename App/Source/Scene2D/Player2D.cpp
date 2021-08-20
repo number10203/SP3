@@ -675,7 +675,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			}
 
 			// If the grid is not accessible, then return false
-			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x)<=100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 1 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x)<=100)
 			{
 				return false;
 			}
@@ -693,9 +693,9 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if (((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0)
+			if (((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 1)
 				&&((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100)))
-				|| ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 0)&&
+				|| ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 1)&&
 				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100)))
 			{
 				return false;
@@ -723,7 +723,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 				}
 			}
 			// If the grid is not accessible, then return false
-			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) > 0 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) > 1 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100)
 			{
 				return false;
 			}
@@ -742,8 +742,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >0)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100) ||
-				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >0)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) <= 100))
+			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) >1)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100) ||
+				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) >1)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) <= 100))
 			{
 				return false;
 			}
@@ -772,7 +772,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			}
 
 			// If the grid is not accessible, then return false
-			if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 0 && cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 1 && cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100)
 			{
 				return false;
 			}
@@ -790,8 +790,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100) ||
-				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) <= 100))
+			if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 1)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100) ||
+				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) > 1)&& (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) <= 100))
 			{
 				return false;
 			}
@@ -812,7 +812,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 				}
 			}
 
-			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100)
+			if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 1 && cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100)
 			{
 				return false;
 			}
@@ -831,8 +831,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			}
 
 			// If the 2 grids are not accessible, then return false
-			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100) ||
-				(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) > 0)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100))
+			if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 1)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100) ||
+				(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) > 1)&& (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) <= 100))
 			{
 				return false;
 			}
