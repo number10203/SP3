@@ -111,7 +111,7 @@ bool CPlayer2D::Init(void)
 	}
 	
 	//CS: Create the animated sprite and setup the animation 
-	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(9, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
+	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(14, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
 	animatedSprites->AddAnimation("idle", 0, 3);
 	animatedSprites->AddAnimation("right", 3, 6);
 	animatedSprites->AddAnimation("death", 6, 9);
@@ -121,6 +121,11 @@ bool CPlayer2D::Init(void)
 	animatedSprites->AddAnimation("left", 18, 21);
 	animatedSprites->AddAnimation("phaseleft", 21, 24);
 	animatedSprites->AddAnimation("phaseright", 24, 27);
+	animatedSprites->AddAnimation("phaseidle", 27, 30);
+	animatedSprites->AddAnimation("shootright", 30, 33);
+	animatedSprites->AddAnimation("grappleright", 33, 36);
+	animatedSprites->AddAnimation("grappleleft", 36, 39);
+	animatedSprites->AddAnimation("shootleft", 39, 42);
 	//CS: Play the "idle" animation as default
 	animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
@@ -213,6 +218,21 @@ void CPlayer2D::Update(const double dElapsedTime)
 		// Store the old position
 		i32vec2OldIndex = i32vec2Index;
 
+		// IDLE ANIMATIONS SWITCH
+		if (CGameManager::GetInstance()->bPlayerMedieval == true)
+		{
+			animatedSprites->PlayAnimation("phaseidle", -1, 1.0f);
+		}
+		else if (CGameManager::GetInstance()->bPlayerHome == true || CGameManager::GetInstance()->bPlayerCave == true)
+		{
+			animatedSprites->PlayAnimation("idle", -1, 1.0f);
+		}
+		else if (CGameManager::GetInstance()->bPlayerSky == true)
+		{
+			animatedSprites->PlayAnimation("skyidle", -1, 1.0f);
+		}
+
+
 		// Get keyboard updates
 		if (cKeyboardController->IsKeyDown(GLFW_KEY_A))
 		{
@@ -244,8 +264,21 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 			//}
 
-			//CS: Play the "left" animation
-			animatedSprites->PlayAnimation("left", -1, 1.0f);
+			//CS: Play the "left" animation		
+			if (CGameManager::GetInstance()->bPlayerMedieval == true)
+			{
+				animatedSprites->PlayAnimation("phaseleft", -1, 1.0f);
+			}
+			else if (CGameManager::GetInstance()->bPlayerHome == true || CGameManager::GetInstance()->bPlayerCave == true)
+			{
+				animatedSprites->PlayAnimation("left", -1, 1.0f);
+			}
+			else if (CGameManager::GetInstance()->bPlayerSky == true)
+			{
+				animatedSprites->PlayAnimation("skyleft", -1, 1.0f);
+			}
+			
+
 
 			//CS: Change Color
 			//currentColor = glm::vec4(1.0, 0.0, 0.0, 1.0);
@@ -281,7 +314,18 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//}
 
 			//CS: Play the "right" animation
-			animatedSprites->PlayAnimation("right", -1, 1.0f);
+			if (CGameManager::GetInstance()->bPlayerMedieval == true)
+			{
+				animatedSprites->PlayAnimation("phaseright", -1, 1.0f);
+			}
+			else if (CGameManager::GetInstance()->bPlayerHome == true || CGameManager::GetInstance()->bPlayerCave == true)
+			{
+				animatedSprites->PlayAnimation("right", -1, 1.0f);
+			}
+			else if (CGameManager::GetInstance()->bPlayerSky == true)
+			{
+				animatedSprites->PlayAnimation("right", -1, 1.0f);
+			}
 
 			//CS: Change Color
 			//currentColor = glm::vec4(1.0, 1.0, 0.0, 1.0);
@@ -368,8 +412,10 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 		}
 
+
+
 		// DIMENSION SWAPPING
-		{
+		
 		if (CGameManager::GetInstance()->bPlayerCooldown == false)
 		{
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
@@ -378,9 +424,13 @@ void CPlayer2D::Update(const double dElapsedTime)
 				CGameManager::GetInstance()->bPlayerMedieval = false;
 				CGameManager::GetInstance()->bPlayerCave = false;
 				CGameManager::GetInstance()->bPlayerSky = false;
+
 				cout << "Home Mode" << endl;
+
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+
 				CGameManager::GetInstance()->bPlayerCooldown = true;
+
 				cout << "Cooldown Applied" << endl;
 				cSoundController->PlaySoundByID(20);
 			}
@@ -423,30 +473,26 @@ void CPlayer2D::Update(const double dElapsedTime)
 		}
 		else if (CGameManager::GetInstance()->bPlayerCooldown == true)
 		{
-
-
 			Timer += 1 * dElapsedTime;
-			if (Timer >= 1)
+			if (Timer >= 0.5)
 			{
-				cout << "Cooldown Gone" << endl;
-				Timer = 0;
 				CGameManager::GetInstance()->bPlayerCooldown = false;
+				cout << "Cooldown Removed" << endl;
+				Timer = 0;
 			}
 		}
-	}
 
-
-		// PHASE RUNNING ABILITY
+		// PHASING
+		if (CGameManager::GetInstance()->bPlayerMedieval == true)
 		{
-			if (CGameManager::GetInstance()->bPlayerMedieval == true)
-			{
-				PhaseWalking = true;
-			}
-			else if (CGameManager::GetInstance()->bPlayerMedieval == false)
-			{
-				PhaseWalking = false;
-			}
+			PhaseWalking = true;
 		}
+		else
+		{
+			PhaseWalking = false;
+		}
+
+	
 		
 		// GRABBLE ABILITY
 		if (CGameManager::GetInstance()->bPlayerCave == true)
@@ -480,6 +526,20 @@ void CPlayer2D::Update(const double dElapsedTime)
 		}
 
 
+		// Update Death
+		if (CGameManager::GetInstance()->bPlayerDeath == true)
+		{
+			animatedSprites->PlayAnimation("death", -1, 1.0f);
+			DeathTimer += 1 * dElapsedTime;
+			if (DeathTimer >= 1)
+			{
+				// Player loses, goes to lose screen
+				CGameManager::GetInstance()->bPlayerLost = true;
+				DeathTimer = 0;
+				CGameManager::GetInstance()->bPlayerDeath = false;
+			}
+		}
+
 
 		// Update Jump or Fall
 		//CS: Will cause error when debugging. Set to default elapsed time
@@ -495,19 +555,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		animatedSprites->Update(dElapsedTime);
 
 
-		// Update Death
-		if (CGameManager::GetInstance()->bPlayerDeath == true)
-		{
-			animatedSprites->PlayAnimation("death", -1, 1.0f);
-			DeathTimer += 1 * dElapsedTime;
-			if (DeathTimer >= 1)
-			{
-				// Player loses, goes to lose screen
-				CGameManager::GetInstance()->bPlayerLost = true;
-				DeathTimer = 0;
-				CGameManager::GetInstance()->bPlayerDeath = false;
-			}
-		}
+		
 
 		// Update the UV Coordinates
 		vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x * cSettings->MICRO_STEP_XAXIS);
@@ -1032,6 +1080,9 @@ void CPlayer2D::UpdateHealthLives(void)
 	// Check if Health is 0
 	if (cInventoryItem->GetCount() <= 0)
 	{
+		// Alerts player death
+		CGameManager::GetInstance()->bPlayerDeath = true;
+
 		bool DeathSound = true;
 		if (DeathSound == true && count == 0)
 		{
@@ -1039,8 +1090,7 @@ void CPlayer2D::UpdateHealthLives(void)
 			count++;
 		}
 		
-		// Alerts player death
-		CGameManager::GetInstance()->bPlayerDeath = true;
+		
 		
 	}
 	// Die if player is stuck in a wall
