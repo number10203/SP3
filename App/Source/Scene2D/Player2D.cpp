@@ -516,6 +516,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				{
 					//Move towards the hookblock
 					cout << "Grappling Right" << endl;
+					animatedSprites->PlayAnimation("grappleright", -1, 1.0f);
 				}
 				else if ((Grapple_Left == true) && (Grapple_Right == false))
 				{

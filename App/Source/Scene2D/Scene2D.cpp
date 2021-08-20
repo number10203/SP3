@@ -161,7 +161,7 @@ bool CScene2D::Init(void)
 	cSoundController->Init();
 	// SOUND PLAYLIST
 	//BACKGROUND MUSIC 1 - 10
-	
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Background\\BackGroundMusic1.ogg"), 1, true, true);
 	// MENU SOUNDS 10 - 20
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\LoseSound.ogg"), 10, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\MenuSounds\\WinGameSound.ogg"), 11, true);
@@ -178,9 +178,9 @@ bool CScene2D::Init(void)
 	// PLAYER 60 - 70
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerDeathSound.ogg"), 61, true);
 
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Bell.ogg"), 1, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 2, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Jump.ogg"), 3, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Bell.ogg"), 99, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 100, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Jump.ogg"), 300, true);
 	
 
 	return true;
@@ -254,6 +254,8 @@ bool CScene2D::Update(const double dElapsedTime)
 		cSoundController->PlaySoundByID(10);
 		return false;
 	}
+
+	cSoundController->PlaySoundByID(1);
 
 	return true;
 }
