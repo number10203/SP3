@@ -86,6 +86,8 @@ bool CPauseState::Init(void)
  */
 bool CPauseState::Update(const double dElapsedTime)
 {
+	bool bClicked = false;
+
 	ImGuiWindowFlags window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoTitleBar;
 	window_flags |= ImGuiWindowFlags_NoScrollbar;
@@ -102,6 +104,8 @@ bool CPauseState::Update(const double dElapsedTime)
 	{
 		static float f = 0.0f;
 		static int counter = 0;
+
+		
 
 		// Create a window called "Hello, world!" and append into it.
 		ImGui::Begin("Main Menu", NULL, window_flags);
@@ -143,6 +147,7 @@ bool CPauseState::Update(const double dElapsedTime)
 		if (ImGui::ImageButton((ImTextureID)ExitButtonData.textureID,
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
 		{
+			
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 
@@ -150,24 +155,32 @@ bool CPauseState::Update(const double dElapsedTime)
 			// Load the menu state
 			cout << "Quitting the game" << endl;
 
-			return false; 
+			bClicked = true;
+			
+			//return false;
+
+			
 		}
+
+		
 	ImGui::End();
 	}
 	
 
 	//For keyboard controls
-	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F10))
+	//if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_F10))
+	//{
+	//	// Reset the CKeyboardController
+	//	CKeyboardController::GetInstance()->Reset();
+
+	//	// Load the menu state
+	//	cout << "UnLoading PauseState" << endl;
+	//	CGameStateManager::GetInstance()->SetPauseGameState(nullptr);
+	//}
+	if (bClicked == true)
 	{
-		// Reset the CKeyboardController
-		CKeyboardController::GetInstance()->Reset();
-
-		// Load the menu state
-		cout << "UnLoading PauseState" << endl;
-		CGameStateManager::GetInstance()->SetPauseGameState(nullptr);
-		return true;
+		return false;
 	}
-
 	return true;
 }
 
