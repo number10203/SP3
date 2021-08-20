@@ -300,6 +300,17 @@ void CScene2D::Render(void)
 	// Call the Map2D's PostRender()
 	cMap2D->PostRender();
 
+
+	for (int i = 0; i < enemyVector.size(); i++)
+	{
+		// Call the CEnemy2D's PreRender()
+		enemyVector[i]->PreRender();
+		// Call the CEnemy2D's Render()
+		enemyVector[i]->Render();
+		// Call the CEnemy2D's PostRender()
+		enemyVector[i]->PostRender();
+	}
+
 	// Call the cGUI_Scene2D's PreRender()
 	cGUI_Scene2D->PreRender();
 	// Call the cGUI_Scene2D's Render()
