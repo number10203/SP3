@@ -46,10 +46,6 @@ using namespace std;
 #include "GameStateManagement/PlayGameState.h"
 // Include CPauseState
 #include "GameStateManagement/PauseState.h"
-// Include CSoundState
-#include "GameStateManagement/SoundState.h"
-// Include CLevelCompletedState
-#include "GameStateManagement/LevelCompleted.h"
 
 /**
  @brief Define an error callback
@@ -253,12 +249,10 @@ bool Application::Init(void)
 	CGameStateManager::GetInstance()->AddGameState("IntroState", new CIntroState());
 	CGameStateManager::GetInstance()->AddGameState("MenuState", new CMenuState());
 	CGameStateManager::GetInstance()->AddGameState("InstructionState", new CInstructionState);
-	CGameStateManager::GetInstance()->AddGameState("SoundState", new CSoundState());
 	CGameStateManager::GetInstance()->AddGameState("PlayGameState", new CPlayGameState());
 	CGameStateManager::GetInstance()->AddGameState("PauseState", new CPauseState());
 	CGameStateManager::GetInstance()->AddGameState("WinState", new CWinState());
 	CGameStateManager::GetInstance()->AddGameState("LoseState", new CLoseState());
-	CGameStateManager::GetInstance()->AddGameState("LevelCompletedState", new CLevelCompletedState());
 	
 	// Set the active scene
 	CGameStateManager::GetInstance()->SetActiveGameState("IntroState");

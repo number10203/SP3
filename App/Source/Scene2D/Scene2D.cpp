@@ -230,7 +230,6 @@ bool CScene2D::Update(const double dElapsedTime)
 	// Check if the game should go to the next level
 	if (cGameManager->bLevelCompleted == true)
 	{
-		//CGameStateManager::GetInstance()->SetActiveGameState("LevelCompletedState");
 		cSoundController->PlaySoundByID(12);
 		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel()+1);
 		cout << "Next Level" << endl;
