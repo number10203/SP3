@@ -37,6 +37,7 @@ CEnemy2D::CEnemy2D(void)
 	, sCurrentFSM(FSM::IDLE)
 	, iFSMCounter(0)
 	, quadMesh(NULL)
+	, animatedSprites(NULL)
 {
 	transform = glm::mat4(1.0f);	// make sure to initialize matrix to identity matrix first
 
@@ -63,6 +64,13 @@ CEnemy2D::~CEnemy2D(void)
 	{
 		delete quadMesh;
 		quadMesh = NULL;
+	}
+
+
+	if (animatedSprites)
+	{
+		delete animatedSprites;
+		animatedSprites = NULL;
 	}
 
 	// We won't delete this since it was created elsewhere
@@ -108,11 +116,21 @@ bool CEnemy2D::Init(void)
 	quadMesh = CMeshBuilder::GenerateQuad(glm::vec4(1, 1, 1, 1), cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
 
 	// Load the enemy2D texture
-	if (LoadTexture("Image/Scene2D_EnemyTile.tga", iTextureID) == false)
+	if (LoadTexture("Image/Enemy/Staclemite.png", iTextureID) == false)
 	{
-		std::cout << "Failed to load enemy2D tile texture" << std::endl;
+		std::cout << "Failed to load Staclemite tile texture" << std::endl;
 		return false;
 	}
+
+	//CS: Create the animated sprite and setup the animation 
+	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(3, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
+	animatedSprites->AddAnimation("right", 0, 3);
+	animatedSprites->AddAnimation("idle", 3, 6);
+	animatedSprites->AddAnimation("left", 6, 9);
+	
+	//CS: Play the "idle" animation as default
+	animatedSprites->PlayAnimation("idle", -1, 1.0f);
+
 
 	//CS: Init the color to white
 	currentColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
@@ -141,6 +159,7 @@ void CEnemy2D::Update(const double dElapsedTime)
 		switch (sCurrentFSM)
 		{
 		case IDLE:
+			animatedSprites->PlayAnimation("idle", -1, 1.0f);
 			if (iFSMCounter > iMaxFSMCounter)
 			{
 				sCurrentFSM = PATROL;
@@ -150,6 +169,7 @@ void CEnemy2D::Update(const double dElapsedTime)
 			iFSMCounter++;
 			break;
 		case PATROL:
+
 			if (iFSMCounter > iMaxFSMCounter)
 			{
 				sCurrentFSM = IDLE;
@@ -239,6 +259,9 @@ void CEnemy2D::Update(const double dElapsedTime)
 		// Update Jump or Fall
 		UpdateJumpFall(dElapsedTime);
 
+		// Update the animated sprites
+		animatedSprites->Update(dElapsedTime);
+
 		// Update the UV Coordinates
 		vec2UVCoordinate.x = cSettings->ConvertIndexToUVSpace(cSettings->x, i32vec2Index.x, false, i32vec2NumMicroSteps.x * cSettings->MICRO_STEP_XAXIS);
 		vec2UVCoordinate.y = cSettings->ConvertIndexToUVSpace(cSettings->y, i32vec2Index.y, false, i32vec2NumMicroSteps.y * cSettings->MICRO_STEP_YAXIS);
@@ -291,7 +314,11 @@ void CEnemy2D::Render(void)
 
 	// Render the tile
 	//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-	quadMesh->Render();
+	//quadMesh->Render();
+
+	// Play Animation
+	//CS: Render the animated sprite
+	animatedSprites->Render();
 
 	glBindVertexArray(0);
 
@@ -459,6 +486,7 @@ bool CEnemy2D::CheckPosition(DIRECTION eDirection)
 				return false;
 			}
 		}
+		animatedSprites->PlayAnimation("left", -1, 1.0f);
 	}
 	else if (eDirection == RIGHT)
 	{
@@ -488,6 +516,7 @@ bool CEnemy2D::CheckPosition(DIRECTION eDirection)
 				return false;
 			}
 		}
+		animatedSprites->PlayAnimation("right", -1, 1.0f);
 
 	}
 	else if (eDirection == UP)
