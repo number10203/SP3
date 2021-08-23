@@ -143,6 +143,8 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 	ImGui::End();
 
 	
+	
+
 	if (CGameManager::GetInstance()->bPlayerMedieval == true)
 	{
 

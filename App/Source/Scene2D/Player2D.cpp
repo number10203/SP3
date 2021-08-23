@@ -111,7 +111,7 @@ bool CPlayer2D::Init(void)
 	}
 	
 	//CS: Create the animated sprite and setup the animation 
-	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(14, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
+	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(15, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
 	animatedSprites->AddAnimation("idle", 0, 3);
 	animatedSprites->AddAnimation("right", 3, 6);
 	animatedSprites->AddAnimation("death", 6, 9);
@@ -126,6 +126,7 @@ bool CPlayer2D::Init(void)
 	animatedSprites->AddAnimation("grappleright", 33, 36);
 	animatedSprites->AddAnimation("grappleleft", 36, 39);
 	animatedSprites->AddAnimation("shootleft", 39, 42);
+	animatedSprites->AddAnimation("shootup", 42, 45);
 	//CS: Play the "idle" animation as default
 	animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
