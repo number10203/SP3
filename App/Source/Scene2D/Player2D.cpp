@@ -1176,6 +1176,17 @@ void CPlayer2D::InteractWithMap(void)
 			i32vec2Index.x = 8;
 		}
 		break;
+	case 204:
+		// Erase the key from this position
+		cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
+		for (int x = 0; x < 32; x++) {
+			for (int y = 0; y < 24; y++) {
+				if (cMap2D->GetMapInfo(y, x) == 202) {
+					cMap2D->SetMapInfo(y, x, 201);
+				}
+			}
+		}
+		break;
 	default:
 		break;
 	}
