@@ -179,7 +179,8 @@ bool CScene2D::Init(void)
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sky\\SkyAlertSound.ogg"), 50, true);
 	// PLAYER 60 - 70
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerDeathSound.ogg"), 61, true);
-
+	// COLLECTIBLES 70 - 90 
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\UnlockDoorSound.ogg"), 70, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Bell.ogg"), 99, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 100, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Jump.ogg"), 300, true);
