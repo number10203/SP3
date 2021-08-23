@@ -154,8 +154,6 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 	
 	if (CGameManager::GetInstance()->currDimem == MEDI)
 	{
-
-
 		// Render the Diemnsion State
 		ImGuiWindowFlags MedievalWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
 			ImGuiWindowFlags_NoBackground |

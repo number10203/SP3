@@ -229,11 +229,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 		i32vec2OldIndex = i32vec2Index;
 
 		// IDLE ANIMATIONS SWITCH
-		if (CGameManager::GetInstance()->currDimem == MEDI)
+		if (CGameManager::GetInstance()->currDimem == CAVE)
 		{
 			animatedSprites->PlayAnimation("phaseidle", -1, 1.0f);
 		}
-		else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == CAVE)
+		else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == MEDI)
 		{
 			animatedSprites->PlayAnimation("idle", -1, 1.0f);
 		}
@@ -275,11 +275,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//}
 
 			//CS: Play the "left" animation		
-			if (CGameManager::GetInstance()->currDimem == MEDI)
+			if (CGameManager::GetInstance()->currDimem == CAVE)
 			{
 				animatedSprites->PlayAnimation("phaseleft", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == CAVE)
+			else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == MEDI)
 			{
 				animatedSprites->PlayAnimation("left", -1, 1.0f);
 			}
@@ -324,11 +324,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//}
 
 			//CS: Play the "right" animation
-			if (CGameManager::GetInstance()->currDimem == MEDI)
+			if (CGameManager::GetInstance()->currDimem == CAVE)
 			{
 				animatedSprites->PlayAnimation("phaseright", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == CAVE)
+			else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == MEDI)
 			{
 				animatedSprites->PlayAnimation("right", -1, 1.0f);
 			}
