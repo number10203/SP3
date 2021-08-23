@@ -270,5 +270,24 @@ protected:
 	std::vector<bool> m_closedList;
 	std::vector<Grid> m_cameFromList;
 	std::vector<glm::i32vec2> m_directions;
+
+	// Arrays and variable for sprite switching
+	int ;
+
+	string tiles[13][4] = {
+		"Citywall_up","Mediwall_up","Cavewall_up","Skywall_up",
+		"Citywall_right","Mediwall_right","Cavewall_right","Skywall_right",
+		"Citywall_down","Mediwall_down","Cavewall_down","Skywall_down",
+		"Citywall_left","Mediwall_left","Cavewall_left","Skywall_left",
+		"Citywall_NW","Mediwall_NW","Cavewall_NW","Skywall_NW",
+		"Citywall_NE","Mediwall_NE","Cavewall_NE","Skywall_NE",
+		"Citywall_SE","Mediwall_SE","Cavewall_SE","Skywall_SE",
+		"Citywall_SW","Mediwall_SW","Cavewall_SW","Skywall_SW",
+		"Citywall_inverseNW","Mediwall_inverseNW","Cavewall_inverseNW","Skywall_inverseNW",
+		"Citywall_inverseNE","Mediwall_inverseNE","Cavewall_inverseNE","Skywall_inverseNE",
+		"Citywall_inverseSE","Mediwall_inverseSE","Cavewall_inverseSE","Skywall_inverseSE",
+		"Citywall_inverseSW","Mediwall_inverseSW","Cavewall_inverseSW","Skywall_inverseSW",
+		"City","Medi","Cave","Sky",
+	};
 };
 

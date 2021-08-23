@@ -3,11 +3,8 @@
 /**
 @brief Constructor
 */
-CGameManager::CGameManager(void) 
-	: bPlayerHome(false)
-	, bPlayerMedieval(false)
-	, bPlayerCave(false)
-	, bPlayerSky(false)
+CGameManager::CGameManager(void)
+	: currDimem(0)
 	, bPlayerWon(false)
 	, bPlayerLost(false)
 	, bLevelCompleted(false)
@@ -28,10 +25,11 @@ CGameManager::~CGameManager(void)
 // Initialise this class instance
 void CGameManager::Init(void)
 {
-	bPlayerHome = true;
-	bPlayerMedieval = false;
-	bPlayerCave = false;
-	bPlayerSky = false;
+	//bPlayerHome = true;
+	//bPlayerMedieval = false;
+	//bPlayerCave = false;
+	//bPlayerSky = false;
+	currDimem = HOME;
 	bPlayerWon = false;
 	bPlayerLost = false;
 	bLevelCompleted = false;

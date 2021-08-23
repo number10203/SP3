@@ -219,15 +219,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 		i32vec2OldIndex = i32vec2Index;
 
 		// IDLE ANIMATIONS SWITCH
-		if (CGameManager::GetInstance()->bPlayerMedieval == true)
+		if (CGameManager::GetInstance()->currDimem == 1)
 		{
 			animatedSprites->PlayAnimation("phaseidle", -1, 1.0f);
 		}
-		else if (CGameManager::GetInstance()->bPlayerHome == true || CGameManager::GetInstance()->bPlayerCave == true)
+		else if (CGameManager::GetInstance()->currDimem == 0 || CGameManager::GetInstance()->currDimem == 2)
 		{
 			animatedSprites->PlayAnimation("idle", -1, 1.0f);
 		}
-		else if (CGameManager::GetInstance()->bPlayerSky == true)
+		else if (CGameManager::GetInstance()->currDimem == 3)
 		{
 			animatedSprites->PlayAnimation("skyidle", -1, 1.0f);
 		}
@@ -265,15 +265,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//}
 
 			//CS: Play the "left" animation		
-			if (CGameManager::GetInstance()->bPlayerMedieval == true)
+			if (CGameManager::GetInstance()->currDimem == 1)
 			{
 				animatedSprites->PlayAnimation("phaseleft", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->bPlayerHome == true || CGameManager::GetInstance()->bPlayerCave == true)
+			else if (CGameManager::GetInstance()->currDimem == 0 || CGameManager::GetInstance()->currDimem = 2)
 			{
 				animatedSprites->PlayAnimation("left", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->bPlayerSky == true)
+			else if (CGameManager::GetInstance()->currDimem == 3)
 			{
 				animatedSprites->PlayAnimation("skyleft", -1, 1.0f);
 			}
@@ -314,15 +314,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//}
 
 			//CS: Play the "right" animation
-			if (CGameManager::GetInstance()->bPlayerMedieval == true)
+			if (CGameManager::GetInstance()->currDimem == 1)
 			{
 				animatedSprites->PlayAnimation("phaseright", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->bPlayerHome == true || CGameManager::GetInstance()->bPlayerCave == true)
+			else if (CGameManager::GetInstance()->currDimem == 0 || CGameManager::GetInstance()->currDimem == 2)
 			{
 				animatedSprites->PlayAnimation("right", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->bPlayerSky == true)
+			else if (CGameManager::GetInstance()->currDimem == 3)
 			{
 				animatedSprites->PlayAnimation("right", -1, 1.0f);
 			}
@@ -420,10 +420,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 		{
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
 			{
-				CGameManager::GetInstance()->bPlayerHome = true;
+				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->HOME;
+				/*CGameManager::GetInstance()->bPlayerHome = true;
 				CGameManager::GetInstance()->bPlayerMedieval = false;
 				CGameManager::GetInstance()->bPlayerCave = false;
-				CGameManager::GetInstance()->bPlayerSky = false;
+				CGameManager::GetInstance()->bPlayerSky = false;*/
 
 				cout << "Home Mode" << endl;
 
@@ -436,10 +437,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
 			{
-				CGameManager::GetInstance()->bPlayerHome = false;
+				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->MEDI;
+				/*CGameManager::GetInstance()->bPlayerHome = false;
 				CGameManager::GetInstance()->bPlayerMedieval = true;
 				CGameManager::GetInstance()->bPlayerCave = false;
-				CGameManager::GetInstance()->bPlayerSky = false;
+				CGameManager::GetInstance()->bPlayerSky = false;*/
 				cout << "Medieval Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 				CGameManager::GetInstance()->bPlayerCooldown = true;
@@ -448,10 +450,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
 			{
-				CGameManager::GetInstance()->bPlayerHome = false;
+				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->CAVE;
+				/*CGameManager::GetInstance()->bPlayerHome = false;
 				CGameManager::GetInstance()->bPlayerMedieval = false;
 				CGameManager::GetInstance()->bPlayerCave = true;
-				CGameManager::GetInstance()->bPlayerSky = false;
+				CGameManager::GetInstance()->bPlayerSky = false;*/
 				cout << "Cave Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 				CGameManager::GetInstance()->bPlayerCooldown = true;
@@ -460,10 +463,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
 			{
-				CGameManager::GetInstance()->bPlayerHome = false;
+				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->SKY;
+				/*CGameManager::GetInstance()->bPlayerHome = false;
 				CGameManager::GetInstance()->bPlayerMedieval = false;
 				CGameManager::GetInstance()->bPlayerCave = false;
-				CGameManager::GetInstance()->bPlayerSky = true;
+				CGameManager::GetInstance()->bPlayerSky = true;*/
 				cout << "Sky Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
 				CGameManager::GetInstance()->bPlayerCooldown = true;
@@ -482,8 +486,14 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 		}
 
+		switch (CGameManager::GetInstance()->currDimem)
+		{
+		case CGameManager::GetInstance()->HOME:
+
+		}
+
 		// PHASING
-		if (CGameManager::GetInstance()->bPlayerMedieval == true)
+		if (CGameManager::GetInstance()->currDimem = 1)
 		{
 			PhaseWalking = true;
 		}
@@ -495,7 +505,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 	
 		
 		// GRABBLE ABILITY
-		if (CGameManager::GetInstance()->bPlayerCave == true)
+		if (CGameManager::GetInstance()->currDimem = 2)
 		{
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 			{
