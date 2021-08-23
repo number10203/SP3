@@ -205,6 +205,8 @@ public:
 	// Print out details about this class instance in the console window
 	void PrintSelf(void) const;
 
+	void tileSwap(void);
+
 protected:
 	// The variable containing the rapidcsv::Document
 	// We will load the CSV file's content into this Document
@@ -271,22 +273,23 @@ protected:
 	std::vector<Grid> m_cameFromList;
 	std::vector<glm::i32vec2> m_directions;
 
-	// Arrays and variable for sprite switching
+	// functions and variables for sprite switching
 
-	string tiles[13][4] = {
-		"Citywall_up","Mediwall_up","Cavewall_up","Skywall_up",
-		"Citywall_right","Mediwall_right","Cavewall_right","Skywall_right",
-		"Citywall_down","Mediwall_down","Cavewall_down","Skywall_down",
-		"Citywall_left","Mediwall_left","Cavewall_left","Skywall_left",
-		"Citywall_NW","Mediwall_NW","Cavewall_NW","Skywall_NW",
-		"Citywall_NE","Mediwall_NE","Cavewall_NE","Skywall_NE",
-		"Citywall_SE","Mediwall_SE","Cavewall_SE","Skywall_SE",
-		"Citywall_SW","Mediwall_SW","Cavewall_SW","Skywall_SW",
-		"Citywall_inverseNW","Mediwall_inverseNW","Cavewall_inverseNW","Skywall_inverseNW",
-		"Citywall_inverseNE","Mediwall_inverseNE","Cavewall_inverseNE","Skywall_inverseNE",
-		"Citywall_inverseSE","Mediwall_inverseSE","Cavewall_inverseSE","Skywall_inverseSE",
-		"Citywall_inverseSW","Mediwall_inverseSW","Cavewall_inverseSW","Skywall_inverseSW",
-		"City","Medi","Cave","Sky",
+	const char* tiles[13][4] = {
+		"Image/Tiles/City/TGA/Citywall_up.tga"		 ,"Image/Tiles/Medieval/TGA/Mediwall_up.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_up.tga"		 ,"Image/Tiles/Sky/TGA/Skywall_up.tga",
+		"Image/Tiles/City/TGA/Citywall_right.tga"	 ,"Image/Tiles/Medieval/TGA/Mediwall_right.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_right.tga"	 ,"Image/Tiles/Sky/TGA/Skywall_right.tga",
+		"Image/Tiles/City/TGA/Citywall_down.tga"	 ,"Image/Tiles/Medieval/TGA/Mediwall_down.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_down.tga"	 ,"Image/Tiles/Sky/TGA/Skywall_down.tga",
+		"Image/Tiles/City/TGA/Citywall_left.tga"	 ,"Image/Tiles/Medieval/TGA/Mediwall_left.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_left.tga"	 ,"Image/Tiles/Sky/TGA/Skywall_left.tga",
+		"Image/Tiles/City/TGA/Citywall_NW.tga"		 ,"Image/Tiles/Medieval/TGA/Mediwall_NW.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_NW.tga"		 ,"Image/Tiles/Sky/TGA/Skywall_NW.tga",
+		"Image/Tiles/City/TGA/Citywall_NE.tga"		 ,"Image/Tiles/Medieval/TGA/Mediwall_NE.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_NE.tga"		 ,"Image/Tiles/Sky/TGA/Skywall_NE.tga",
+		"Image/Tiles/City/TGA/Citywall_SE.tga"		 ,"Image/Tiles/Medieval/TGA/Mediwall_SE.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_SE.tga"		 ,"Image/Tiles/Sky/TGA/Skywall_SE.tga",
+		"Image/Tiles/City/TGA/Citywall_SW.tga"		 ,"Image/Tiles/Medieval/TGA/Mediwall_SW.tga"	   ,"Image/Tiles/Cave/TGA/Cavewall_SW.tga"		 ,"Image/Tiles/Sky/TGA/Skywall_SW.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseNW.tga","Image/Tiles/Medieval/TGA/Mediwall_inverseNW.tga","Image/Tiles/Cave/TGA/Cavewall_inverseNW.tga","Image/Tiles/Sky/TGA/Skywall_inverseNW.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseNE.tga","Image/Tiles/Medieval/TGA/Mediwall_inverseNE.tga","Image/Tiles/Cave/TGA/Cavewall_inverseNE.tga","Image/Tiles/Sky/TGA/Skywall_inverseNE.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseSE.tga","Image/Tiles/Medieval/TGA/Mediwall_inverseSE.tga","Image/Tiles/Cave/TGA/Cavewall_inverseSE.tga","Image/Tiles/Sky/TGA/Skywall_inverseSE.tga",
+		"Image/Tiles/City/TGA/Citywall_inverseSW.tga","Image/Tiles/Medieval/TGA/Mediwall_inverseSW.tga","Image/Tiles/Cave/TGA/Cavewall_inverseSW.tga","Image/Tiles/Sky/TGA/Skywall_inverseSW.tga",
+		"Image/Tiles/City/TGA/City.tga"				 ,"Image/Tiles/Medieval/TGA/Medi.tga"			   ,"Image/Tiles/Cave/TGA/Cave.tga"				 ,"Image/Tiles/Sky/TGA/Sky.tga",
 	};
+
 };
 

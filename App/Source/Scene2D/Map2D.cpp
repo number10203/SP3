@@ -14,12 +14,23 @@
 #include "System\ImageLoader.h"
 #include "Primitives/MeshBuilder.h"
 
+#include "GameManager.h"
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
 // For AStar PathFinding
 using namespace std::placeholders;
+
+enum Dimensions
+{
+	HOME = 0,
+	MEDI = 1,
+	CAVE = 2,
+	SKY = 3,
+	DIMEN_NUM,
+};
 
 /**
  @brief Constructor This constructor has protected access modifier as this class will be a Singleton
@@ -102,12 +113,44 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 	// Load the ground texture
 
 
+	//constant texture
 	if (LoadTexture("Image/Tiles/Special/TGA/Black.tga", 1) == false)
 	{
 		std::cout << "Failed to load black tile texture" << std::endl;
 		return false;
 	}
-	// Load the tree texture
+	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 14) == false)
+	{
+		std::cout << "Failed to load Phase block tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Special/TGA/Hook_Block.tga", 15) == false)
+	{
+		std::cout << "Failed to load Hookblock tile texture" << std::endl;
+		return false;
+	}if (LoadTexture("Image/Tiles/Special/TGA/Cloud1.tga", 16) == false)
+	{
+		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Special/TGA/Cloud2.tga", 17) == false)
+	{
+		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Special/TGA/Cloud3.tga", 18) == false)
+	{
+		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Scene2D_Spikes.tga", 203) == false)
+	{
+		std::cout << "Failed to load Scene2D_Spikes tile texture" << std::endl;
+		return false;
+	}
+
+
+	// Load the specific texture
 	if (LoadTexture("Image/Tiles/City/TGA/Citywall_up.tga", 2) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
@@ -168,44 +211,13 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load iSW tile texture" << std::endl;
 		return false;
 	}
-	// Phasing Block
-	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 14) == false)
-	{
-		std::cout << "Failed to load Phase block tile texture" << std::endl;
-		return false;
-	}
-	if (LoadTexture("Image/Tiles/Special/TGA/Hook_Block.tga", 15) == false)
-	{
-		std::cout << "Failed to load Hookblock tile texture" << std::endl;
-		return false;
-	}if (LoadTexture("Image/Tiles/Special/TGA/Cloud1.tga", 16) == false)
-	{
-		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
-		return false;
-	}
-	if (LoadTexture("Image/Tiles/Special/TGA/Cloud2.tga", 17) == false)
-	{
-		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
-		return false;
-	}
-	if (LoadTexture("Image/Tiles/Special/TGA/Cloud3.tga", 18) == false)
-	{
-		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
-		return false;
-	}
+
 	if (LoadTexture("Image/Tiles/City/TGA/City.tga", 19) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
 	}
 
-
-	// Load the spike texture
-	if (LoadTexture("Image/Scene2D_Spikes.tga", 203) == false)
-	{
-		std::cout << "Failed to load Scene2D_Spikes tile texture" << std::endl;
-		return false;
-	}
 	// Load the Spa texture
 	if (LoadTexture("Image/Scene2D_Spa.tga", 21) == false)
 	{
@@ -808,6 +820,67 @@ bool CMap2D::ResetAStarLists(void)
 	}
 
 	return true;
+}
+
+void CMap2D::tileSwap(void)
+{
+	int dimension_num = CGameManager::GetInstance()->currDimem;
+
+	if (LoadTexture(tiles[0][dimension_num], 2) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[1][dimension_num], 3) == false)
+	{
+		std::cout << "Failed to load right tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[2][dimension_num], 4) == false)
+	{
+		std::cout << "Failed to load down tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[3][dimension_num], 5) == false)
+	{
+		std::cout << "Failed to load left tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[4][dimension_num], 6) == false)
+	{
+		std::cout << "Failed to load NW tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[5][dimension_num], 7) == false)
+	{
+		std::cout << "Failed to load NE tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[6][dimension_num], 8) == false)
+	{
+		std::cout << "Failed to load se tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[7][dimension_num], 9) == false)
+	{
+		std::cout << "Failed to load sw tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[8][dimension_num], 10) == false)
+	{
+		std::cout << "Failed to load iNW tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[9][dimension_num], 11) == false)
+	{
+		std::cout << "Failed to load iNE tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[10][dimension_num], 12) == false)
+	{
+		std::cout << "Failed to load iSE tile texture" << std::endl;
+	}
+	if (LoadTexture(tiles[11][dimension_num], 13) == false)
+	{
+		std::cout << "Failed to load iSW tile texture" << std::endl;
+	}
+
+	if (LoadTexture(tiles[12][dimension_num], 19) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+	}
+
+	std::cout << "PROOF IT WORKS" << std::endl;
 }
 
 /**
