@@ -218,6 +218,16 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
 	}
+	if (LoadTexture("Image/Scene2D_LockedExit.tga", 202) == false)
+	{
+		std::cout << "Failed to load lockedExit tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Collectibles/Key.png", 204) == false)
+	{
+		std::cout << "Failed to load Exit tile texture" << std::endl;
+		return false;
+	}
 
 	// Initialise the variables for AStar
 	m_weight = 1;

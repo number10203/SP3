@@ -18,6 +18,8 @@ public:
 		JUMP,
 		FALL,
 		RISE,
+		GRAPPLE_RIGHT,
+		GRAPPLE_LEFT,
 		NUM_STATUS
 	};
 
