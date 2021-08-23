@@ -97,11 +97,11 @@ bool CScene2D::Init(void)
 		return false;
 	}
 	// Load the map into an array
-	if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1) == false)
+	/*if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1) == false)
 	{
 		cout << " The loading of a map has failed 2." << endl;
 		return false;
-	}
+	}*/
 
 // RECHECK THIS FILE FOR extra characters
 

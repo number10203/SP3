@@ -164,17 +164,17 @@ bool CMenuState::Update(const double dElapsedTime)
 		}
 
 		// Add codes for Sound button here
-		if (ImGui::ImageButton((ImTextureID)soundButtonData.textureID,
-			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
-		{
-			// Reset the CKeyboardController
-			CKeyboardController::GetInstance()->Reset();
+		//if (ImGui::ImageButton((ImTextureID)soundButtonData.textureID,
+		//	ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
+		//{
+		//	// Reset the CKeyboardController
+		//	CKeyboardController::GetInstance()->Reset();
 
-			// Load the Instruction state
-			cout << "Switching to Sound State" << endl;
-			CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
+		//	// Load the Instruction state
+		//	cout << "Switching to Sound State" << endl;
+		//	CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
 
-		}
+		//}
 
 		// Add codes for Exit button here
 		if (ImGui::ImageButton((ImTextureID)exitButtonData.textureID,
@@ -214,16 +214,16 @@ bool CMenuState::Update(const double dElapsedTime)
 		CGameStateManager::GetInstance()->SetActiveGameState("InstructionState");
 		return true;
 	}
-	else if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_S))
-	{
-		// Reset the CKeyboardController
-		CKeyboardController::GetInstance()->Reset();
+	//else if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_S))
+	//{
+	//	// Reset the CKeyboardController
+	//	CKeyboardController::GetInstance()->Reset();
 
-		// Load the menu state
-		cout << "Loading SoundState" << endl;
-		CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
-		return true;
-	}
+	//	// Load the menu state
+	//	cout << "Loading SoundState" << endl;
+	//	CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
+	//	return true;
+	//}
 	else if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE))
 	{
 		// Reset the CKeyboardController
