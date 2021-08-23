@@ -85,7 +85,7 @@ bool CScene2D::Init(void)
 	// Set a shader to this class
 	cMap2D->SetShader("2DShader");
 	// Initialise the instance
-	if (cMap2D->Init(2, 24, 32) == false)
+	if (cMap2D->Init(3, 24, 32) == false)
 	{
 		cout << "Failed to load CMap2D" << endl;
 		return false;
@@ -97,11 +97,11 @@ bool CScene2D::Init(void)
 		return false;
 	}
 	// Load the map into an array
-	/*if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1) == false)
+	if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1) == false)
 	{
 		cout << " The loading of a map has failed 2." << endl;
 		return false;
-	}*/
+	}
 
 // RECHECK THIS FILE FOR extra characters
 
@@ -194,7 +194,7 @@ bool CScene2D::Update(const double dElapsedTime)
 {
 
 	// Call the cPlayer2D's update method before Map2D as we want to capture the inputs before map2D update
-	cPlayer2D->Update(dElapsedTime);
+  	cPlayer2D->Update(dElapsedTime);
 
 	// Call all the cEnemy2D's update method before Map2D 
 	// as we want to capture the updates before map2D update
