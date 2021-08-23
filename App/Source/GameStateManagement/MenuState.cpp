@@ -163,19 +163,6 @@ bool CMenuState::Update(const double dElapsedTime)
 
 		}
 
-		// Add codes for Sound button here
-		//if (ImGui::ImageButton((ImTextureID)soundButtonData.textureID,
-		//	ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
-		//{
-		//	// Reset the CKeyboardController
-		//	CKeyboardController::GetInstance()->Reset();
-
-		//	// Load the Instruction state
-		//	cout << "Switching to Sound State" << endl;
-		//	CGameStateManager::GetInstance()->SetActiveGameState("SoundState");
-
-		//}
-
 		// Add codes for Exit button here
 		if (ImGui::ImageButton((ImTextureID)exitButtonData.textureID,
 			ImVec2(buttonWidth, buttonHeight), ImVec2(0.0, 0.0), ImVec2(1.0, 1.0), int(-1), ImVec4(0.5, 0, 0.5, 1), ImVec4(1, 1, 1, 1)))
