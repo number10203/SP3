@@ -890,7 +890,7 @@ void CMap2D::tileSwap(void)
 		std::cout << "Failed to load up tile texture" << std::endl;
 	}
 
-	std::cout << "PROOF IT WORKS" << std::endl;
+	std::cout << "PROOF" << std::endl;
 }
 
 /**
