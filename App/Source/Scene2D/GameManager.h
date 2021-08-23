@@ -48,16 +48,16 @@ public:
 	bool bPlayerDeath;
 
 	//indicator which dimension
-	string currDimem;
+	int currDimem;
 
-	enum Dimension
-	{
-		HOME = 0,
-		MEDI = 1,
-		CAVE = 2,
-		SKY = 3,
-		DIMEN_NUM,
-	};
+	//enum Dimensions
+	//{
+	//	HOME = 0,
+	//	MEDI = 1,
+	//	CAVE = 2,
+	//	SKY = 3,
+	//	DIMEN_NUM,
+	//};
 
 
 protected:

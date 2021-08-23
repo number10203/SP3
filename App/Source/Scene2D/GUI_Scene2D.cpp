@@ -10,6 +10,15 @@
 #include <iostream>
 using namespace std;
 
+enum Dimensions
+{
+	HOME = 0,
+	MEDI = 1,
+	CAVE = 2,
+	SKY = 3,
+	DIMEN_NUM,
+};
+
 /**
  @brief Constructor This constructor has protected access modifier as this class will be a Singleton
  */
@@ -143,7 +152,7 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 	ImGui::End();
 
 	
-	if (CGameManager::GetInstance()->bPlayerMedieval == true)
+	if (CGameManager::GetInstance()->currDimem == MEDI)
 	{
 
 
@@ -165,7 +174,7 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 		ImGui::SameLine();
 		ImGui::End();
 	}
-	else if (CGameManager::GetInstance()->bPlayerHome == true)
+	else if (CGameManager::GetInstance()->currDimem == HOME)
 	{
 		// Render the Diemnsion State
 		ImGuiWindowFlags TestingWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
@@ -185,7 +194,7 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 		ImGui::SameLine();
 		ImGui::End();
 	}
-	else if (CGameManager::GetInstance()->bPlayerCave == true)
+	else if (CGameManager::GetInstance()->currDimem == CAVE)
 	{
 		// Render the Diemnsion State
 		ImGuiWindowFlags TestingWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
@@ -205,7 +214,7 @@ void CGUI_Scene2D::Update(const double dElapsedTime)
 		ImGui::SameLine();
 		ImGui::End();
 	}
-	else if (CGameManager::GetInstance()->bPlayerSky == true)
+	else if (CGameManager::GetInstance()->currDimem == SKY)
 	{
 		// Render the Diemnsion State
 		ImGuiWindowFlags TestingWindowFlags = ImGuiWindowFlags_AlwaysAutoResize |
