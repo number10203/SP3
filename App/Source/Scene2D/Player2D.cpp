@@ -1087,6 +1087,10 @@ void CPlayer2D::InteractWithMap(void)
 		// Level has been completed
 		//CGameManager::GetInstance()->bPlayerWon = true;
 		CGameManager::GetInstance()->bLevelCompleted = true;
+		if (cMap2D->GetInstance()->GetCurrentLevel() == 0) {
+			i32vec2Index.y = 3;
+			i32vec2Index.x = 8;
+		}
 		break;
 	default:
 		break;
