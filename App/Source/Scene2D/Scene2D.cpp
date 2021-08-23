@@ -93,15 +93,17 @@ bool CScene2D::Init(void)
 	// Load the map into an array
 	if (cMap2D->LoadMap("Maps/DM2213_Map_Level_01.csv") == false)
 	{
-		// The loading of a map has failed. Return false
+		cout << " The loading of a map has failed 1." << endl;
 		return false;
 	}
 	// Load the map into an array
-	if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1) == false)
+	/*if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1) == false)
 	{
-		// The loading of a map has failed. Return false
+		cout << " The loading of a map has failed 2." << endl;
 		return false;
-	}
+	}*/
+
+// RECHECK THIS FILE FOR extra characters
 
 	// Activate diagonal movement
 	cMap2D->SetDiagonalMovement(false);
@@ -182,7 +184,6 @@ bool CScene2D::Init(void)
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 100, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Jump.ogg"), 300, true);
 	
-
 	return true;
 }
 
@@ -229,11 +230,11 @@ bool CScene2D::Update(const double dElapsedTime)
 	// Check if the game should go to the next level
 	if (cGameManager->bLevelCompleted == true)
 	{
-		CGameStateManager::GetInstance()->SetActiveGameState("LevelCompletedState");
-		cSoundController->StopAllSounds();
+		//CGameStateManager::GetInstance()->SetActiveGameState("LevelCompletedState");
 		cSoundController->PlaySoundByID(12);
 		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel()+1);
-		cPlayer2D->Reset();
+		cout << "Next Level" << endl;
+		cPlayer2D->Reset();       
 		cGameManager->bLevelCompleted = false;
 		
 	}
@@ -255,6 +256,7 @@ bool CScene2D::Update(const double dElapsedTime)
 		return false;
 	}
 
+	
 	cSoundController->PlaySoundByID(1);
 
 	return true;

@@ -21,14 +21,14 @@ public:
 	void Init(void);
 
 
-	// Boolean flag to indicate if the player is in Medieval Dimension
-	bool bPlayerMedieval;
-	// Boolean flag to indicate if the player is in Home Dimension
-	bool bPlayerHome;
-	// Boolean flag to indicate if the player is in Sky Dimension
-	bool bPlayerSky;
-	// Boolean flag to indicate if the player is in Cave Dimension
-	bool bPlayerCave;
+	//// Boolean flag to indicate if the player is in Medieval Dimension
+	//bool bPlayerMedieval;
+	//// Boolean flag to indicate if the player is in Home Dimension
+	//bool bPlayerHome;
+	//// Boolean flag to indicate if the player is in Sky Dimension
+	//bool bPlayerSky;
+	//// Boolean flag to indicate if the player is in Cave Dimension
+	//bool bPlayerCave;
 	// Boolean flag to indicate if the player won the game
 	bool bPlayerWon;
 	// Boolean flag to indicate if the player lost the game
@@ -46,6 +46,18 @@ public:
 
 	// Boolean flag to indicate if the player has died
 	bool bPlayerDeath;
+
+	//indicator which dimension
+	string currDimem;
+
+	enum Dimension
+	{
+		HOME = 0,
+		MEDI = 1,
+		CAVE = 2,
+		SKY = 3,
+		DIMEN_NUM,
+	};
 
 
 protected:

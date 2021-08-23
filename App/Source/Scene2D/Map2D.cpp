@@ -98,6 +98,8 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 
 	// Load and create textures
 	// Load the ground texture
+
+
 	if (LoadTexture("Image/Tiles/Special/TGA/Black.tga", 1) == false)
 	{
 		std::cout << "Failed to load black tile texture" << std::endl;
@@ -804,6 +806,15 @@ bool CMap2D::ResetAStarLists(void)
 	}
 
 	return true;
+}
+
+void CMap2D::ChangeDimension(int dimen)
+{
+	switch (dimen)
+	{
+	case 0: //home
+		return 
+	}
 }
 
 
