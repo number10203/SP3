@@ -1124,7 +1124,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 			{
 				// Revert to the previous position
 				if (i != iIndex_XAxis_OLD)
-					i32vec2Index.x = i - 1;
+					i32vec2Index.x = i + 1;
 				// Set the Physics to idle status
 				i32vec2NumMicroSteps.x = 0;
 				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
