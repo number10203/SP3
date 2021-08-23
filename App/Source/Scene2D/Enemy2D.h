@@ -15,6 +15,8 @@
 
 // Include CEntity2D
 #include "Primitives/Entity2D.h"
+// Include CAnimated
+#include "Primitives/SpriteAnimation.h"
 
 // Include the Map2D as we will use it to check the player's movements and actions
 class CMap2D;
@@ -134,6 +136,9 @@ protected:
 
 	// Current FSM
 	FSM sCurrentFSM;
+
+	//CS: Animated Sprite
+	CSpriteAnimation* animatedSprites;
 
 	// FSM counter - count how many frames it has been in this FSM
 	int iFSMCounter;
