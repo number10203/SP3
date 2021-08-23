@@ -527,11 +527,13 @@ void CPlayer2D::Update(const double dElapsedTime)
 					//Move towards the hookblock
 					cout << "Grappling Right" << endl;
 					animatedSprites->PlayAnimation("grappleright", -1, 1.0f);
+					cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_RIGHT);
 				}
 				else if ((Grapple_Left == true) && (Grapple_Right == false))
 				{
 					//Move towards the hookblock
 					cout << "Grappling Left" << endl;
+					cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_LEFT);
 				}
 			}
 			break;
@@ -1043,6 +1045,88 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 					i32vec2Index.y = i - 1;
 				// Set the Physics to idle status
 				i32vec2NumMicroSteps.y = 0;
+				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
+				break;
+			}
+		}
+	}
+	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::GRAPPLE_RIGHT)
+	{
+		// Update the elapsed time to the physics engine
+		cPhysics2D.AddElapsedTime((float)dElapsedTime);
+		// Call the physics engine update method to calculate the final velocity and displacement
+		cPhysics2D.Update();
+		// Get the displacement from the physics engine
+		glm::vec2 v2Displacement = cPhysics2D.GetDisplacement();
+
+		// Store the current i32vec2Index.y
+		int iIndex_XAxis_OLD = i32vec2Index.x;
+
+		i32vec2NumMicroSteps.x++;
+		if (i32vec2NumMicroSteps.x >= 4)
+		{
+			i32vec2Index.x++;
+			i32vec2NumMicroSteps.x = 0;
+		}
+
+		Constraint(UP);
+
+		// Iterate through all rows until the proposed row
+		// Check if the player will hit a tile; stop rising if so.
+		int iIndex_XAxis_Proposed = i32vec2Index.x;
+		for (int i = iIndex_XAxis_OLD; i >= iIndex_XAxis_Proposed; i--)
+		{
+			// Change the player's index to the current i value
+			i32vec2Index.x = i;
+			// If the new position is not feasible, then revert to old position
+			if (CheckPosition(UP) == false)
+			{
+				// Revert to the previous position
+				if (i != iIndex_XAxis_OLD)
+					i32vec2Index.x = i - 1;
+				// Set the Physics to idle status
+				i32vec2NumMicroSteps.x = 0;
+				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
+				break;
+			}
+		}
+	}
+	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::GRAPPLE_LEFT)
+	{
+		// Update the elapsed time to the physics engine
+		cPhysics2D.AddElapsedTime((float)dElapsedTime);
+		// Call the physics engine update method to calculate the final velocity and displacement
+		cPhysics2D.Update();
+		// Get the displacement from the physics engine
+		glm::vec2 v2Displacement = cPhysics2D.GetDisplacement();
+
+		// Store the current i32vec2Index.y
+		int iIndex_XAxis_OLD = i32vec2Index.x;
+
+		i32vec2NumMicroSteps.x--;
+		if (i32vec2NumMicroSteps.x <= 0)
+		{
+			i32vec2Index.x--;
+			i32vec2NumMicroSteps.x = 4;
+		}
+
+		Constraint(UP);
+
+		// Iterate through all rows until the proposed row
+		// Check if the player will hit a tile; stop rising if so.
+		int iIndex_XAxis_Proposed = i32vec2Index.x;
+		for (int i = iIndex_XAxis_OLD; i >= iIndex_XAxis_Proposed; i--)
+		{
+			// Change the player's index to the current i value
+			i32vec2Index.x = i;
+			// If the new position is not feasible, then revert to old position
+			if (CheckPosition(UP) == false)
+			{
+				// Revert to the previous position
+				if (i != iIndex_XAxis_OLD)
+					i32vec2Index.x = i - 1;
+				// Set the Physics to idle status
+				i32vec2NumMicroSteps.x = 0;
 				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
