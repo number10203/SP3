@@ -1,5 +1,7 @@
 #include "GameManager.h"
 
+using namespace std;
+
 /**
 @brief Constructor
 */
@@ -29,7 +31,7 @@ void CGameManager::Init(void)
 	//bPlayerMedieval = false;
 	//bPlayerCave = false;
 	//bPlayerSky = false;
-	currDimem = HOME;
+	currDimem = 0;
 	bPlayerWon = false;
 	bPlayerLost = false;
 	bLevelCompleted = false;

@@ -272,7 +272,6 @@ protected:
 	std::vector<glm::i32vec2> m_directions;
 
 	// Arrays and variable for sprite switching
-	int ;
 
 	string tiles[13][4] = {
 		"Citywall_up","Mediwall_up","Cavewall_up","Skywall_up",

@@ -8,6 +8,15 @@
 #include <iostream>
 using namespace std;
 
+enum Dimensions
+{
+	HOME = 0,
+	MEDI = 1,
+	CAVE = 2,
+	SKY = 3,
+	DIMEN_NUM,
+};
+
 // Include Shader Manager
 #include "RenderControl\ShaderManager.h"
 
@@ -220,15 +229,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 		i32vec2OldIndex = i32vec2Index;
 
 		// IDLE ANIMATIONS SWITCH
-		if (CGameManager::GetInstance()->currDimem == 1)
+		if (CGameManager::GetInstance()->currDimem == MEDI)
 		{
 			animatedSprites->PlayAnimation("phaseidle", -1, 1.0f);
 		}
-		else if (CGameManager::GetInstance()->currDimem == 0 || CGameManager::GetInstance()->currDimem == 2)
+		else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == CAVE)
 		{
 			animatedSprites->PlayAnimation("idle", -1, 1.0f);
 		}
-		else if (CGameManager::GetInstance()->currDimem == 3)
+		else if (CGameManager::GetInstance()->currDimem == SKY)
 		{
 			animatedSprites->PlayAnimation("skyidle", -1, 1.0f);
 		}
@@ -266,15 +275,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//}
 
 			//CS: Play the "left" animation		
-			if (CGameManager::GetInstance()->currDimem == 1)
+			if (CGameManager::GetInstance()->currDimem == MEDI)
 			{
 				animatedSprites->PlayAnimation("phaseleft", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->currDimem == 0 || CGameManager::GetInstance()->currDimem = 2)
+			else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == CAVE)
 			{
 				animatedSprites->PlayAnimation("left", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->currDimem == 3)
+			else if (CGameManager::GetInstance()->currDimem == SKY)
 			{
 				animatedSprites->PlayAnimation("skyleft", -1, 1.0f);
 			}
@@ -315,15 +324,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//}
 
 			//CS: Play the "right" animation
-			if (CGameManager::GetInstance()->currDimem == 1)
+			if (CGameManager::GetInstance()->currDimem == MEDI)
 			{
 				animatedSprites->PlayAnimation("phaseright", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->currDimem == 0 || CGameManager::GetInstance()->currDimem == 2)
+			else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == CAVE)
 			{
 				animatedSprites->PlayAnimation("right", -1, 1.0f);
 			}
-			else if (CGameManager::GetInstance()->currDimem == 3)
+			else if (CGameManager::GetInstance()->currDimem == SKY)
 			{
 				animatedSprites->PlayAnimation("right", -1, 1.0f);
 			}
@@ -421,7 +430,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		{
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
 			{
-				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->HOME;
+				CGameManager::GetInstance()->currDimem = HOME;
 				/*CGameManager::GetInstance()->bPlayerHome = true;
 				CGameManager::GetInstance()->bPlayerMedieval = false;
 				CGameManager::GetInstance()->bPlayerCave = false;
@@ -438,7 +447,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
 			{
-				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->MEDI;
+				CGameManager::GetInstance()->currDimem = MEDI;
 				/*CGameManager::GetInstance()->bPlayerHome = false;
 				CGameManager::GetInstance()->bPlayerMedieval = true;
 				CGameManager::GetInstance()->bPlayerCave = false;
@@ -451,7 +460,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
 			{
-				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->CAVE;
+				CGameManager::GetInstance()->currDimem = CAVE;
 				/*CGameManager::GetInstance()->bPlayerHome = false;
 				CGameManager::GetInstance()->bPlayerMedieval = false;
 				CGameManager::GetInstance()->bPlayerCave = true;
@@ -464,7 +473,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			else if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
 			{
-				CGameManager::GetInstance()->currDimem = CGameManager::GetInstance()->SKY;
+				CGameManager::GetInstance()->currDimem = SKY;
 				/*CGameManager::GetInstance()->bPlayerHome = false;
 				CGameManager::GetInstance()->bPlayerMedieval = false;
 				CGameManager::GetInstance()->bPlayerCave = false;
@@ -489,25 +498,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 		switch (CGameManager::GetInstance()->currDimem)
 		{
-		case CGameManager::GetInstance()->HOME:
+		case HOME:
 
-		}
-
-		// PHASING
-		if (CGameManager::GetInstance()->currDimem = 1)
-		{
-			PhaseWalking = true;
-		}
-		else
-		{
 			PhaseWalking = false;
-		}
+			break;
 
-	
-		
-		// GRABBLE ABILITY
-		if (CGameManager::GetInstance()->currDimem = 2)
-		{
+		case MEDI:
+
+			PhaseWalking = false;
+
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 			{
 				Grapple_Right = false;
@@ -535,8 +534,22 @@ void CPlayer2D::Update(const double dElapsedTime)
 					cout << "Grappling Left" << endl;
 				}
 			}
-		}
+			break;
 
+		case CAVE:
+
+			PhaseWalking = true;
+			break;
+
+		case SKY:
+
+			PhaseWalking = false;
+			break;
+
+		default:
+			PhaseWalking = false;
+			break;
+		}
 
 		// Update Death
 		if (CGameManager::GetInstance()->bPlayerDeath == true)

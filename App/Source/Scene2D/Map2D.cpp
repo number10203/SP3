@@ -810,16 +810,6 @@ bool CMap2D::ResetAStarLists(void)
 	return true;
 }
 
-void CMap2D::ChangeDimension(int dimen)
-{
-	switch (dimen)
-	{
-	case 0: //home
-		return 
-	}
-}
-
-
 /**
  @brief manhattan calculation method for calculation of h
  */
