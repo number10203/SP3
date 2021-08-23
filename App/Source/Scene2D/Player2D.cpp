@@ -1124,7 +1124,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 			{
 				// Revert to the previous position
 				if (i != iIndex_XAxis_OLD)
-					i32vec2Index.x = i - 1;
+					i32vec2Index.x = i + 1;
 				// Set the Physics to idle status
 				i32vec2NumMicroSteps.x = 0;
 				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
@@ -1175,6 +1175,7 @@ void CPlayer2D::InteractWithMap(void)
 		break;
 	case 204:
 		// Erase the key from this position
+		cSoundController->PlaySoundByID(70);
 		cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
 		for (int x = 0; x < 32; x++) {
 			for (int y = 0; y < 24; y++) {
