@@ -11,7 +11,6 @@ CGameManager::CGameManager(void)
 	, bPlayerLost(false)
 	, bLevelCompleted(false)
 	, bLevelPaused(false)
-	, bPlayerCooldown(false)
 	, bLevelToReplay(false)
 	, bGameToRestart(false)
 	, bPlayerTouched(false)
@@ -37,7 +36,6 @@ void CGameManager::Init(void)
 	bPlayerLost = false;
 	bLevelCompleted = false;
 	bLevelPaused = false;
-	bPlayerCooldown = false;
 	bLevelToReplay = false;
 	bGameToRestart = false;
 	bPlayerDeath = false;

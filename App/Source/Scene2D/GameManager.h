@@ -37,8 +37,6 @@ public:
 	bool bLevelCompleted;
 	// Boolean flag to indicate if the level is paused
 	bool bLevelPaused;
-	// Boolean flag to indicate if switching is on cooldown
-	bool bPlayerCooldown;
 	// Boolean flag to indicate if the level is be replayed
 	bool bLevelToReplay;
 	// Boolean flag to indicate if the game is be restarted

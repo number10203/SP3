@@ -117,7 +117,7 @@ protected:
 	CSoundController* cSoundController;
 
 	// Cooldown Timer
-	float Timer;
+	float CooldownTimer;
 
 	// Constructor
 	CPlayer2D(void);

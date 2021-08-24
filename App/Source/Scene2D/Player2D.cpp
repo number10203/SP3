@@ -53,7 +53,7 @@ CPlayer2D::CPlayer2D(void)
 
 	//Phasing 
 	PhaseWalking = false;
-	Timer = 0;
+	CooldownTimer = 0;
 	//Death
 	DeathTimer = 0;
 	count = 0;
@@ -426,7 +426,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 		// DIMENSION SWAPPING
 		
-		if (CGameManager::GetInstance()->bPlayerCooldown == false)
+		if (CooldownTimer <= 0)
 		{
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
 			{
@@ -440,7 +440,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 
-				CGameManager::GetInstance()->bPlayerCooldown = true;
+				CooldownTimer = 1;
 
 				cout << "Cooldown Applied" << endl;
 				cSoundController->PlaySoundByID(20);
@@ -454,7 +454,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				CGameManager::GetInstance()->bPlayerSky = false;*/
 				cout << "Medieval Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-				CGameManager::GetInstance()->bPlayerCooldown = true;
+				CooldownTimer = 1;
 				cout << "Cooldown Applied" << endl;
 				cSoundController->PlaySoundByID(30);
 			}
@@ -467,7 +467,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				CGameManager::GetInstance()->bPlayerSky = false;*/
 				cout << "Cave Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-				CGameManager::GetInstance()->bPlayerCooldown = true;
+				CooldownTimer = 1;
 				cout << "Cooldown Applied" << endl;
 				cSoundController->PlaySoundByID(40);
 			}
@@ -480,20 +480,14 @@ void CPlayer2D::Update(const double dElapsedTime)
 				CGameManager::GetInstance()->bPlayerSky = true;*/
 				cout << "Sky Mode" << endl;
 				cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
-				CGameManager::GetInstance()->bPlayerCooldown = true;
+				CooldownTimer = 100;
 				cout << "Cooldown Applied" << endl;
 				cSoundController->PlaySoundByID(50);
 			}
 		}
-		else if (CGameManager::GetInstance()->bPlayerCooldown == true)
+		else if (CooldownTimer > 0)
 		{
-			Timer += 1 * dElapsedTime;
-			if (Timer >= 0.5)
-			{
-				CGameManager::GetInstance()->bPlayerCooldown = false;
-				cout << "Cooldown Removed" << endl;
-				Timer = 0;
-			}
+			CooldownTimer -= 1 * dElapsedTime;
 		}
 
 		switch (CGameManager::GetInstance()->currDimem)
@@ -949,11 +943,12 @@ bool CPlayer2D::IsMidAir(void)
 		if (i32vec2Index.y == 23) {
 			CGameManager::GetInstance()->bPlayerLost = true;
 		}
-		if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) < 100) || (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 110))
+		if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
 		{
+			cout << "ismidair ";
 			return true;
 		}
-
+		cout << "isnotmidair ";
 		return false;
 	}
 }
@@ -1013,6 +1008,16 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 	}
 	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::RISE)
 	{
+		if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
+		{
+			cout << "ismidair ";
+			CooldownTimer = 100;
+		}
+		else {
+			cout << "isnotmidair ";
+			CooldownTimer = 0;
+		}
+		
 		// Update the elapsed time to the physics engine
 		cPhysics2D.AddElapsedTime((float)dElapsedTime);
 		// Call the physics engine update method to calculate the final velocity and displacement
