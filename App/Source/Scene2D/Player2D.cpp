@@ -712,6 +712,8 @@ void CPlayer2D::Constraint(DIRECTION eDirection)
 	{
 		if (i32vec2Index.y >= (int)cSettings->NUM_TILES_YAXIS - 1)
 		{
+			cInventoryItem = cInventoryManager->GetItem("Health");
+			cInventoryItem->Remove(50);
 			i32vec2Index.y = ((int)cSettings->NUM_TILES_YAXIS) - 1;
 			i32vec2NumMicroSteps.y = 0;
 		}
