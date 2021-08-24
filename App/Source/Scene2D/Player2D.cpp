@@ -547,7 +547,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				PhaseWalking = false;
 				break;
 			}
-
+		}
 			// Update Death
 			if (CGameManager::GetInstance()->bPlayerDeath == true)
 			{
@@ -561,7 +561,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 					CGameManager::GetInstance()->bPlayerDeath = false;
 				}
 			}
-		}
+		
 
 		// Update Jump or Fall
 		//CS: Will cause error when debugging. Set to default elapsed time
