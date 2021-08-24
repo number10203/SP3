@@ -159,6 +159,7 @@ void CEnemy2D::Update(const double dElapsedTime)
 		switch (sCurrentFSM)
 		{
 		case IDLE:
+			
 			CGameManager::GetInstance()->bPlayerTouched = false;
 			animatedSprites->PlayAnimation("idle", -1, 1.0f);
 			if (iFSMCounter > iMaxFSMCounter)
@@ -169,11 +170,13 @@ void CEnemy2D::Update(const double dElapsedTime)
 			}
 			else 
 			{
+				
 				InteractWithPlayer();
 			}
 			iFSMCounter++;
 			break;
 		case PATROL:
+			
 			CGameManager::GetInstance()->bPlayerTouched = false;
 			if (iFSMCounter > iMaxFSMCounter)
 			{
@@ -183,6 +186,7 @@ void CEnemy2D::Update(const double dElapsedTime)
 			}
 			else
 			{
+				
 				// Patrol around
 				// Update the Enemy2D's position for patrol
 				UpdatePosition();
@@ -253,11 +257,13 @@ void CEnemy2D::Update(const double dElapsedTime)
 		//	}
 		//	break;
 		default:
+			
 			break;
 		}
 		
+
 		// Update Jump or Fall
-		//UpdateJumpFall(dElapsedTime);
+		UpdateJumpFall(dElapsedTime);
 
 		// Update the animated sprites
 		animatedSprites->Update(dElapsedTime);
@@ -843,12 +849,12 @@ void CEnemy2D::UpdatePosition(void)
 	}
 
 	// if the player is above the enemy2D, then jump to attack
-	if (i32vec2Direction.y > 0)
+	/*if (i32vec2Direction.y > 0)
 	{
 		if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::IDLE)
 		{
 			cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
 			cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 3.5f));
 		}
-	}
+	}*/
 }

@@ -1161,6 +1161,10 @@ void CPlayer2D::InteractWithMap(void)
 		// Decrease the health by 1
 		cInventoryItem = cInventoryManager->GetItem("Health");
 		cInventoryItem->Remove(1);
+		if (CGameManager::GetInstance()->bPlayerDeath == false)
+		{
+			cSoundController->PlaySoundByID(60);
+		}
 		break;
 	case 21:
 		// Increase the health
@@ -1200,6 +1204,8 @@ void CPlayer2D::UpdateHealthLives(void)
 	{
 		cInventoryItem = cInventoryManager->GetItem("Health");
 		cInventoryItem->Remove(1);
+		cSoundController->PlaySoundByID(60);
+
 	}
 
 	// Update health 
