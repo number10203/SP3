@@ -1016,7 +1016,10 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 	}
 	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::RISE)
 	{
-		if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
+		if (i32vec2Index.y == 23) {
+			//CGameManager::GetInstance()->bPlayerLost = true;
+		}
+		else if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
 		{
 			cout << "ismidair ";
 			CooldownTimer = 100;
