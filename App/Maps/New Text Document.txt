@@ -7,9 +7,12 @@
 15-hookblock
 16,17,18-cloud
 19- Entire block
-
+20- button-block
 101-200->entities
 101-player
 102-enemy
 
 200+ -> items
+205 - button
+206- button pressed
+207- deactivated button block
