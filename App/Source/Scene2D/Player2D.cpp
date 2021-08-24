@@ -1195,7 +1195,12 @@ void CPlayer2D::InteractWithMap(void)
  */
 void CPlayer2D::UpdateHealthLives(void)
 {
-	
+	// Touched by enemy
+	if (CGameManager::GetInstance()->bPlayerTouched == true)
+	{
+		cInventoryItem = cInventoryManager->GetItem("Health");
+		cInventoryItem->Remove(1);
+	}
 
 	// Update health 
 	cInventoryItem = cInventoryManager->GetItem("Health");

@@ -159,6 +159,7 @@ void CEnemy2D::Update(const double dElapsedTime)
 		switch (sCurrentFSM)
 		{
 		case IDLE:
+			CGameManager::GetInstance()->bPlayerTouched = false;
 			animatedSprites->PlayAnimation("idle", -1, 1.0f);
 			if (iFSMCounter > iMaxFSMCounter)
 			{
@@ -166,20 +167,19 @@ void CEnemy2D::Update(const double dElapsedTime)
 				iFSMCounter = 0;
 				cout << "Switching to Patrol State" << endl;
 			}
+			else 
+			{
+				InteractWithPlayer();
+			}
 			iFSMCounter++;
 			break;
 		case PATROL:
-
+			CGameManager::GetInstance()->bPlayerTouched = false;
 			if (iFSMCounter > iMaxFSMCounter)
 			{
 				sCurrentFSM = IDLE;
 				iFSMCounter = 0;
 				cout << "Switching to Idle State" << endl;
-			}
-			else if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
-			{
-				sCurrentFSM = ATTACK;
-				iFSMCounter = 0;
 			}
 			else
 			{
@@ -189,75 +189,75 @@ void CEnemy2D::Update(const double dElapsedTime)
 			}
 			iFSMCounter++;
 			break;
-		case ATTACK:
-			if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
-			{
-				// Calculate a path to the player
-				//cMap2D->PrintSelf();
-				//cout << "StartPos: " << i32vec2Index.x << ", " << i32vec2Index.y << endl;
-				//cout << "TargetPos: " << cPlayer2D->i32vec2Index.x << ", " 
-				//		<< cPlayer2D->i32vec2Index.y << endl;
-				auto path = cMap2D->PathFind(i32vec2Index,
-					cPlayer2D->i32vec2Index,
-					heuristic::euclidean,
-					10);
-				//cout << "=== Printing out the path ===" << endl;
+		//case ATTACK:
+		//	if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
+		//	{
+		//		// Calculate a path to the player
+		//		//cMap2D->PrintSelf();
+		//		//cout << "StartPos: " << i32vec2Index.x << ", " << i32vec2Index.y << endl;
+		//		//cout << "TargetPos: " << cPlayer2D->i32vec2Index.x << ", " 
+		//		//		<< cPlayer2D->i32vec2Index.y << endl;
+		//		auto path = cMap2D->PathFind(i32vec2Index,
+		//			cPlayer2D->i32vec2Index,
+		//			heuristic::euclidean,
+		//			10);
+		//		//cout << "=== Printing out the path ===" << endl;
 
-				// Calculate new destination
-				bool bFirstPosition = true;
-				for (const auto& coord : path)
-				{
-					//std::cout << coord.x << "," << coord.y << "\n";
-					if (bFirstPosition == true)
-					{
-						// Set a destination
-						i32vec2Destination = coord;
-						// Calculate the direction between enemy2D and this destination
-						i32vec2Direction = i32vec2Destination - i32vec2Index;
-						bFirstPosition = false;
-					}
-					else
-					{
-						if ((coord - i32vec2Destination) == i32vec2Direction)
-						{
-							// Set a destination
-							i32vec2Destination = coord;
-						}
-						else
-							break;
-					}
-				}
+		//		// Calculate new destination
+		//		bool bFirstPosition = true;
+		//		for (const auto& coord : path)
+		//		{
+		//			//std::cout << coord.x << "," << coord.y << "\n";
+		//			if (bFirstPosition == true)
+		//			{
+		//				// Set a destination
+		//				i32vec2Destination = coord;
+		//				// Calculate the direction between enemy2D and this destination
+		//				i32vec2Direction = i32vec2Destination - i32vec2Index;
+		//				bFirstPosition = false;
+		//			}
+		//			else
+		//			{
+		//				if ((coord - i32vec2Destination) == i32vec2Direction)
+		//				{
+		//					// Set a destination
+		//					i32vec2Destination = coord;
+		//				}
+		//				else
+		//					break;
+		//			}
+		//		}
 
-				//cout << "i32vec2Destination : " << i32vec2Destination.x 
-				//		<< ", " << i32vec2Destination.y << endl;
-				//cout << "i32vec2Direction : " << i32vec2Direction.x 
-				//		<< ", " << i32vec2Direction.y << endl;
-				//system("pause");
+		//		//cout << "i32vec2Destination : " << i32vec2Destination.x 
+		//		//		<< ", " << i32vec2Destination.y << endl;
+		//		//cout << "i32vec2Direction : " << i32vec2Direction.x 
+		//		//		<< ", " << i32vec2Direction.y << endl;
+		//		//system("pause");
 
-				// Attack
-				// Update direction to move towards for attack
-				//UpdateDirection();
+		//		// Attack
+		//		// Update direction to move towards for attack
+		//		//UpdateDirection();
 
-				// Update the Enemy2D's position for attack
-				UpdatePosition();
-			}
-			else
-			{
-				if (iFSMCounter > iMaxFSMCounter)
-				{
-					sCurrentFSM = PATROL;
-					iFSMCounter = 0;
-					cout << "ATTACK : Reset counter: " << iFSMCounter << endl;
-				}
-				iFSMCounter++;
-			}
-			break;
+		//		// Update the Enemy2D's position for attack
+		//		UpdatePosition();
+		//	}
+		//	else
+		//	{
+		//		if (iFSMCounter > iMaxFSMCounter)
+		//		{
+		//			sCurrentFSM = PATROL;
+		//			iFSMCounter = 0;
+		//			cout << "ATTACK : Reset counter: " << iFSMCounter << endl;
+		//		}
+		//		iFSMCounter++;
+		//	}
+		//	break;
 		default:
 			break;
 		}
-
+		
 		// Update Jump or Fall
-		UpdateJumpFall(dElapsedTime);
+		//UpdateJumpFall(dElapsedTime);
 
 		// Update the animated sprites
 		animatedSprites->Update(dElapsedTime);
@@ -717,12 +717,15 @@ bool CEnemy2D::InteractWithPlayer(void)
 		(i32vec2Index.y <= i32vec2PlayerPos.y + 0.5)))
 	{
 		cout << "Gotcha!" << endl;
+		CGameManager::GetInstance()->bPlayerTouched = true;
 		// Since the player has been caught, then reset the FSM
-		sCurrentFSM = IDLE;
-		iFSMCounter = 0;
+		//sCurrentFSM = IDLE;
+		//iFSMCounter = 0;
 		return true;
 	}
 	return false;
+	CGameManager::GetInstance()->bPlayerTouched = false;
+
 }
 
 /**

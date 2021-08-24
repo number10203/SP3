@@ -44,6 +44,9 @@ public:
 	// Boolean flag to indicate if the game is be restarted
 	bool bGameToRestart;
 
+	// Boolean flag to  indicate if the player has touched the enemy
+	bool bPlayerTouched;
+
 	// Boolean flag to indicate if the player has died
 	bool bPlayerDeath;
 
