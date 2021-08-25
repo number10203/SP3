@@ -377,67 +377,67 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 
 
 	//SKY
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_up.tga", 2) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_up.tga", 47) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_right.tga", 3) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_right.tga", 48) == false)
 	{
 		std::cout << "Failed to load right tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_down.tga", 4) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_down.tga", 49) == false)
 	{
 		std::cout << "Failed to load down tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_left.tga", 5) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_left.tga", 50) == false)
 	{
 		std::cout << "Failed to load left tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_NW.tga", 6) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_NW.tga", 51) == false)
 	{
 		std::cout << "Failed to load NW tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_NE.tga", 7) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_NE.tga", 52) == false)
 	{
 		std::cout << "Failed to load NE tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_SE.tga", 8) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_SE.tga", 53) == false)
 	{
 		std::cout << "Failed to load se tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_SW.tga", 9) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_SW.tga", 54) == false)
 	{
 		std::cout << "Failed to load sw tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseNW.tga", 10) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseNW.tga", 55) == false)
 	{
 		std::cout << "Failed to load iNW tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseNE.tga", 11) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseNE.tga", 56) == false)
 	{
 		std::cout << "Failed to load iNE tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseSE.tga", 12) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseSE.tga", 57) == false)
 	{
 		std::cout << "Failed to load iSE tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseSW.tga", 13) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseSW.tga", 58) == false)
 	{
 		std::cout << "Failed to load iSW tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Sky/TGA/Sky.tga", 19) == false)
+	if (LoadTexture("Image/Tiles/Sky/TGA/Sky.tga", 59) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
@@ -1064,8 +1064,18 @@ void CMap2D::tileSwap(void)
 			{
 				for (int y = 0; y < 24; y++)
 				{
-					if (GetMapInfo(y, x) == 202)
-						SetMapInfo(y, x, 201);
+					if (GetMapInfo(y, x) == 21 || GetMapInfo(y, x) == 34 || GetMapInfo(y, x) == 47)
+						SetMapInfo(y, x, 2);
+					if (GetMapInfo(y, x) == 22 || GetMapInfo(y, x) == 35 || GetMapInfo(y, x) == 48)
+						SetMapInfo(y, x, 3);
+					if (GetMapInfo(y, x) == 23 || GetMapInfo(y, x) == 36 || GetMapInfo(y, x) == 49)
+						SetMapInfo(y, x, 4);
+					if (GetMapInfo(y, x) == 24 || GetMapInfo(y, x) == 37 || GetMapInfo(y, x) == 50)
+						SetMapInfo(y, x, 5);
+					if (GetMapInfo(y, x) == 25 || GetMapInfo(y, x) == 38 || GetMapInfo(y, x) == 51)
+						SetMapInfo(y, x, 6);
+					if (GetMapInfo(y, x) == 26 || GetMapInfo(y, x) == 39 || GetMapInfo(y, x) == 47)
+						SetMapInfo(y, x, 7);
 				}
 			}
 		}
