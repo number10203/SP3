@@ -86,6 +86,9 @@
     <ClCompile Include="Source\GameStateManagement\LoseState.cpp">
       <Filter>GameStateManagement</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Scene2D\Enemy2D2.cpp">
+      <Filter>Scene2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Source\GameStateManagement\LoseState.h">
       <Filter>GameStateManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2D\Enemy2D2.h">
+      <Filter>Scene2D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

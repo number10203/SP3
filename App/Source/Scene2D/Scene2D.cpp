@@ -127,14 +127,21 @@ bool CScene2D::Init(void)
 	enemyVector.clear();
 	while (true)
 	{
+		CEnemy2D2* cEnemy2D2 = new CEnemy2D2();
 		CEnemy2D* cEnemy2D = new CEnemy2D();
 		// Pass shader to cEnemy2D
+		cEnemy2D2->SetShader("2DColorShader");
 		cEnemy2D->SetShader("2DColorShader");
 		// Initialise the instance
 		if (cEnemy2D->Init() == true)
 		{
 			cEnemy2D->SetPlayer2D(cPlayer2D);
 			enemyVector.push_back(cEnemy2D);
+		}
+		else if (cEnemy2D2->Init() == true)
+		{
+			cEnemy2D2->SetPlayer2D(cPlayer2D);
+			enemyVector.push_back(cEnemy2D2);
 		}
 		else
 		{
