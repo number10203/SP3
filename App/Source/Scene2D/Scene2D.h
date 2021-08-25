@@ -30,6 +30,8 @@
 #include "Enemy2D.h"
 // Include CEnemy2D2
 #include "Enemy2D2.h"
+// Include CEnemy2D3
+#include "Enemy2D3.h"
 
 // Include vector
 #include <vector>

@@ -143,9 +143,11 @@ bool CScene2D::Init(int level)
 	enemyVector.clear();
 	while (true)
 	{
+		CEnemy2D3* cEnemy2D3 = new CEnemy2D3();
 		CEnemy2D2* cEnemy2D2 = new CEnemy2D2();
 		CEnemy2D* cEnemy2D = new CEnemy2D();
 		// Pass shader to cEnemy2D
+		cEnemy2D3->SetShader("2DColorShader");
 		cEnemy2D2->SetShader("2DColorShader");
 		cEnemy2D->SetShader("2DColorShader");
 		// Initialise the instance
@@ -158,6 +160,11 @@ bool CScene2D::Init(int level)
 		{
 			cEnemy2D2->SetPlayer2D(cPlayer2D);
 			enemyVector.push_back(cEnemy2D2);
+		}
+		else if (cEnemy2D3->Init() == true)
+		{
+			cEnemy2D3->SetPlayer2D(cPlayer2D);
+			enemyVector.push_back(cEnemy2D3);
 		}
 		else
 		{
@@ -203,9 +210,10 @@ bool CScene2D::Init(int level)
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerDeathSound.ogg"), 61, true);
 	// COLLECTIBLES 70 - 90 
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\UnlockDoorSound.ogg"), 70, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Bell.ogg"), 99, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Explosion.ogg"), 100, true);
-	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Sound_Jump.ogg"), 300, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\HealSound.ogg"), 71, true);
+	// ENEMIES 90 - 100
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Enemy\\GuardianStabSound.ogg"), 90, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Enemy\\SentryDetectSound.ogg"), 91, true);
 	
 	return true;
 }
@@ -261,9 +269,11 @@ bool CScene2D::Update(const double dElapsedTime)
 		enemyVector.clear();
 		while (true)
 		{
+			CEnemy2D3* cEnemy2D3 = new CEnemy2D3();
 			CEnemy2D2* cEnemy2D2 = new CEnemy2D2();
 			CEnemy2D* cEnemy2D = new CEnemy2D();
 			// Pass shader to cEnemy2D
+			cEnemy2D3->SetShader("2DColorShader");
 			cEnemy2D2->SetShader("2DColorShader");
 			cEnemy2D->SetShader("2DColorShader");
 			// Initialise the instance
@@ -276,6 +286,11 @@ bool CScene2D::Update(const double dElapsedTime)
 			{
 				cEnemy2D2->SetPlayer2D(cPlayer2D);
 				enemyVector.push_back(cEnemy2D2);
+			}
+			else if (cEnemy2D3->Init() == true)
+			{
+				cEnemy2D3->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D3);
 			}
 			else
 			{

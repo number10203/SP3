@@ -24,6 +24,7 @@
     <ClCompile Include="Source\Scene2D\BackgroundEntity.cpp" />
     <ClCompile Include="Source\Scene2D\Enemy2D.cpp" />
     <ClCompile Include="Source\Scene2D\Enemy2D2.cpp" />
+    <ClCompile Include="Source\Scene2D\Enemy2D3.cpp" />
     <ClCompile Include="Source\Scene2D\GameManager.cpp" />
     <ClCompile Include="Source\Scene2D\GUI_Scene2D.cpp" />
     <ClCompile Include="Source\Scene2D\InventoryItem.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="Source\Scene2D\BackgroundEntity.h" />
     <ClInclude Include="Source\Scene2D\Enemy2D.h" />
     <ClInclude Include="Source\Scene2D\Enemy2D2.h" />
+    <ClInclude Include="Source\Scene2D\Enemy2D3.h" />
     <ClInclude Include="Source\Scene2D\GameManager.h" />
     <ClInclude Include="Source\Scene2D\GUI_Scene2D.h" />
     <ClInclude Include="Source\Scene2D\InventoryItem.h" />

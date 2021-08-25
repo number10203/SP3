@@ -165,6 +165,8 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 	}
 
 	// Load the specific texture
+
+	//CITY
 	if (LoadTexture("Image/Tiles/City/TGA/Citywall_up.tga", 2) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
@@ -225,24 +227,222 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load iSW tile texture" << std::endl;
 		return false;
 	}
-
 	if (LoadTexture("Image/Tiles/City/TGA/City.tga", 19) == false)
-	{
-		std::cout << "Failed to load up tile texture" << std::endl;
-		return false;
-	}
-	if (LoadTexture("Image/Tiles/Special/TGA/Hook_Block.tga", 20) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
 	}
 
 	// Load the Spa texture
-	if (LoadTexture("Image/Scene2D_Spa.tga", 21) == false)
+	if (LoadTexture("Image/Scene2D_Spa.tga", 20) == false)
 	{
 		std::cout << "Failed to load Scene2D_Spa tile texture" << std::endl;
 		return false;
 	}
+
+	//MEDI
+	if (LoadTexture("Imafge/Tiles/Medieval/TGA/Mediwall_up.tga", 21) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_right.tga", 22) == false)
+	{
+		std::cout << "Failed to load right tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_down.tga", 23) == false)
+	{
+		std::cout << "Failed to load down tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_left.tga", 24) == false)
+	{
+		std::cout << "Failed to load left tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_NW.tga", 25) == false)
+	{
+		std::cout << "Failed to load NW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_NE.tga", 26) == false)
+	{
+		std::cout << "Failed to load NE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_SE.tga", 27) == false)
+	{
+		std::cout << "Failed to load se tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_SW.tga", 28) == false)
+	{
+		std::cout << "Failed to load sw tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_inverseNW.tga", 29) == false)
+	{
+		std::cout << "Failed to load iNW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_inverseNE.tga", 30) == false)
+	{
+		std::cout << "Failed to load iNE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_inverseSE.tga", 31) == false)
+	{
+		std::cout << "Failed to load iSE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_inverseSW.tga", 32) == false)
+	{
+		std::cout << "Failed to load iSW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Medi.tga", 33) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+		return false;
+	}
+
+
+	//CAVE
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_up.tga", 34) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_right.tga", 35) == false)
+	{
+		std::cout << "Failed to load right tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_down.tga", 36) == false)
+	{
+		std::cout << "Failed to load down tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_left.tga", 37) == false)
+	{
+		std::cout << "Failed to load left tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_NW.tga", 38) == false)
+	{
+		std::cout << "Failed to load NW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_NE.tga", 39) == false)
+	{
+		std::cout << "Failed to load NE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_SE.tga", 40) == false)
+	{
+		std::cout << "Failed to load se tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_SW.tga", 41) == false)
+	{
+		std::cout << "Failed to load sw tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_inverseNW.tga", 42) == false)
+	{
+		std::cout << "Failed to load iNW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_inverseNE.tga", 43) == false)
+	{
+		std::cout << "Failed to load iNE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_inverseSE.tga", 44) == false)
+	{
+		std::cout << "Failed to load iSE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cavewall_inverseSW.tga", 45) == false)
+	{
+		std::cout << "Failed to load iSW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Cave/TGA/Cave.tga", 46) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+		return false;
+	}
+
+
+	//SKY
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_up.tga", 2) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_right.tga", 3) == false)
+	{
+		std::cout << "Failed to load right tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_down.tga", 4) == false)
+	{
+		std::cout << "Failed to load down tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_left.tga", 5) == false)
+	{
+		std::cout << "Failed to load left tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_NW.tga", 6) == false)
+	{
+		std::cout << "Failed to load NW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_NE.tga", 7) == false)
+	{
+		std::cout << "Failed to load NE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_SE.tga", 8) == false)
+	{
+		std::cout << "Failed to load se tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_SW.tga", 9) == false)
+	{
+		std::cout << "Failed to load sw tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseNW.tga", 10) == false)
+	{
+		std::cout << "Failed to load iNW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseNE.tga", 11) == false)
+	{
+		std::cout << "Failed to load iNE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseSE.tga", 12) == false)
+	{
+		std::cout << "Failed to load iSE tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Skywall_inverseSW.tga", 13) == false)
+	{
+		std::cout << "Failed to load iSW tile texture" << std::endl;
+		return false;
+	}
+	if (LoadTexture("Image/Tiles/Sky/TGA/Sky.tga", 19) == false)
+	{
+		std::cout << "Failed to load up tile texture" << std::endl;
+		return false;
+	}
+
 	// Load the Exit texture
 	if (LoadTexture("Image/Scene2D_Exit.tga", 201) == false)
 	{
@@ -285,6 +485,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 */
 void CMap2D::Update(const double dElapsedTime)
 {
+
 }
 
 /**
@@ -853,63 +1054,58 @@ bool CMap2D::ResetAStarLists(void)
 
 void CMap2D::tileSwap(void)
 {
-	int dimension_num = CGameManager::GetInstance()->currDimem;
+	int prevDimen = 0;
 
-	if (LoadTexture(tiles[0][dimension_num], 2) == false)
+	if (CGameManager::GetInstance()->currDimem != prevDimen)
 	{
-		std::cout << "Failed to load up tile texture" << std::endl;
+		if (CGameManager::GetInstance()->currDimem == HOME)
+		{
+			for (int x = 0; x < 32; x++)
+			{
+				for (int y = 0; y < 24; y++)
+				{
+					if (GetMapInfo(y, x) == 202)
+						SetMapInfo(y, x, 201);
+				}
+			}
+		}
+		else if (CGameManager::GetInstance()->currDimem == MEDI)
+		{
+			for (int x = 0; x < 32; x++)
+			{
+				for (int y = 0; y < 24; y++)
+				{
+					if (GetMapInfo(y, x) == 202)
+						SetMapInfo(y, x, 201);
+				}
+			}
+		}
+		else if (CGameManager::GetInstance()->currDimem == CAVE)
+		{
+			for (int x = 0; x < 32; x++)
+			{
+				for (int y = 0; y < 24; y++)
+				{
+					if (GetMapInfo(y, x) == 202)
+						SetMapInfo(y, x, 201);
+				}
+			}
+		}
+		else if (CGameManager::GetInstance()->currDimem == SKY)
+		{
+			for (int x = 0; x < 32; x++)
+			{
+				for (int y = 0; y < 24; y++)
+				{
+					if (GetMapInfo(y, x) == 202)
+						SetMapInfo(y, x, 201);
+				}
+			}
+		}
+		else
+		{
+		}
 	}
-	if (LoadTexture(tiles[1][dimension_num], 3) == false)
-	{
-		std::cout << "Failed to load right tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[2][dimension_num], 4) == false)
-	{
-		std::cout << "Failed to load down tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[3][dimension_num], 5) == false)
-	{
-		std::cout << "Failed to load left tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[4][dimension_num], 6) == false)
-	{
-		std::cout << "Failed to load NW tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[5][dimension_num], 7) == false)
-	{
-		std::cout << "Failed to load NE tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[6][dimension_num], 8) == false)
-	{
-		std::cout << "Failed to load se tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[7][dimension_num], 9) == false)
-	{
-		std::cout << "Failed to load sw tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[8][dimension_num], 10) == false)
-	{
-		std::cout << "Failed to load iNW tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[9][dimension_num], 11) == false)
-	{
-		std::cout << "Failed to load iNE tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[10][dimension_num], 12) == false)
-	{
-		std::cout << "Failed to load iSE tile texture" << std::endl;
-	}
-	if (LoadTexture(tiles[11][dimension_num], 13) == false)
-	{
-		std::cout << "Failed to load iSW tile texture" << std::endl;
-	}
-
-	if (LoadTexture(tiles[12][dimension_num], 19) == false)
-	{
-		std::cout << "Failed to load up tile texture" << std::endl;
-	}
-
-	std::cout << "PROOF" << std::endl;
 }
 
 /**
