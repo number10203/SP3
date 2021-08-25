@@ -57,7 +57,7 @@ CWinState::~CWinState(void)
  */
 bool CWinState::Init(void)
 {
-	cout << "CWinState::Init()\n" << endl;
+	//cout << "CWinState::Init()\n" << endl;
 
 	// Include Shader Manager
 	CShaderManager::GetInstance()->Use("2DShader");
@@ -83,7 +83,7 @@ bool CWinState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Quit
-		cout << "Quitting the game" << endl;
+		//cout << "Quitting the game" << endl;
 		return false;
 	}
 
@@ -114,5 +114,5 @@ void CWinState::Destroy(void)
 		background = NULL;
 	}
 
-	cout << "CIntroState::Destroy()\n" << endl;
+	//cout << "CIntroState::Destroy()\n" << endl;
 }
