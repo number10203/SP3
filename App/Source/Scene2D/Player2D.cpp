@@ -1246,7 +1246,15 @@ void CPlayer2D::InteractWithMap(void)
 				}
 			}
 		}
-
+	case 210:
+		cSoundController->PlaySoundByID(71);
+		cInventoryItem = cInventoryManager->GetItem("Health");
+		cInventoryItem->Add(50);
+		if (cInventoryItem->GetCount() >= 100)
+		{
+			cInventoryItem->Remove(cInventoryItem->GetCount() - 100);
+		}
+		cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
 	default:
 		break;
 	}
