@@ -119,7 +119,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load black tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 14) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 19) == false)
 	{
 		std::cout << "Failed to load Phase block tile texture" << std::endl;
 		return false;
@@ -227,7 +227,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load iSW tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/City/TGA/City.tga", 19) == false)
+	if (LoadTexture("Image/Tiles/City/TGA/City.tga", 14) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
@@ -241,7 +241,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 	}
 
 	//MEDI
-	if (LoadTexture("Imafge/Tiles/Medieval/TGA/Mediwall_up.tga", 21) == false)
+	if (LoadTexture("Image/Tiles/Medieval/TGA/Mediwall_up.tga", 21) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
