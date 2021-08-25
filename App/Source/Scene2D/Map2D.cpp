@@ -485,7 +485,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 */
 void CMap2D::Update(const double dElapsedTime)
 {
-
+	tileSwap();
 }
 
 /**
@@ -1054,66 +1054,76 @@ bool CMap2D::ResetAStarLists(void)
 
 void CMap2D::tileSwap(void)
 {
-	int prevDimen = 0;
 
 	if (CGameManager::GetInstance()->currDimem != prevDimen)
 	{
 		if (CGameManager::GetInstance()->currDimem == HOME)
 		{
-			for (int x = 0; x < 32; x++)
+			for (int counter = 0; counter < 13; counter++)
 			{
-				for (int y = 0; y < 24; y++)
+				for (int x = 0; x < 32; x++)
 				{
-					if (GetMapInfo(y, x) == 21 || GetMapInfo(y, x) == 34 || GetMapInfo(y, x) == 47)
-						SetMapInfo(y, x, 2);
-					if (GetMapInfo(y, x) == 22 || GetMapInfo(y, x) == 35 || GetMapInfo(y, x) == 48)
-						SetMapInfo(y, x, 3);
-					if (GetMapInfo(y, x) == 23 || GetMapInfo(y, x) == 36 || GetMapInfo(y, x) == 49)
-						SetMapInfo(y, x, 4);
-					if (GetMapInfo(y, x) == 24 || GetMapInfo(y, x) == 37 || GetMapInfo(y, x) == 50)
-						SetMapInfo(y, x, 5);
-					if (GetMapInfo(y, x) == 25 || GetMapInfo(y, x) == 38 || GetMapInfo(y, x) == 51)
-						SetMapInfo(y, x, 6);
-					if (GetMapInfo(y, x) == 26 || GetMapInfo(y, x) == 39 || GetMapInfo(y, x) == 47)
-						SetMapInfo(y, x, 7);
+					for (int y = 0; y < 24; y++)
+					{
+						if (GetMapInfo(y, x) == (21 + counter) || GetMapInfo(y, x) == (34 + counter) || GetMapInfo(y, x) == (47 + counter))
+							SetMapInfo(y, x, (2 + counter));
+					}
 				}
 			}
+
+			prevDimen = CGameManager::GetInstance()->currDimem;
 		}
 		else if (CGameManager::GetInstance()->currDimem == MEDI)
 		{
-			for (int x = 0; x < 32; x++)
+			for (int counter = 0; counter < 13; counter++)
 			{
-				for (int y = 0; y < 24; y++)
+				for (int x = 0; x < 32; x++)
 				{
-					if (GetMapInfo(y, x) == 202)
-						SetMapInfo(y, x, 201);
+					for (int y = 0; y < 24; y++)
+					{
+						if (GetMapInfo(y, x) == (2 + counter) || GetMapInfo(y, x) == (34 + counter) || GetMapInfo(y, x) == (47 + counter))
+							SetMapInfo(y, x, (21 + counter));
+					}
 				}
 			}
+
+			prevDimen = CGameManager::GetInstance()->currDimem;
 		}
 		else if (CGameManager::GetInstance()->currDimem == CAVE)
 		{
-			for (int x = 0; x < 32; x++)
+			for (int counter = 0; counter < 13; counter++)
 			{
-				for (int y = 0; y < 24; y++)
+				for (int x = 0; x < 32; x++)
 				{
-					if (GetMapInfo(y, x) == 202)
-						SetMapInfo(y, x, 201);
+					for (int y = 0; y < 24; y++)
+					{
+						if (GetMapInfo(y, x) == (21 + counter) || GetMapInfo(y, x) == (2 + counter) || GetMapInfo(y, x) == (47 + counter))
+							SetMapInfo(y, x, (34 + counter));
+					}
 				}
 			}
+
+			prevDimen = CGameManager::GetInstance()->currDimem;
 		}
 		else if (CGameManager::GetInstance()->currDimem == SKY)
 		{
-			for (int x = 0; x < 32; x++)
+			for (int counter = 0; counter < 13; counter++)
 			{
-				for (int y = 0; y < 24; y++)
+				for (int x = 0; x < 32; x++)
 				{
-					if (GetMapInfo(y, x) == 202)
-						SetMapInfo(y, x, 201);
+					for (int y = 0; y < 24; y++)
+					{
+						if (GetMapInfo(y, x) == (21 + counter) || GetMapInfo(y, x) == (34 + counter) || GetMapInfo(y, x) == (2 + counter))
+							SetMapInfo(y, x, (47 + counter));
+					}
 				}
 			}
+
+			prevDimen = CGameManager::GetInstance()->currDimem;
 		}
 		else
 		{
+			prevDimen = CGameManager::GetInstance()->currDimem;
 		}
 	}
 }
