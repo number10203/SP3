@@ -58,7 +58,7 @@ CMenuState::~CMenuState(void)
  */
 bool CMenuState::Init(void)
 {
-	cout << "CMenuState::Init()\n" << endl;
+	//cout << "CMenuState::Init()\n" << endl;
 
 	CShaderManager::GetInstance()->Use("2DShader");
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
@@ -146,7 +146,7 @@ bool CMenuState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the menu state
-			cout << "Loading PlayGameState" << endl;
+			//cout << "Loading PlayGameState" << endl;
 			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
 		}
 
@@ -158,7 +158,7 @@ bool CMenuState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the Instruction state
-			cout << "Switching to Instruction State" << endl;
+			//cout << "Switching to Instruction State" << endl;
 			CGameStateManager::GetInstance()->SetActiveGameState("InstructionState");
 
 		}
@@ -171,7 +171,7 @@ bool CMenuState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the menu state
-			cout << "Quitting the game from MenuState" << endl;
+			//cout << "Quitting the game from MenuState" << endl;
 
 			return false;
 		}
@@ -187,7 +187,7 @@ bool CMenuState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Load the menu state
-		cout << "Loading PlayGameState" << endl;
+		//cout << "Loading PlayGameState" << endl;
 		CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
 		return true;
 	}
@@ -197,7 +197,7 @@ bool CMenuState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Load the menu state
-		cout << "Loading InstructionState" << endl;
+		//cout << "Loading InstructionState" << endl;
 		CGameStateManager::GetInstance()->SetActiveGameState("InstructionState");
 		return true;
 	}
@@ -217,7 +217,7 @@ bool CMenuState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Load the menu state
-		cout << "Quitting the game from MenuState" << endl;
+		//cout << "Quitting the game from MenuState" << endl;
 		return false;
 	}
 
@@ -259,5 +259,5 @@ void CMenuState::Destroy(void)
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 
-	cout << "CMenuState::Destroy()\n" << endl;
+	//cout << "CMenuState::Destroy()\n" << endl;
 }

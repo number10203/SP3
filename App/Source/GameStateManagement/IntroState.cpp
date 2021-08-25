@@ -61,7 +61,7 @@ CIntroState::~CIntroState(void)
  */
 bool CIntroState::Init(void)
 {
-	cout << "CIntroState::Init()\n" << endl;
+	//cout << "CIntroState::Init()\n" << endl;
 
 	// Include Shader Manager
 	CShaderManager::GetInstance()->Use("2DShader");
@@ -89,7 +89,7 @@ bool CIntroState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Load the menu state
-		cout << "Loading MenuState" << endl;
+		//cout << "Loading MenuState" << endl;
 		CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 		return true;
 	}
@@ -98,7 +98,7 @@ bool CIntroState::Update(const double dElapsedTime)
 		TimerToStart += 1 * dElapsedTime;
 		if (TimerToStart >= 3)
 		{
-			cout << "Loading MenuState" << endl;
+			//cout << "Loading MenuState" << endl;
 			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 			return true;
 		}
@@ -133,5 +133,5 @@ void CIntroState::Destroy(void)
 		background = NULL;
 	}
 
-	cout << "CIntroState::Destroy()\n" << endl;
+	//cout << "CIntroState::Destroy()\n" << endl;
 }

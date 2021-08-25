@@ -40,7 +40,7 @@ CPlayGameState::~CPlayGameState(void)
  */
 bool CPlayGameState::Init(void)
 {
-	cout << "CPlayGameState::Init()\n" << endl;
+	//cout << "CPlayGameState::Init()\n" << endl;
 
 	// Initialise the cScene2D instance
 	cScene2D = CScene2D::GetInstance();
@@ -76,7 +76,7 @@ bool CPlayGameState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 		CGameManager::GetInstance()->bLevelPaused = false;
 		 //Load the menu state
-		cout << "Loading / Unloading In-Game SoundState" << endl;
+		//cout << "Loading / Unloading In-Game SoundState" << endl;
 		CGameStateManager::GetInstance()->SetPauseGameState("PauseState");
 
 	}
@@ -109,7 +109,7 @@ void CPlayGameState::Render(void)
  */
 void CPlayGameState::Destroy(void)
 {
-	cout << "CPlayGameState::Destroy()\n" << endl;
+	//cout << "CPlayGameState::Destroy()\n" << endl;
 
 	// Destroy the cScene2D instance
 	if (cScene2D)

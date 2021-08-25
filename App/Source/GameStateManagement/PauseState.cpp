@@ -61,8 +61,8 @@ CPauseState::~CPauseState(void)
  */
 bool CPauseState::Init(void)
 {
-	cout << "CPauseState::Init()\n" << endl;
-	cout << "Paused" << endl;
+	//cout << "CPauseState::Init()\n" << endl;
+	//cout << "Paused" << endl;
 	CShaderManager::GetInstance()->Use("2DShader");
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
 
@@ -153,7 +153,7 @@ bool CPauseState::Update(const double dElapsedTime)
 
 
 			// Load the menu state
-			cout << "Quitting the game" << endl;
+			//cout << "Quitting the game" << endl;
 
 			bClicked = true;
 			
