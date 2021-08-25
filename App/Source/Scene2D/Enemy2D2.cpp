@@ -761,6 +761,7 @@ bool CEnemy2D2::InteractWithPlayer(void)
 	{
 		//cout << "Gotcha!" << endl;
 		CGameManager::GetInstance()->bPlayerStabbed = true;
+		CSoundController::GetInstance()->PlaySoundByID(90);
 		// Since the player has been caught, then reset the FSM
 		//sCurrentFSM = IDLE;
 		//iFSMCounter = 0;

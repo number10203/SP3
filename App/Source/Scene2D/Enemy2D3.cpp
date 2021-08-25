@@ -183,6 +183,7 @@ void CEnemy2D3::Update(const double dElapsedTime)
 			iFSMCounter++;
 			break;
 		case ATTACK:
+			CSoundController::GetInstance()->PlaySoundByID(91);
 			CGameManager::GetInstance()->bPlayerDeath = true;
 			break;
 		default:
@@ -651,6 +652,7 @@ bool CEnemy2D3::InteractWithPlayer(void)
 		(i32vec2Index.y <= i32vec2PlayerPos.y + 0.5)))
 	{
 		//cout << "Gotcha!" << endl;
+
 		CGameManager::GetInstance()->bPlayerDeath = true;
 		// Since the player has been caught, then reset the FSM
 		//sCurrentFSM = IDLE;

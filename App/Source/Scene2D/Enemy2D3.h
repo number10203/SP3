@@ -17,6 +17,8 @@
 #include "Primitives/Entity2D.h"
 // Include CAnimated
 #include "Primitives/SpriteAnimation.h"
+// Include Sound
+#include "..\SoundController\SoundController.h"
 
 // Include the Map2D as we will use it to check the player's movements and actions
 class CMap2D;
