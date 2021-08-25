@@ -521,7 +521,6 @@ void CPlayer2D::Update(const double dElapsedTime)
 					{
 						//Move towards the hookblock
 						cout << "Grappling Right" << endl;
-						animatedSprites->PlayAnimation("grappleright", -1, 1.0f);
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_RIGHT);
 					}
 					else if ((Grapple_Left == true) && (Grapple_Right == false))
@@ -1070,6 +1069,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 	}
 	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::GRAPPLE_RIGHT)
 	{
+		animatedSprites->PlayAnimation("grappleright", -1, 1.0f);
 		// Update the elapsed time to the physics engine
 		cPhysics2D.AddElapsedTime((float)dElapsedTime);
 		// Call the physics engine update method to calculate the final velocity and displacement
@@ -1111,6 +1111,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 	}
 	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::GRAPPLE_LEFT)
 	{
+		animatedSprites->PlayAnimation("grappleleft", -1, 1.0f);
 		// Update the elapsed time to the physics engine
 		cPhysics2D.AddElapsedTime((float)dElapsedTime);
 		// Call the physics engine update method to calculate the final velocity and displacement
