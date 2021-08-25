@@ -14,6 +14,7 @@ CGameManager::CGameManager(void)
 	, bLevelToReplay(false)
 	, bGameToRestart(false)
 	, bPlayerTouched(false)
+	, bPlayerStabbed(false)
 	, bPlayerDeath(false) {
 }
 
@@ -40,5 +41,6 @@ void CGameManager::Init(void)
 	bGameToRestart = false;
 	bPlayerDeath = false;
 	bPlayerTouched = false;
+	bPlayerStabbed = false;
 }
 

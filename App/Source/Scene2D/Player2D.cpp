@@ -1226,6 +1226,12 @@ void CPlayer2D::UpdateHealthLives(void)
 		cSoundController->PlaySoundByID(60);
 
 	}
+	else if (CGameManager::GetInstance()->bPlayerStabbed == true)
+	{
+		cInventoryItem = cInventoryManager->GetItem("Health");
+		cInventoryItem->Remove(10);
+		cSoundController->PlaySoundByID(60);
+	}
 
 	// Update health 
 	cInventoryItem = cInventoryManager->GetItem("Health");

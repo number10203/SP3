@@ -168,11 +168,7 @@ void CEnemy2D2::Update(const double dElapsedTime)
 			{
 				sCurrentFSM = AWAKE;
 				iFSMCounter = 0;
-				cout << "GOING TO AWAKE" << endl;
-			}
-			else 
-			{
-				
+				//cout << "GOING TO AWAKE" << endl;
 			}
 			iFSMCounter++;
 			break;
@@ -182,29 +178,28 @@ void CEnemy2D2::Update(const double dElapsedTime)
 			{
 				sCurrentFSM = IDLE;
 				iFSMCounter = 0;
-				cout << "GOING TO SLEEP" << endl;
+				//cout << "GOING TO SLEEP" << endl;
 			}
 			else if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
 			{
 
 				sCurrentFSM = CHASE;
 				iFSMCounter = 0;
-				cout << "GOING TO CHASE" << endl;
-			}
-			else
-			{
-
+				//cout << "GOING TO CHASE" << endl;
 			}
 			iFSMCounter++;
 			break;
 		case CHASE:
 			if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f && 
-				cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) >= 1.0f)
+				cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) > 0.0f)
 			{
+				UpdateDirection();
+				// Update the Enemy2D's position for attack
+				UpdatePosition();
 			}
-			else if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 1.0f)
+			else if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) <= 0.0f)
 			{
-				cout << "GOING TO ATTACK" << endl;
+				//cout << "GOING TO ATTACK" << endl;
 				sCurrentFSM = ATTACK;
 				iFSMCounter = 0;
 			}
@@ -214,14 +209,27 @@ void CEnemy2D2::Update(const double dElapsedTime)
 				{
 					sCurrentFSM = AWAKE;
 					iFSMCounter = 0;
-					cout << "GOING TO AWAKE " << endl;
+					//cout << "GOING TO AWAKE " << endl;
 				}
 				iFSMCounter++;
 			}
 			break;
 		case ATTACK:
+			InteractWithPlayer();
+			sCurrentFSM = RECOVER;
+			iFSMCounter = 0;
+			//cout << "GOING TO RECOVERY" << endl;
 			break;
 		case RECOVER:
+			CGameManager::GetInstance()->bPlayerStabbed = false;
+			animatedSprites->PlayAnimation("recover", -1, 1.0f);
+			if (iFSMCounter > iMaxFSMCounter)
+			{
+				sCurrentFSM = AWAKE;
+				iFSMCounter = 0;
+				//cout << "GOING TO AWAKE" << endl;
+			}
+			iFSMCounter++;
 			break;
 		//case ATTACK:
 		//	if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
@@ -753,14 +761,14 @@ bool CEnemy2D2::InteractWithPlayer(void)
 		(i32vec2Index.y <= i32vec2PlayerPos.y + 0.5)))
 	{
 		cout << "Gotcha!" << endl;
-		CGameManager::GetInstance()->bPlayerTouched = true;
+		CGameManager::GetInstance()->bPlayerStabbed = true;
 		// Since the player has been caught, then reset the FSM
 		//sCurrentFSM = IDLE;
 		//iFSMCounter = 0;
 		return true;
 	}
 	return false;
-	CGameManager::GetInstance()->bPlayerTouched = false;
+	CGameManager::GetInstance()->bPlayerStabbed = false;
 
 }
 
@@ -840,7 +848,7 @@ void CEnemy2D2::UpdatePosition(void)
 		}
 
 		// Interact with the Player
-		InteractWithPlayer();
+		//InteractWithPlayer();
 	}
 	else if (i32vec2Direction.x > 0)
 	{
@@ -875,7 +883,7 @@ void CEnemy2D2::UpdatePosition(void)
 		}
 
 		// Interact with the Player
-		InteractWithPlayer();
+		//InteractWithPlayer();
 	}
 
 	// if the player is above the enemy2D, then jump to attack

@@ -166,7 +166,7 @@ void CEnemy2D::Update(const double dElapsedTime)
 			{
 				sCurrentFSM = PATROL;
 				iFSMCounter = 0;
-				cout << "Switching to Patrol State" << endl;
+				//cout << "Switching to Patrol State" << endl;
 			}
 			else 
 			{
@@ -182,7 +182,7 @@ void CEnemy2D::Update(const double dElapsedTime)
 			{
 				sCurrentFSM = IDLE;
 				iFSMCounter = 0;
-				cout << "Switching to Idle State" << endl;
+				//cout << "Switching to Idle State" << endl;
 			}
 			else
 			{
