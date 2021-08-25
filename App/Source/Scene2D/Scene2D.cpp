@@ -240,13 +240,37 @@ bool CScene2D::Update(const double dElapsedTime)
 	if (cGameManager->bLevelCompleted == true)
 	{
 		cSoundController->PlaySoundByID(12);
-		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel()+1);
+		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel() + 1);
 		cout << "Next Level" << endl;
-		cPlayer2D->Reset();       
+		cPlayer2D->Reset();
+		enemyVector.clear();
+		while (true)
+		{
+			CEnemy2D2* cEnemy2D2 = new CEnemy2D2();
+			CEnemy2D* cEnemy2D = new CEnemy2D();
+			// Pass shader to cEnemy2D
+			cEnemy2D2->SetShader("2DColorShader");
+			cEnemy2D->SetShader("2DColorShader");
+			// Initialise the instance
+			if (cEnemy2D->Init() == true)
+			{
+				cEnemy2D->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D);
+			}
+			else if (cEnemy2D2->Init() == true)
+			{
+				cEnemy2D2->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D2);
+			}
+			else
+			{
+				// Break out of this loop if the enemy has all been loaded
+				break;
+			}
+		}
 		cGameManager->bLevelCompleted = false;
-		
 	}
-
+	
 	// Check if the game has been won by the player
 	if (cGameManager->bPlayerWon == true)
 	{
