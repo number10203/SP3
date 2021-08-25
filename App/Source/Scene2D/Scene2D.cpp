@@ -253,9 +253,11 @@ bool CScene2D::Update(const double dElapsedTime)
 		enemyVector.clear();
 		while (true)
 		{
+			CEnemy2D3* cEnemy2D3 = new CEnemy2D3();
 			CEnemy2D2* cEnemy2D2 = new CEnemy2D2();
 			CEnemy2D* cEnemy2D = new CEnemy2D();
 			// Pass shader to cEnemy2D
+			cEnemy2D3->SetShader("2DColorShader");
 			cEnemy2D2->SetShader("2DColorShader");
 			cEnemy2D->SetShader("2DColorShader");
 			// Initialise the instance
@@ -268,6 +270,11 @@ bool CScene2D::Update(const double dElapsedTime)
 			{
 				cEnemy2D2->SetPlayer2D(cPlayer2D);
 				enemyVector.push_back(cEnemy2D2);
+			}
+			else if (cEnemy2D3->Init() == true)
+			{
+				cEnemy2D3->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D3);
 			}
 			else
 			{
