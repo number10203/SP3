@@ -599,7 +599,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		//CS: Update the animated sprite
 		animatedSprites->Update(dElapsedTime);
 
-		if (CGameManager::GetInstance()->bPlayerTouched == true)
+		if (CGameManager::GetInstance()->bPlayerTouched == true || CGameManager::GetInstance()->bPlayerStabbed == true)
 		{
 			currentColor = glm::vec4(1.0, 0.0, 0.0, 0.5);
 		}
@@ -770,7 +770,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 19)
 				{
 					return true;
 				}
@@ -787,8 +787,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 19) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 19))
 				{
 					return true;
 				}
@@ -819,7 +819,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 19)
 				{
 					return true;
 				}
@@ -836,8 +836,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 19) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 19))
 				{
 					return true;
 				}
@@ -867,7 +867,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 19)
 				{
 					return true;
 				}
@@ -884,8 +884,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 		{
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) ==19) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x + 1) == 19))
 				{
 					return true;
 				}
@@ -908,7 +908,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14 || cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 0)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 19 || cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 0)
 				{
 					return true;
 				}
@@ -925,8 +925,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14 || cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 0) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1 ) == 14|| cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x+1) == 0))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 19 || cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 0) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1 ) == 19|| cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x+1) == 0))
 				{
 					return true;
 				}
@@ -1246,7 +1246,15 @@ void CPlayer2D::InteractWithMap(void)
 				}
 			}
 		}
-
+	case 210:
+		cSoundController->PlaySoundByID(71);
+		cInventoryItem = cInventoryManager->GetItem("Health");
+		cInventoryItem->Add(50);
+		if (cInventoryItem->GetCount() >= 100)
+		{
+			cInventoryItem->Remove(cInventoryItem->GetCount() - 100);
+		}
+		cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
 	default:
 		break;
 	}
