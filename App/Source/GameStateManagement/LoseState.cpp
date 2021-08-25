@@ -58,7 +58,7 @@ CLoseState::~CLoseState(void)
  */
 bool CLoseState::Init(void)
 {
-	cout << "CMenuState::Init()\n" << endl;
+	//cout << "CMenuState::Init()\n" << endl;
 
 	CShaderManager::GetInstance()->Use("2DShader");
 	CShaderManager::GetInstance()->activeShader->setInt("texture1", 0);
@@ -137,7 +137,7 @@ bool CLoseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the menu state
-			cout << "Back to main menu" << endl;
+			//cout << "Back to main menu" << endl;
 			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 		}
 		// Add codes for Exit button here
@@ -148,7 +148,7 @@ bool CLoseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the menu state
-			cout << "Quitting the game" << endl;
+			//cout << "Quitting the game" << endl;
 
 			return false;
 		}
@@ -162,7 +162,7 @@ bool CLoseState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Load the menu state
-		cout << "Back to Menu" << endl;
+		//cout << "Back to Menu" << endl;
 		CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 		return true;
 	}
@@ -172,7 +172,7 @@ bool CLoseState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Load the menu state
-		cout << "Quitting the game" << endl;
+		//cout << "Quitting the game" << endl;
 		return false;
 	}
 
@@ -214,5 +214,5 @@ void CLoseState::Destroy(void)
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 
-	cout << "CMenuState::Destroy()\n" << endl;
+	//cout << "CMenuState::Destroy()\n" << endl;
 }

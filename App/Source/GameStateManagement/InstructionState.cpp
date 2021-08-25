@@ -57,7 +57,7 @@ CInstructionState::~CInstructionState(void)
  */
 bool CInstructionState::Init(void)
 {
-	cout << "CIntroState::Init()\n" << endl;
+	//cout << "CIntroState::Init()\n" << endl;
 
 	// Include Shader Manager
 	CShaderManager::GetInstance()->Use("2DShader");
@@ -83,7 +83,7 @@ bool CInstructionState::Update(const double dElapsedTime)
 		CKeyboardController::GetInstance()->Reset();
 
 		// Load the menu state
-		cout << "Loading MenuState" << endl;
+		//cout << "Loading MenuState" << endl;
 		CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 		return true;
 	}
@@ -115,5 +115,5 @@ void CInstructionState::Destroy(void)
 		background = NULL;
 	}
 
-	cout << "CIntroState::Destroy()\n" << endl;
+	//cout << "CIntroState::Destroy()\n" << endl;
 }

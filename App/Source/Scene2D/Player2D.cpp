@@ -1218,7 +1218,6 @@ void CPlayer2D::InteractWithMap(void)
 		break;
 	case 201:
 		// Level has been completed
-		//CGameManager::GetInstance()->bPlayerWon = true;
 		CGameManager::GetInstance()->bLevelCompleted = true;
 	
 		break;

@@ -295,11 +295,10 @@ void CEnemy2D2::Update(const double dElapsedTime)
 		//	}
 		//	break;
 		default:
-			
 			break;
 		}
 		
-
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 		// Update Jump or Fall
 		UpdateJumpFall(dElapsedTime);
 
@@ -760,7 +759,7 @@ bool CEnemy2D2::InteractWithPlayer(void)
 		((i32vec2Index.y >= i32vec2PlayerPos.y - 0.5) &&
 		(i32vec2Index.y <= i32vec2PlayerPos.y + 0.5)))
 	{
-		cout << "Gotcha!" << endl;
+		//cout << "Gotcha!" << endl;
 		CGameManager::GetInstance()->bPlayerStabbed = true;
 		// Since the player has been caught, then reset the FSM
 		//sCurrentFSM = IDLE;
