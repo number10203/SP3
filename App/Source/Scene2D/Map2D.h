@@ -291,7 +291,7 @@ protected:
 		"Image/Tiles/City/TGA/City.tga"				 ,"Image/Tiles/Medieval/TGA/Medi.tga"			   ,"Image/Tiles/Cave/TGA/Cave.tga"				 ,"Image/Tiles/Sky/TGA/Sky.tga",
 	};
 
-	int prevDimen;
+	int prevDimen = 0;
 
 };
 
