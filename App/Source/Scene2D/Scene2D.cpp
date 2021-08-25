@@ -73,7 +73,7 @@ CScene2D::~CScene2D(void)
 /**
 @brief Init Initialise this instance
 */ 
-bool CScene2D::Init(void)
+bool CScene2D::Init(int level)
 {
 	// Include Shader Manager
 	//CShaderManager::GetInstance()->Add("2DShader", "Shader//Scene2D.vs", "Shader//Scene2D.fs");
@@ -85,24 +85,40 @@ bool CScene2D::Init(void)
 	// Set a shader to this class
 	cMap2D->SetShader("2DShader");
 	// Initialise the instance
+
+	// Game Manager
+	cGameManager = CGameManager::GetInstance();
+	cGameManager->Init();
+
 	if (cMap2D->Init(3, 24, 32) == false)
 	{
 		cout << "Failed to load CMap2D" << endl;
 		return false;
 	}
 	// Load the map into an array
-	if (cMap2D->LoadMap("Maps/DM2213_Map_Level_01.csv") == false)
-	{
-		cout << " The loading of a map has failed 1." << endl;
-		return false;
+	if (0 - level >= 0) {
+		if (cMap2D->LoadMap("Maps/DM2213_Map_Level_01.csv", 0 - level) == false)
+		{
+			cout << " The loading of a map has failed 1." << endl;
+			return false;
+		}
 	}
+	
 	// Load the map into an array
-	if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1) == false)
-	{
-		cout << " The loading of a map has failed 2." << endl;
-		return false;
+	if (1 - level >= 0) {
+		if (cMap2D->LoadMap("Maps/DM2213_Map_Level_02.csv", 1 - level) == false)
+		{
+			cout << " The loading of a map has failed 2." << endl;
+			return false;
+		}
 	}
-
+	if (2 - level >= 0) {
+		if (cMap2D->LoadMap("Maps/DM2213_Map_Level_04.csv", 2 - level) == false)
+		{
+			cout << " The loading of a map has failed 4." << endl;
+			return false;
+		}
+	}
 // RECHECK THIS FILE FOR extra characters
 
 	// Activate diagonal movement
@@ -168,9 +184,7 @@ bool CScene2D::Init(void)
 	cGUI_Scene2D = CGUI_Scene2D::GetInstance();
 	cGUI_Scene2D->Init();
 
-	// Game Manager
-	cGameManager = CGameManager::GetInstance();
-	cGameManager->Init();
+	
 
 	// Load the sounds into CSoundController
 	cSoundController = CSoundController::GetInstance();
@@ -247,6 +261,7 @@ bool CScene2D::Update(const double dElapsedTime)
 	// Check if the game should go to the next level
 	if (cGameManager->bLevelCompleted == true)
 	{
+		CGameStateManager::GetInstance()->LevelNow++;
 		cSoundController->PlaySoundByID(12);
 		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel() + 1);
 		cout << "Next Level" << endl;

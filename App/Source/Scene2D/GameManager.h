@@ -48,7 +48,7 @@ public:
 	bool bPlayerStabbed;
 	// Boolean flag to indicate if the player has died
 	bool bPlayerDeath;
-
+	
 	//indicator which dimension
 	int currDimem;
 

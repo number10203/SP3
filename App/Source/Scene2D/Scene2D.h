@@ -58,7 +58,7 @@ class CScene2D : public CSingletonTemplate<CScene2D>
 	friend CSingletonTemplate<CScene2D>;
 public:
 	// Init
-	bool Init(void);
+	bool Init(int level);
 
 	// Update
 	bool Update(const double dElapsedTime);

@@ -15,7 +15,7 @@ CGameManager::CGameManager(void)
 	, bGameToRestart(false)
 	, bPlayerTouched(false)
 	, bPlayerStabbed(false)
-	, bPlayerDeath(false) {
+	, bPlayerDeath(false){
 }
 
 /**
