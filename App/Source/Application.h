@@ -34,6 +34,7 @@ public:
 	// Get window width
 	int GetWindowWidth(void) const;
 	
+	int CompletedLevel = 0;
 protected:
 	// Declare timer for calculating time per frame
 	CStopWatch cStopWatch;

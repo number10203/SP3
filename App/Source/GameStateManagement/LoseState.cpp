@@ -136,9 +136,7 @@ bool CLoseState::Update(const double dElapsedTime)
 			// Reset the CKeyboardController
 			CKeyboardController::GetInstance()->Reset();
 
-			// Load the menu state
-			//cout << "Back to main menu" << endl;
-			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
+			CGameStateManager::GetInstance()->SetActiveGameState("PlayGameState");
 		}
 		// Add codes for Exit button here
 		if (ImGui::ImageButton((ImTextureID)exitButtonData.textureID,
@@ -148,9 +146,8 @@ bool CLoseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the menu state
-			//cout << "Quitting the game" << endl;
 
-			return false;
+			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
 		}
 		ImGui::End();
 	}

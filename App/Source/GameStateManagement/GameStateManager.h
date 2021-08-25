@@ -28,7 +28,7 @@ public:
 	bool CheckGameStateExist(const std::string& _name);
 	bool SetPauseGameState(const std::string& _name);
 	void OffPauseGameState(void);
-
+	int LevelNow = 0;
 protected:
 	// Constructor
 	CGameStateManager();

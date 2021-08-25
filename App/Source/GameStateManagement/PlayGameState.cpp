@@ -41,10 +41,10 @@ CPlayGameState::~CPlayGameState(void)
 bool CPlayGameState::Init(void)
 {
 	//cout << "CPlayGameState::Init()\n" << endl;
-
+	int x = CGameStateManager::GetInstance()->LevelNow;
 	// Initialise the cScene2D instance
 	cScene2D = CScene2D::GetInstance();
-	if (cScene2D->Init() == false)
+	if (cScene2D->Init(x) == false)
 	{
 		cout << "Failed to load Scene2D" << endl;
 		return false;
