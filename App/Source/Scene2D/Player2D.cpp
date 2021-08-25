@@ -599,7 +599,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		//CS: Update the animated sprite
 		animatedSprites->Update(dElapsedTime);
 
-		if (CGameManager::GetInstance()->bPlayerTouched == true)
+		if (CGameManager::GetInstance()->bPlayerTouched == true || CGameManager::GetInstance()->bPlayerStabbed == true)
 		{
 			currentColor = glm::vec4(1.0, 0.0, 0.0, 0.5);
 		}
