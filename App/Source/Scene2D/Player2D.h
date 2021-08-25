@@ -119,6 +119,8 @@ protected:
 	// Cooldown Timer
 	float CooldownTimer;
 
+	float ButtonTimer;
+
 	// Constructor
 	CPlayer2D(void);
 

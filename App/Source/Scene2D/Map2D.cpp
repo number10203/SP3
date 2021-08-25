@@ -153,7 +153,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Scene2D_Spikes tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Special/TGA/Button.tga", 206) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Button_Pressed.tga", 206) == false)
 	{
 		std::cout << "Failed to load Scene2D_Spikes tile texture" << std::endl;
 		return false;
@@ -231,7 +231,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/City/TGA/City.tga", 20) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Hook_Block.tga", 20) == false)
 	{
 		std::cout << "Failed to load up tile texture" << std::endl;
 		return false;

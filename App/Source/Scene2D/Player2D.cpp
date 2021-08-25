@@ -8,6 +8,8 @@
 #include <iostream>
 using namespace std;
 
+bool DeGrapple = false;
+
 enum Dimensions
 {
 	HOME = 0,
@@ -490,7 +492,22 @@ void CPlayer2D::Update(const double dElapsedTime)
 			{
 				CooldownTimer -= 1 * dElapsedTime;
 			}
-
+			if (ButtonTimer > 0)
+			{
+				CooldownTimer -= 1 * dElapsedTime;
+				if (ButtonTimer <= 0) {
+					for (int x = 0; x < 32; x++) {
+						for (int y = 0; y < 24; y++) {
+							if (cMap2D->GetMapInfo(y, x) == 206) {
+								cMap2D->SetMapInfo(y, x, 205);
+							}
+							if (cMap2D->GetMapInfo(y, x) == 207) {
+								cMap2D->SetMapInfo(y, x, 20);
+							}
+						}
+					}
+				}
+			}
 			switch (CGameManager::GetInstance()->currDimem)
 			{
 			case HOME:
@@ -521,7 +538,6 @@ void CPlayer2D::Update(const double dElapsedTime)
 					{
 						//Move towards the hookblock
 						cout << "Grappling Right" << endl;
-						animatedSprites->PlayAnimation("grappleright", -1, 1.0f);
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_RIGHT);
 					}
 					else if ((Grapple_Left == true) && (Grapple_Right == false))
@@ -529,6 +545,13 @@ void CPlayer2D::Update(const double dElapsedTime)
 						//Move towards the hookblock
 						cout << "Grappling Left" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_LEFT);
+					}
+
+					if (DeGrapple == true)
+					{
+						cout << "De-Grappled" << endl;
+						cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+						DeGrapple = !DeGrapple;
 					}
 				}
 				break;
@@ -1070,6 +1093,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 	}
 	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::GRAPPLE_RIGHT)
 	{
+		animatedSprites->PlayAnimation("grappleright", -1, 1.0f);
 		// Update the elapsed time to the physics engine
 		cPhysics2D.AddElapsedTime((float)dElapsedTime);
 		// Call the physics engine update method to calculate the final velocity and displacement
@@ -1107,10 +1131,12 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
+			DeGrapple = true;
 		}
 	}
 	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::GRAPPLE_LEFT)
 	{
+		animatedSprites->PlayAnimation("grappleleft", -1, 1.0f);
 		// Update the elapsed time to the physics engine
 		cPhysics2D.AddElapsedTime((float)dElapsedTime);
 		// Call the physics engine update method to calculate the final velocity and displacement
@@ -1148,6 +1174,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
+			DeGrapple = true;
 		}
 	}
 }
@@ -1207,6 +1234,20 @@ void CPlayer2D::InteractWithMap(void)
 			}
 		}
 		break;
+	case 205:
+		ButtonTimer = 120;
+		for (int x = 0; x < 32; x++) {
+			for (int y = 0; y < 24; y++) {
+
+				if (cMap2D->GetMapInfo(y, x) == 205) {
+					cMap2D->SetMapInfo(y, x, 206);
+				}
+				if (cMap2D->GetMapInfo(y, x) == 20) {
+					cMap2D->SetMapInfo(y, x, 207);
+				}
+			}
+		}
+
 	default:
 		break;
 	}
@@ -1224,6 +1265,12 @@ void CPlayer2D::UpdateHealthLives(void)
 		cInventoryItem->Remove(1);
 		cSoundController->PlaySoundByID(60);
 
+	}
+	else if (CGameManager::GetInstance()->bPlayerStabbed == true)
+	{
+		cInventoryItem = cInventoryManager->GetItem("Health");
+		cInventoryItem->Remove(10);
+		cSoundController->PlaySoundByID(60);
 	}
 
 	// Update health 

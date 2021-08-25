@@ -28,6 +28,8 @@
 #include "Player2D.h"
 // Include CEnemy2D
 #include "Enemy2D.h"
+// Include CEnemy2D2
+#include "Enemy2D2.h"
 
 // Include vector
 #include <vector>
@@ -75,7 +77,6 @@ protected:
 	CPlayer2D* cPlayer2D;
 	// A vector containing the instance of CEnemy2Ds
 	vector<CEntity2D*> enemyVector;
-
 	// Keyboard Controller singleton instance
 	CKeyboardController* cKeyboardController;
 
