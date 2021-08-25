@@ -788,7 +788,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			if (PhaseWalking == true)
 			{
 				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 14))
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14))
 				{
 					return true;
 				}
@@ -797,8 +797,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 			// If the 2 grids are not accessible, then return false
 			if (((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) > 1)
 				&&((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) <= 100)))
-				|| ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) > 1)&&
-				(cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 100)))
+				|| ((cMap2D->GetMapInfo(i32vec2Index.y+1, i32vec2Index.x) > 1)&&
+				(cMap2D->GetMapInfo(i32vec2Index.y+1, i32vec2Index.x) <= 100)))
 			{
 				return false;
 			}
@@ -908,7 +908,7 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14)
+				if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14 || cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 0)
 				{
 					return true;
 				}
@@ -925,8 +925,8 @@ bool CPlayer2D::CheckPosition(DIRECTION eDirection)
 
 			if (PhaseWalking == true)
 			{
-				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14) &&
-					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 14))
+				if ((cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 14 || cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x) == 0) &&
+					(cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1 ) == 14|| cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x+1) == 0))
 				{
 					return true;
 				}
