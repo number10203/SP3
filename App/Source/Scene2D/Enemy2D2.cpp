@@ -295,11 +295,10 @@ void CEnemy2D2::Update(const double dElapsedTime)
 		//	}
 		//	break;
 		default:
-			
 			break;
 		}
 		
-
+		cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 		// Update Jump or Fall
 		UpdateJumpFall(dElapsedTime);
 
