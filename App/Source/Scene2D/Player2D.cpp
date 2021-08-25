@@ -490,7 +490,22 @@ void CPlayer2D::Update(const double dElapsedTime)
 			{
 				CooldownTimer -= 1 * dElapsedTime;
 			}
-
+			if (ButtonTimer > 0)
+			{
+				CooldownTimer -= 1 * dElapsedTime;
+				if (ButtonTimer <= 0) {
+					for (int x = 0; x < 32; x++) {
+						for (int y = 0; y < 24; y++) {
+							if (cMap2D->GetMapInfo(y, x) == 206) {
+								cMap2D->SetMapInfo(y, x, 205);
+							}
+							if (cMap2D->GetMapInfo(y, x) == 207) {
+								cMap2D->SetMapInfo(y, x, 20);
+							}
+						}
+					}
+				}
+			}
 			switch (CGameManager::GetInstance()->currDimem)
 			{
 			case HOME:
@@ -1208,6 +1223,20 @@ void CPlayer2D::InteractWithMap(void)
 			}
 		}
 		break;
+	case 205:
+		ButtonTimer = 120;
+		for (int x = 0; x < 32; x++) {
+			for (int y = 0; y < 24; y++) {
+
+				if (cMap2D->GetMapInfo(y, x) == 205) {
+					cMap2D->SetMapInfo(y, x, 206);
+				}
+				if (cMap2D->GetMapInfo(y, x) == 20) {
+					cMap2D->SetMapInfo(y, x, 207);
+				}
+			}
+		}
+
 	default:
 		break;
 	}
