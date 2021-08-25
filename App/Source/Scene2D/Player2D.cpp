@@ -8,6 +8,8 @@
 #include <iostream>
 using namespace std;
 
+bool DeGrapple = false;
+
 enum Dimensions
 {
 	HOME = 0,
@@ -543,6 +545,13 @@ void CPlayer2D::Update(const double dElapsedTime)
 						//Move towards the hookblock
 						cout << "Grappling Left" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_LEFT);
+					}
+
+					if (DeGrapple == true)
+					{
+						cout << "De-Grappled" << endl;
+						cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
+						DeGrapple = !DeGrapple;
 					}
 				}
 				break;
@@ -1122,6 +1131,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
+			DeGrapple = true;
 		}
 	}
 	else if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::GRAPPLE_LEFT)
@@ -1164,6 +1174,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
+			DeGrapple = true;
 		}
 	}
 }
