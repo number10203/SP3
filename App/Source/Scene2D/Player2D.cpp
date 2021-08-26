@@ -1235,6 +1235,7 @@ void CPlayer2D::InteractWithMap(void)
 		break;
 	case 205:
 		ButtonTimer = 120;
+		cSoundController->PlaySoundByID(72);
 		for (int x = 0; x < 32; x++) {
 			for (int y = 0; y < 24; y++) {
 
@@ -1246,6 +1247,7 @@ void CPlayer2D::InteractWithMap(void)
 				}
 			}
 		}
+		break;
 	case 210:
 		cSoundController->PlaySoundByID(71);
 		cInventoryItem = cInventoryManager->GetItem("Health");

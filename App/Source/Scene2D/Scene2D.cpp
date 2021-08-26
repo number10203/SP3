@@ -213,9 +213,9 @@ bool CScene2D::Init(int level)
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerMediWalkSound.ogg"), 64, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerSkyWalkSound.ogg"), 65, true);
 	// COLLECTIBLES 70 - 90 
-	// COLLECTIBLES 70 - 90 
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\UnlockDoorSound.ogg"), 70, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\HealSound.ogg"), 71, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\ButtonTimer1Min.ogg"), 72, true);
 	// ENEMIES 90 - 100
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Enemy\\GuardianStabSound.ogg"), 90, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Enemy\\SentryDetectSound.ogg"), 91, true);
