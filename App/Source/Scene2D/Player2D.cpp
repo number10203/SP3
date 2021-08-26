@@ -283,10 +283,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 					animatedSprites->PlayAnimation("phaseleft", -1, 1.0f);
 					cSoundController->PlaySoundByID(63);
 				}
-				else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == MEDI)
+				else if (CGameManager::GetInstance()->currDimem == HOME)
 				{
 					animatedSprites->PlayAnimation("left", -1, 1.0f);
 					cSoundController->PlaySoundByID(62);
+				}
+				else if (CGameManager::GetInstance()->currDimem == MEDI)
+				{
+					animatedSprites->PlayAnimation("left", -1, 1.0f);
+					cSoundController->PlaySoundByID(64);
 				}
 				else if (CGameManager::GetInstance()->currDimem == SKY)
 				{
@@ -334,10 +339,15 @@ void CPlayer2D::Update(const double dElapsedTime)
 					animatedSprites->PlayAnimation("phaseright", -1, 1.0f);
 					cSoundController->PlaySoundByID(63);
 				}
-				else if (CGameManager::GetInstance()->currDimem == HOME || CGameManager::GetInstance()->currDimem == MEDI)
+				else if (CGameManager::GetInstance()->currDimem == HOME)
 				{
 					animatedSprites->PlayAnimation("right", -1, 1.0f);
 					cSoundController->PlaySoundByID(62);
+				}
+				else if (CGameManager::GetInstance()->currDimem == MEDI)
+				{
+					animatedSprites->PlayAnimation("right", -1, 1.0f);
+					cSoundController->PlaySoundByID(64);
 				}
 				else if (CGameManager::GetInstance()->currDimem == SKY)
 				{
