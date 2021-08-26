@@ -296,6 +296,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				else if (CGameManager::GetInstance()->currDimem == SKY)
 				{
 					animatedSprites->PlayAnimation("skyleft", -1, 1.0f);
+					cSoundController->PlaySoundByID(65);
 				}
 
 
@@ -352,6 +353,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				else if (CGameManager::GetInstance()->currDimem == SKY)
 				{
 					animatedSprites->PlayAnimation("right", -1, 1.0f);
+					cSoundController->PlaySoundByID(65);
 				}
 
 				//CS: Change Color

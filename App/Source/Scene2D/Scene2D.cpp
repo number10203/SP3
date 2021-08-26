@@ -211,6 +211,7 @@ bool CScene2D::Init(int level)
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerCityWalkSound.ogg"), 62, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerCaveWalkSound.ogg"), 63, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerMediWalkSound.ogg"), 64, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerSkyWalkSound.ogg"), 65, true);
 	// COLLECTIBLES 70 - 90 
 	// COLLECTIBLES 70 - 90 
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\UnlockDoorSound.ogg"), 70, true);
