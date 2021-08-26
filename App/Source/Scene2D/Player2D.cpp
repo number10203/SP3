@@ -1190,22 +1190,6 @@ void CPlayer2D::InteractWithMap(void)
 {
 	switch (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x))
 	{
-	//case 2:
-	//	// Erase the tree from this position
-	//	cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
-	//	// Increase the Tree by 1
-	//	cInventoryItem = cInventoryManager->GetItem("Tree");
-	//	cInventoryItem->Add(1);
-	//	// Play a bell sound
-	//	cSoundController->PlaySoundByID(1);
-	//	break;
-	//case 10:
-	//	// Increase the lives by 1
-	//	cInventoryItem = cInventoryManager->GetItem("Lives");
-	//	cInventoryItem->Add(1);
-	//	// Erase the life from this position
-	//	cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
-	//	break;
 	case 203:
 		// Decrease the health by 1
 		cInventoryItem = cInventoryManager->GetItem("Health");
