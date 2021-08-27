@@ -53,6 +53,11 @@
 // Include GameStateManager
 #include "../GameStateManagement/GameStateManager.h"
 
+#include "Primitives/Mesh.h"
+#include "../Scene2D/BackgroundEntity.h"
+#include <string>
+
+
 class CScene2D : public CSingletonTemplate<CScene2D>
 {
 	friend CSingletonTemplate<CScene2D>;
@@ -93,6 +98,8 @@ protected:
 
 	// Handler to the CSoundController
 	CSoundController* cSoundController;
+
+	CBackgroundEntity* background;
 
 	// Constructor
 	CScene2D(void);
