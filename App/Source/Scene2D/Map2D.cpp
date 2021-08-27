@@ -454,7 +454,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load lockedExit tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Collectibles/Key.png", 204) == false)
+	if (LoadTexture("Image/Collectibles/Key.tga", 204) == false)
 	{
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;

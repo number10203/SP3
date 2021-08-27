@@ -529,6 +529,41 @@ void CPlayer2D::Update(const double dElapsedTime)
 			case HOME:
 
 				PhaseWalking = false;
+
+				if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
+				{
+					ability_dir = ALEFT;
+					cout << "Gun Left" << endl;
+				}
+				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
+				{
+					ability_dir = ARIGHT;
+					cout << "Gun Right" << endl;
+				}
+				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_UP))
+				{
+					ability_dir = AUP;
+					cout << "Gun Up" << endl;
+				}
+				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_DOWN))
+				{
+					ability_dir = ADOWN;
+					cout << "Gun Down" << endl;
+				}
+
+
+				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
+				{
+					/*if ((Grapple_Left == false) && (Grapple_Right == true))
+					{
+						cout << "Grappling Right" << endl;
+					}
+					else if ((Grapple_Left == true) && (Grapple_Right == false))
+					{
+						cout << "Grappling Left" << endl;
+					}*/
+				}
+
 				break;
 
 			case MEDI:
@@ -537,26 +572,24 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 				{
-					Grapple_Right = false;
-					Grapple_Left = true;
+					ability_dir = ALEFT;
 					cout << "Grapple Left" << endl;
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
 				{
-					Grapple_Right = true;
-					Grapple_Left = false;
+					ability_dir = ARIGHT;
 					cout << "Grapple Right" << endl;
 				}
 
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 				{
-					if ((Grapple_Left == false) && (Grapple_Right == true))
+					if (ability_dir == ARIGHT)
 					{
 						//Move towards the hookblock
 						cout << "Grappling Right" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_RIGHT);
 					}
-					else if ((Grapple_Left == true) && (Grapple_Right == false))
+					else if (ability_dir == ALEFT)
 					{
 						//Move towards the hookblock
 						cout << "Grappling Left" << endl;

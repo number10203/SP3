@@ -77,13 +77,18 @@ protected:
 		NUM_DIRECTIONS
 	};
 
+	enum ABILITY_DIRECTION
+	{
+		ALEFT = 0,
+		ARIGHT = 1,
+		AUP = 2,
+		ADOWN = 3,
+		NUM_ADIRECTIONS
+	};
+
+	int ability_dir;
 	
 	bool PhaseWalking;
-	
-
-	bool Grapple_Right = false;
-	bool Grapple_Left = false;
-
 
 	float DeathTimer;
 	float count;

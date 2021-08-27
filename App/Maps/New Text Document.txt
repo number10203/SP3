@@ -8,6 +8,11 @@
 16,17,18-cloud
 19- Entire block
 20- button-block
+
+21-33 MEDI
+34-46 CAVE
+47-59 SKY
+
 101-200->entities
 101-player
 102-enemy
