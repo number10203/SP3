@@ -90,7 +90,7 @@ bool CScene2D::Init(int level)
 	cGameManager = CGameManager::GetInstance();
 	cGameManager->Init();
 
-	if (cMap2D->Init(3, 24, 32) == false)
+	if (cMap2D->Init(4, 24, 32) == false)
 	{
 		cout << "Failed to load CMap2D" << endl;
 		return false;
@@ -112,8 +112,17 @@ bool CScene2D::Init(int level)
 			return false;
 		}
 	}
+
 	if (2 - level >= 0) {
-		if (cMap2D->LoadMap("Maps/DM2213_Map_Level_04.csv", 2 - level) == false)
+		if (cMap2D->LoadMap("Maps/DM2213_Map_Level_03.csv", 2 - level) == false)
+		{
+			cout << " The loading of a map has failed 3." << endl;
+			return false;
+		}
+	}
+
+	if (3 - level >= 0) {
+		if (cMap2D->LoadMap("Maps/DM2213_Map_Level_04.csv", 3 - level) == false)
 		{
 			cout << " The loading of a map has failed 4." << endl;
 			return false;
