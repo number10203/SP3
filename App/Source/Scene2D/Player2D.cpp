@@ -416,30 +416,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//	//CS: Change Color
 			//	//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
 			//}
-			if (cKeyboardController->IsKeyPressed(GLFW_KEY_C))
-			{
-				cout << "Creative Mode" << endl;
-
-				if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::IDLE)
-				{
-					cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
-					cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 3.5f));
-					jumpCount += 1;
-					// Play a jump sound
-					cSoundController->PlaySoundByID(3);
-				}
-				else
-				{
-					if (jumpCount < 2)
-					{
-						cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
-						cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 1.5f));
-						jumpCount += 1;
-						// Play a jump sound
-						cSoundController->PlaySoundByID(3);
-					}
-				}
-			}
+			
 			//debug code
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_L))
 			{
@@ -453,57 +430,29 @@ void CPlayer2D::Update(const double dElapsedTime)
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
 				{
 					CGameManager::GetInstance()->currDimem = HOME;
-					/*CGameManager::GetInstance()->bPlayerHome = true;
-					CGameManager::GetInstance()->bPlayerMedieval = false;
-					CGameManager::GetInstance()->bPlayerCave = false;
-					CGameManager::GetInstance()->bPlayerSky = false;*/
-
-					cout << "Home Mode" << endl;
-
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
-
 					CooldownTimer = 1;
-
-					cout << "Cooldown Applied" << endl;
 					cSoundController->PlaySoundByID(20);
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
 				{
 					CGameManager::GetInstance()->currDimem = MEDI;
-					/*CGameManager::GetInstance()->bPlayerHome = false;
-					CGameManager::GetInstance()->bPlayerMedieval = true;
-					CGameManager::GetInstance()->bPlayerCave = false;
-					CGameManager::GetInstance()->bPlayerSky = false;*/
-					cout << "Medieval Mode" << endl;
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 					CooldownTimer = 1;
-					cout << "Cooldown Applied" << endl;
 					cSoundController->PlaySoundByID(30);
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
 				{
 					CGameManager::GetInstance()->currDimem = CAVE;
-					/*CGameManager::GetInstance()->bPlayerHome = false;
-					CGameManager::GetInstance()->bPlayerMedieval = false;
-					CGameManager::GetInstance()->bPlayerCave = true;
-					CGameManager::GetInstance()->bPlayerSky = false;*/
-					cout << "Cave Mode" << endl;
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 					CooldownTimer = 1;
-					cout << "Cooldown Applied" << endl;
 					cSoundController->PlaySoundByID(40);
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
 				{
 					CGameManager::GetInstance()->currDimem = SKY;
-					/*CGameManager::GetInstance()->bPlayerHome = false;
-					CGameManager::GetInstance()->bPlayerMedieval = false;
-					CGameManager::GetInstance()->bPlayerCave = false;
-					CGameManager::GetInstance()->bPlayerSky = true;*/
-					cout << "Sky Mode" << endl;
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
 					CooldownTimer = 100;
-					cout << "Cooldown Applied" << endl;
 					cSoundController->PlaySoundByID(50);
 				}
 			}
@@ -576,12 +525,10 @@ void CPlayer2D::Update(const double dElapsedTime)
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 				{
 					ability_dir = ALEFT;
-					cout << "Grapple Left" << endl;
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
 				{
 					ability_dir = ARIGHT;
-					cout << "Grapple Right" << endl;
 				}
 
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
@@ -589,21 +536,18 @@ void CPlayer2D::Update(const double dElapsedTime)
 					if (ability_dir == ARIGHT)
 					{
 						//Move towards the hookblock
-						cout << "Grappling Right" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_RIGHT);
 						cSoundController->PlaySoundByID(66);
 					}
 					else if (ability_dir == ALEFT)
 					{
 						//Move towards the hookblock
-						cout << "Grappling Left" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_LEFT);
 						cSoundController->PlaySoundByID(66);
 					}
 
 					if (DeGrapple == true)
 					{
-						cout << "De-Grappled" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 						DeGrapple = !DeGrapple;
 						cSoundController->PlaySoundByID(67);
@@ -1340,5 +1284,4 @@ void CPlayer2D::UpdateHealthLives(void)
 		
 		
 	}
-	// Die if player is stuck in a wall
 }

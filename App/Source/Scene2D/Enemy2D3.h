@@ -146,7 +146,7 @@ protected:
 	int iFSMCounter;
 
 	// Max count in a state
-	const int iMaxFSMCounter = 120;
+	const int iMaxFSMCounter = 160;
 
 	// Load a texture
 	bool LoadTexture(const char* filename, GLuint& iTextureID);
