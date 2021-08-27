@@ -553,18 +553,19 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 				{
-					cSoundController->PlaySoundByID(66);
 					if ((Grapple_Left == false) && (Grapple_Right == true))
 					{
 						//Move towards the hookblock
 						cout << "Grappling Right" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_RIGHT);
+						cSoundController->PlaySoundByID(66);
 					}
 					else if ((Grapple_Left == true) && (Grapple_Right == false))
 					{
 						//Move towards the hookblock
 						cout << "Grappling Left" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_LEFT);
+						cSoundController->PlaySoundByID(66);
 					}
 
 					if (DeGrapple == true)
@@ -1241,7 +1242,9 @@ void CPlayer2D::InteractWithMap(void)
 			cSoundController->PlaySoundByID(72);
 			for (int x = 0; x < 32; x++) {
 				for (int y = 0; y < 24; y++) {
-
+					if (cMap2D->GetMapInfo(y, x) == 60) {
+						cMap2D->SetMapInfo(y+1, x, 102);
+					}
 					if (cMap2D->GetMapInfo(y, x) == 205) {
 						cMap2D->SetMapInfo(y, x, 206);
 					}
