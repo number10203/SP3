@@ -464,6 +464,11 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
 	}
+	if (LoadTexture("Image/WinTile.tga", 208) == false)
+	{
+		std::cout << "Failed to load Exit tile texture" << std::endl;
+		return false;
+	}
 	if (LoadTexture("Image/Collectibles/Medkit.tga", 210) == false)
 	{
 		std::cout << "Failed to load Exit tile texture" << std::endl;

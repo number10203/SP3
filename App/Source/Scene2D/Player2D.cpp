@@ -1263,6 +1263,8 @@ void CPlayer2D::InteractWithMap(void)
 			}
 		}
 		break;
+	case 208:
+		CGameManager::GetInstance()->bPlayerWon = true;
 	case 210:
 		cSoundController->PlaySoundByID(71);
 		cInventoryItem = cInventoryManager->GetItem("Health");
