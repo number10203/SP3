@@ -15,6 +15,7 @@ CGameManager::CGameManager(void)
 	, bGameToRestart(false)
 	, bPlayerTouched(false)
 	, bPlayerStabbed(false)
+	, bPlayerSpiked(false)
 	, bPlayerDeath(false){
 }
 
@@ -42,5 +43,6 @@ void CGameManager::Init(void)
 	bPlayerDeath = false;
 	bPlayerTouched = false;
 	bPlayerStabbed = false;
+	bPlayerSpiked = false;
 }
 

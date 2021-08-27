@@ -46,6 +46,8 @@ public:
 	bool bPlayerTouched;
 	// Boolean flag to  indicate if the player has been stabbed by the enemy
 	bool bPlayerStabbed;
+	// Boolean flag to indicate if the player touched spikes
+	bool bPlayerSpiked;
 	// Boolean flag to indicate if the player has died
 	bool bPlayerDeath;
 	
