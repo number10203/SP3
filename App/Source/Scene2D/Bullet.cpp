@@ -74,5 +74,5 @@ CBullet2D::~CBullet2D(void)
 
 bool CBullet2D::Init(void)
 {
-
+	//return true;
 }
