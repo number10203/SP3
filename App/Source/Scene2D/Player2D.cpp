@@ -640,7 +640,9 @@ void CPlayer2D::Update(const double dElapsedTime)
 		//CS: Update the animated sprite
 		animatedSprites->Update(dElapsedTime);
 
-		if (CGameManager::GetInstance()->bPlayerTouched == true || CGameManager::GetInstance()->bPlayerStabbed == true)
+		if (CGameManager::GetInstance()->bPlayerTouched == true || 
+			CGameManager::GetInstance()->bPlayerStabbed == true || 
+			CGameManager::GetInstance()->bPlayerSpiked == true)
 		{
 			currentColor = glm::vec4(1.0, 0.0, 0.0, 0.5);
 		}
@@ -648,6 +650,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 		{
 			CGameManager::GetInstance()->bPlayerTouched = false;
 			CGameManager::GetInstance()->bPlayerStabbed = false;
+			CGameManager::GetInstance()->bPlayerSpiked = false;
 			currentColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 		}
 		
@@ -1227,8 +1230,10 @@ void CPlayer2D::InteractWithMap(void)
 	switch (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x))
 	{
 	case 203:
+		CGameManager::GetInstance()->bPlayerSpiked = true;
 		// Decrease the health by 1
-		CGameManager::GetInstance()->bPlayerTouched = true;
+		cInventoryItem = cInventoryManager->GetItem("Health");
+		cInventoryItem->Remove(1);
 		if (CGameManager::GetInstance()->bPlayerDeath == false)
 		{
 			cSoundController->PlaySoundByID(60);
@@ -1287,6 +1292,7 @@ void CPlayer2D::InteractWithMap(void)
 		}
 		cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x, 0);
 	default:
+		CGameManager::GetInstance()->bPlayerSpiked = false;
 		break;
 	}
 }
