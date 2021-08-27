@@ -416,7 +416,30 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//	//CS: Change Color
 			//	//currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
 			//}
-			
+			if (cKeyboardController->IsKeyPressed(GLFW_KEY_C))
+			{
+				cout << "Creative Mode" << endl;
+
+				if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::IDLE)
+				{
+					cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
+					cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 3.5f));
+					jumpCount += 1;
+					// Play a jump sound
+					cSoundController->PlaySoundByID(3);
+				}
+				else
+				{
+					if (jumpCount < 2)
+					{
+						cPhysics2D.SetStatus(CPhysics2D::STATUS::JUMP);
+						cPhysics2D.SetInitialVelocity(glm::vec2(0.0f, 1.5f));
+						jumpCount += 1;
+						// Play a jump sound
+						cSoundController->PlaySoundByID(3);
+					}
+				}
+			}
 			//debug code
 			if (cKeyboardController->IsKeyPressed(GLFW_KEY_L))
 			{
@@ -434,8 +457,17 @@ void CPlayer2D::Update(const double dElapsedTime)
 					currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
 
 					CGameManager::GetInstance()->currDimem = HOME;
+					/*CGameManager::GetInstance()->bPlayerHome = true;
+					CGameManager::GetInstance()->bPlayerMedieval = false;
+					CGameManager::GetInstance()->bPlayerCave = false;
+					CGameManager::GetInstance()->bPlayerSky = false;*/
+
+					cout << "Home Mode" << endl;
+
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 					CooldownTimer = 1;
+
+					cout << "Cooldown Applied" << endl;
 					cSoundController->PlaySoundByID(20);
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
@@ -495,22 +527,22 @@ void CPlayer2D::Update(const double dElapsedTime)
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 				{
 					ability_dir = ALEFT;
-					cout << "Gun Left" << endl;
+					//cout << "Gun Left" << endl;
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
 				{
 					ability_dir = ARIGHT;
-					cout << "Gun Right" << endl;
+					//cout << "Gun Right" << endl;
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_UP))
 				{
 					ability_dir = AUP;
-					cout << "Gun Up" << endl;
+					//cout << "Gun Up" << endl;
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_DOWN))
 				{
 					ability_dir = ADOWN;
-					cout << "Gun Down" << endl;
+					//cout << "Gun Down" << endl;
 				}
 
 
@@ -1194,8 +1226,7 @@ void CPlayer2D::InteractWithMap(void)
 	{
 	case 203:
 		// Decrease the health by 1
-		cInventoryItem = cInventoryManager->GetItem("Health");
-		cInventoryItem->Remove(1);
+		CGameManager::GetInstance()->bPlayerTouched = true;
 		if (CGameManager::GetInstance()->bPlayerDeath == false)
 		{
 			cSoundController->PlaySoundByID(60);
@@ -1242,6 +1273,8 @@ void CPlayer2D::InteractWithMap(void)
 			}
 		}
 		break;
+	case 208:
+		CGameManager::GetInstance()->bPlayerWon = true;
 	case 210:
 		cSoundController->PlaySoundByID(71);
 		cInventoryItem = cInventoryManager->GetItem("Health");

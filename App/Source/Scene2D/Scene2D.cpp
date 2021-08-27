@@ -208,7 +208,7 @@ bool CScene2D::Init(int level)
 	cGUI_Scene2D->Init();
 
 	// Sets the background
-	background = new CBackgroundEntity("Image/Background/HomeBG.png");
+	background = new CBackgroundEntity("Image/Background/CityBackground.png");
 	background->SetShader("2DShader");
 	background->Init();
 
@@ -496,7 +496,7 @@ void CScene2D::Swap(void)
 		// Sets the background
 		delete background;
 		background = NULL;
-		background = new CBackgroundEntity("Image/Background/HomeBG.png");
+		background = new CBackgroundEntity("Image/Background/CityBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
 	}
@@ -506,7 +506,7 @@ void CScene2D::Swap(void)
 		// Sets the background
 		delete background;
 		background = NULL;
-		background = new CBackgroundEntity("Image/Background/MediBG.png");
+		background = new CBackgroundEntity("Image/Background/MedievalBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
 	}
@@ -516,7 +516,7 @@ void CScene2D::Swap(void)
 		// Sets the background
 		delete background;
 		background = NULL;
-		background = new CBackgroundEntity("Image/Background/CaveBG.png");
+		background = new CBackgroundEntity("Image/Background/CaveBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
 	}
@@ -526,7 +526,7 @@ void CScene2D::Swap(void)
 		// Sets the background
 		delete background;
 		background = NULL;
-		background = new CBackgroundEntity("Image/Background/SkyBG.png");
+		background = new CBackgroundEntity("Image/Background/SkyBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
 	}
