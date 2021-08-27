@@ -119,6 +119,11 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load black tile texture" << std::endl;
 		return false;
 	}
+	if (LoadTexture("Image/Tiles/Special/TGA/Spawner1.tga", 60) == false)
+	{
+		std::cout << "Failed to load enemyspawner tile texture" << std::endl;
+		return false;
+	}
 	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 19) == false)
 	{
 		std::cout << "Failed to load Phase block tile texture" << std::endl;
@@ -158,7 +163,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Scene2D_Spikes tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 207) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/ButtonBlocked.tga", 207) == false)
 	{
 		std::cout << "Failed to load Phase block tile texture" << std::endl;
 		return false;
@@ -233,10 +238,10 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		return false;
 	}
 
-	// Load the Spa texture
-	if (LoadTexture("Image/Scene2D_Spa.tga", 20) == false)
+	// Load the Button_block texture
+	if (LoadTexture("Image/Tiles/Special/TGA/Button_Block.tga", 20) == false)
 	{
-		std::cout << "Failed to load Scene2D_Spa tile texture" << std::endl;
+		std::cout << "Failed to load Button_Block tile texture" << std::endl;
 		return false;
 	}
 

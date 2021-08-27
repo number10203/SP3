@@ -53,6 +53,11 @@
 // Include GameStateManager
 #include "../GameStateManagement/GameStateManager.h"
 
+#include "Primitives/Mesh.h"
+#include "../Scene2D/BackgroundEntity.h"
+#include <string>
+
+
 class CScene2D : public CSingletonTemplate<CScene2D>
 {
 	friend CSingletonTemplate<CScene2D>;
@@ -71,6 +76,9 @@ public:
 
 	// PostRender
 	void PostRender(void);
+
+	// Background Swapper
+	void Swap(void);
 
 protected:
 	// The handler containing the instance of the 2D Map
@@ -94,9 +102,14 @@ protected:
 	// Handler to the CSoundController
 	CSoundController* cSoundController;
 
+	CBackgroundEntity* background;
+
 	// Constructor
 	CScene2D(void);
 	// Destructor
 	virtual ~CScene2D(void);
+
+	bool enemyRespawned = false;
+	int BackgroundChange;
 };
 

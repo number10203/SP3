@@ -2,6 +2,11 @@
 #include <iostream>
 using namespace std;
 
+// Include Mesh Builder
+#include "Primitives/MeshBuilder.h"
+// Include ImageLoader
+#include "System\ImageLoader.h"
+
 // Include Shader Manager
 #include "RenderControl\ShaderManager.h"
 
@@ -17,7 +22,9 @@ CScene2D::CScene2D(void)
 	, cGUI_Scene2D(NULL)
 	, cGameManager(NULL)
 	, cSoundController(NULL)
+	, background(NULL)
 {
+	BackgroundChange = 0;
 }
 
 /**
@@ -193,7 +200,10 @@ bool CScene2D::Init(int level)
 	cGUI_Scene2D = CGUI_Scene2D::GetInstance();
 	cGUI_Scene2D->Init();
 
-	
+	// Sets the background
+	background = new CBackgroundEntity("Image/Background/CityBackground.png");
+	background->SetShader("2DShader");
+	background->Init();
 
 	// Load the sounds into CSoundController
 	cSoundController = CSoundController::GetInstance();
@@ -221,6 +231,8 @@ bool CScene2D::Init(int level)
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerCaveWalkSound.ogg"), 63, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerMediWalkSound.ogg"), 64, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerSkyWalkSound.ogg"), 65, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerStartGrappleSound.ogg"), 66, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerEndGrappleSound.ogg"), 67, true);
 	// COLLECTIBLES 70 - 90 
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\UnlockDoorSound.ogg"), 70, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\HealSound.ogg"), 71, true);
@@ -237,6 +249,9 @@ bool CScene2D::Init(int level)
 */
 bool CScene2D::Update(const double dElapsedTime)
 {
+	
+	Swap();
+
 
 	// Call the cPlayer2D's update method before Map2D as we want to capture the inputs before map2D update
   	cPlayer2D->Update(dElapsedTime);
@@ -333,6 +348,55 @@ bool CScene2D::Update(const double dElapsedTime)
 	}
 
 	
+	
+
+	if (cPlayer2D->ButtonTimer > 0 && enemyRespawned == false) {
+		enemyRespawned = true;
+		cout << "enemyrespawned";
+		enemyVector.clear();
+		while (true)
+		{
+			CEnemy2D3* cEnemy2D3 = new CEnemy2D3();
+			CEnemy2D2* cEnemy2D2 = new CEnemy2D2();
+			CEnemy2D* cEnemy2D = new CEnemy2D();
+			// Pass shader to cEnemy2D
+			cEnemy2D3->SetShader("2DColorShader");
+			cEnemy2D2->SetShader("2DColorShader");
+			cEnemy2D->SetShader("2DColorShader");
+			// Initialise the instance
+			if (cEnemy2D->Init() == true)
+			{
+				cEnemy2D->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D);
+			}
+			else if (cEnemy2D2->Init() == true)
+			{
+				cEnemy2D2->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D2);
+			}
+			else if (cEnemy2D3->Init() == true)
+			{
+				cEnemy2D3->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D3);
+			}
+			else
+			{
+				// Break out of this loop if the enemy has all been loaded
+				break;
+			}
+			for (int i = 0; i < enemyVector.size(); i++)
+			{
+				// Call the CEnemy2D's PreRender()
+				enemyVector[i]->PreRender();
+				// Call the CEnemy2D's Render()
+				enemyVector[i]->Render();
+				// Call the CEnemy2D's PostRender()
+				enemyVector[i]->PostRender();
+			}
+		}
+	}
+	else if (cPlayer2D->ButtonTimer <= 0 && enemyRespawned == true)
+		enemyRespawned = false;
 	cSoundController->PlaySoundByID(1);
 
 	return true;
@@ -359,6 +423,10 @@ void CScene2D::PreRender(void)
  */
 void CScene2D::Render(void)
 {
+
+	//Draw the background
+	background->Render();
+
 	for (int i = 0; i < enemyVector.size(); i++)
 	{
 		// Call the CEnemy2D's PreRender()
@@ -396,12 +464,15 @@ void CScene2D::Render(void)
 	// Call the cGUI_Scene2D's PostRender()
 	cGUI_Scene2D->PostRender();
 
+	
+
 	// Call the CPlayer2D's PreRender()
 	cPlayer2D->PreRender();
 	// Call the CPlayer2D's Render()
 	cPlayer2D->Render();
 	// Call the CPlayer2D's PostRender()
 	cPlayer2D->PostRender();
+
 
 }
 
@@ -410,4 +481,48 @@ void CScene2D::Render(void)
  */
 void CScene2D::PostRender(void)
 {
+}
+
+void CScene2D::Swap(void)
+{
+	if (CGameManager::GetInstance()->currDimem == 0 && BackgroundChange != 0)
+	{
+		BackgroundChange = 0;
+		// Sets the background
+		delete background;
+		background = NULL;
+		background = new CBackgroundEntity("Image/Background/CityBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
+	else if (CGameManager::GetInstance()->currDimem == 1 && BackgroundChange != 1)
+	{
+		BackgroundChange = 1;
+		// Sets the background
+		delete background;
+		background = NULL;
+		background = new CBackgroundEntity("Image/Background/MedievalBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
+	else if (CGameManager::GetInstance()->currDimem == 2 && BackgroundChange != 2)
+	{
+		BackgroundChange = 2;
+		// Sets the background
+		delete background;
+		background = NULL;
+		background = new CBackgroundEntity("Image/Background/CaveBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
+	else if (CGameManager::GetInstance()->currDimem == 3 && BackgroundChange != 3)
+	{
+		BackgroundChange = 3;
+		// Sets the background
+		delete background;
+		background = NULL;
+		background = new CBackgroundEntity("Image/Background/SkyBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
 }

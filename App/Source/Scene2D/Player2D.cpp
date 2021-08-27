@@ -352,7 +352,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				}
 				else if (CGameManager::GetInstance()->currDimem == SKY)
 				{
-					animatedSprites->PlayAnimation("right", -1, 1.0f);
+					animatedSprites->PlayAnimation("skyright", -1, 1.0f);
 					cSoundController->PlaySoundByID(65);
 				}
 
@@ -440,8 +440,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 					}
 				}
 			}
-
-
+			//debug code
+			if (cKeyboardController->IsKeyPressed(GLFW_KEY_L))
+			{
+				CGameManager::GetInstance()->bLevelCompleted = true;
+			}
 
 			// DIMENSION SWAPPING
 
@@ -510,7 +513,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			if (ButtonTimer > 0)
 			{
-				CooldownTimer -= 1 * dElapsedTime;
+				ButtonTimer -= 1 * dElapsedTime;
 				if (ButtonTimer <= 0) {
 					for (int x = 0; x < 32; x++) {
 						for (int y = 0; y < 24; y++) {
@@ -588,12 +591,14 @@ void CPlayer2D::Update(const double dElapsedTime)
 						//Move towards the hookblock
 						cout << "Grappling Right" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_RIGHT);
+						cSoundController->PlaySoundByID(66);
 					}
 					else if (ability_dir == ALEFT)
 					{
 						//Move towards the hookblock
 						cout << "Grappling Left" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::GRAPPLE_LEFT);
+						cSoundController->PlaySoundByID(66);
 					}
 
 					if (DeGrapple == true)
@@ -601,6 +606,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 						cout << "De-Grappled" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 						DeGrapple = !DeGrapple;
+						cSoundController->PlaySoundByID(67);
 					}
 				}
 				break;
@@ -1025,10 +1031,10 @@ bool CPlayer2D::IsMidAir(void)
 		}
 		if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
 		{
-			cout << "ismidair ";
+		
 			return true;
 		}
-		cout << "isnotmidair ";
+
 		return false;
 	}
 }
@@ -1093,11 +1099,10 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		}
 		else if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
 		{
-			cout << "ismidair ";
 			CooldownTimer = 100;
 		}
 		else {
-			cout << "isnotmidair ";
+	
 			CooldownTimer = 0;
 		}
 		
@@ -1150,7 +1155,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		// Get the displacement from the physics engine
 		glm::vec2 v2Displacement = cPhysics2D.GetDisplacement();
 
-		// Store the current i32vec2Index.y
+		// Store the current i32vec2Index.x
 		int iIndex_XAxis_OLD = i32vec2Index.x;
 
 		i32vec2NumMicroSteps.x++;
@@ -1163,7 +1168,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		Constraint(UP);
 
 		// Iterate through all rows until the proposed row
-		// Check if the player will hit a tile; stop rising if so.
+		// Check if the player will hit a tile; stop moving right if so.
 		int iIndex_XAxis_Proposed = i32vec2Index.x;
 		for (int i = iIndex_XAxis_OLD; i >= iIndex_XAxis_Proposed; i--)
 		{
@@ -1177,7 +1182,6 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 					i32vec2Index.x = i - 1;
 				// Set the Physics to idle status
 				i32vec2NumMicroSteps.x = 0;
-				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
 			DeGrapple = true;
@@ -1193,7 +1197,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		// Get the displacement from the physics engine
 		glm::vec2 v2Displacement = cPhysics2D.GetDisplacement();
 
-		// Store the current i32vec2Index.y
+		// Store the current i32vec2Index.x
 		int iIndex_XAxis_OLD = i32vec2Index.x;
 
 		i32vec2NumMicroSteps.x--;
@@ -1206,7 +1210,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		Constraint(UP);
 
 		// Iterate through all rows until the proposed row
-		// Check if the player will hit a tile; stop rising if so.
+		// Check if the player will hit a tile; stop moving left if so.
 		int iIndex_XAxis_Proposed = i32vec2Index.x;
 		for (int i = iIndex_XAxis_OLD; i >= iIndex_XAxis_Proposed; i--)
 		{
@@ -1220,7 +1224,6 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 					i32vec2Index.x = i + 1;
 				// Set the Physics to idle status
 				i32vec2NumMicroSteps.x = 0;
-				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
 			DeGrapple = true;
@@ -1267,16 +1270,20 @@ void CPlayer2D::InteractWithMap(void)
 		}
 		break;
 	case 205:
-		ButtonTimer = 120;
-		cSoundController->PlaySoundByID(72);
-		for (int x = 0; x < 32; x++) {
-			for (int y = 0; y < 24; y++) {
-
-				if (cMap2D->GetMapInfo(y, x) == 205) {
-					cMap2D->SetMapInfo(y, x, 206);
-				}
-				if (cMap2D->GetMapInfo(y, x) == 20) {
-					cMap2D->SetMapInfo(y, x, 207);
+		if (ButtonTimer <= 0) {
+			ButtonTimer = 30;
+			cSoundController->PlaySoundByID(72);
+			for (int x = 0; x < 32; x++) {
+				for (int y = 0; y < 24; y++) {
+					if (cMap2D->GetMapInfo(y, x) == 60) {
+						cMap2D->SetMapInfo(y+1, x, 102);
+					}
+					if (cMap2D->GetMapInfo(y, x) == 205) {
+						cMap2D->SetMapInfo(y, x, 206);
+					}
+					if (cMap2D->GetMapInfo(y, x) == 20) {
+						cMap2D->SetMapInfo(y, x, 207);
+					}
 				}
 			}
 		}
