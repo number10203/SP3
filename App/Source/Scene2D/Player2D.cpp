@@ -646,6 +646,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 		}
 		else
 		{
+			CGameManager::GetInstance()->bPlayerTouched = false;
+			CGameManager::GetInstance()->bPlayerStabbed = false;
 			currentColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 		}
 		
