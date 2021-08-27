@@ -238,7 +238,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		return false;
 	}
 
-	// Load the Spa texture
+	// Load the Button_block texture
 	if (LoadTexture("Image/Tiles/Special/TGA/Button_Block.tga", 20) == false)
 	{
 		std::cout << "Failed to load Button_Block tile texture" << std::endl;
