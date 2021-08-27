@@ -1284,5 +1284,4 @@ void CPlayer2D::UpdateHealthLives(void)
 		
 		
 	}
-	// Die if player is stuck in a wall
 }
