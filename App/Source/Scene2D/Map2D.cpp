@@ -558,7 +558,7 @@ void CMap2D::SetNumTiles(const CSettings::AXIS sAxis, const unsigned int uiValue
 	// Check if the value is valid
 	if (uiValue <= 0)
 	{
-		cout << "CMap2D::SetNumTiles() : value must be more than 0" << endl;
+		//cout << "CMap2D::SetNumTiles() : value must be more than 0" << endl;
 		return;
 	}
 
@@ -578,7 +578,7 @@ void CMap2D::SetNumTiles(const CSettings::AXIS sAxis, const unsigned int uiValue
 	}
 	else
 	{
-		cout << "Unknown axis" << endl;
+		//cout << "Unknown axis" << endl;
 	}
 }
 
@@ -588,7 +588,7 @@ void CMap2D::SetNumSteps(const CSettings::AXIS sAxis, const unsigned int uiValue
 	// Check if the value is valid
 	if (uiValue <= 0)
 	{
-		cout << "CMap2D::SetNumSteps() : value must be more than 0" << endl;
+		//cout << "CMap2D::SetNumSteps() : value must be more than 0" << endl;
 		return;
 	}
 
@@ -608,7 +608,7 @@ void CMap2D::SetNumSteps(const CSettings::AXIS sAxis, const unsigned int uiValue
 	}
 	else
 	{
-		cout << "Unknown axis" << endl;
+	//	cout << "Unknown axis" << endl;
 	}
 }
 
@@ -651,7 +651,7 @@ bool CMap2D::LoadMap(string filename, const unsigned int uiCurLevel)
 	if ((cSettings->NUM_TILES_XAXIS != (unsigned int)doc.GetColumnCount()) ||
 		(cSettings->NUM_TILES_YAXIS != (unsigned int)doc.GetRowCount()))
 	{
-		cout << "Sizes of CSV map does not match declared arrMapInfo sizes." << endl;
+		//cout << "Sizes of CSV map does not match declared arrMapInfo sizes." << endl;
 		return false;
 	}
 
@@ -684,7 +684,7 @@ bool CMap2D::SaveMap(string filename, const unsigned int uiCurLevel)
 		{
 			doc.SetCell(uiCol, uiRow, arrMapInfo[uiCurLevel][uiRow][uiCol].value);
 		}
-		cout << endl;
+		//cout << endl;
 	}
 
 	// Save the rapidcsv::Document to a file
@@ -818,7 +818,7 @@ std::vector<glm::i32vec2> CMap2D::PathFind(	const glm::i32vec2& startPos,
 	if (isBlocked(startPos.y, startPos.x) ||
 		(isBlocked(targetPos.y, targetPos.x)))
 	{
-		cout << "Invalid start or target position." << endl;
+		//cout << "Invalid start or target position." << endl;
 		// Return an empty path
 		std::vector<glm::i32vec2> path;
 		return path;
@@ -949,11 +949,11 @@ void CMap2D::SetDiagonalMovement(const bool bEnable)
  */
 void CMap2D::PrintSelf(void) const
 {
-	cout << endl << "AStar::PrintSelf()" << endl;
+	//cout << endl << "AStar::PrintSelf()" << endl;
 
 	for (unsigned uiLevel = 0; uiLevel < uiNumLevels; uiLevel++)
 	{
-		cout << "Level: " << uiLevel << endl;
+		//cout << "Level: " << uiLevel << endl;
 		for (unsigned uiRow = 0; uiRow < cSettings->NUM_TILES_YAXIS; uiRow++)
 		{
 			for (unsigned uiCol = 0; uiCol < cSettings->NUM_TILES_XAXIS; uiCol++)
@@ -969,11 +969,11 @@ void CMap2D::PrintSelf(void) const
 		}
 	}
 
-	cout << "m_openList: " << m_openList.size() << endl;
-	cout << "m_cameFromList: " << m_cameFromList.size() << endl;
-	cout << "m_closedList: " << m_closedList.size() << endl;
+	//cout << "m_openList: " << m_openList.size() << endl;
+	//cout << "m_cameFromList: " << m_cameFromList.size() << endl;
+	//cout << "m_closedList: " << m_closedList.size() << endl;
 
-	cout << "===== AStar::PrintSelf() =====" << endl;
+	//cout << "===== AStar::PrintSelf() =====" << endl;
 }
 
 /**
