@@ -440,8 +440,11 @@ void CPlayer2D::Update(const double dElapsedTime)
 					}
 				}
 			}
-
-
+			//debug code
+			if (cKeyboardController->IsKeyPressed(GLFW_KEY_L))
+			{
+				CGameManager::GetInstance()->bLevelCompleted = true;
+			}
 
 			// DIMENSION SWAPPING
 
@@ -510,7 +513,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 			}
 			if (ButtonTimer > 0)
 			{
-				CooldownTimer -= 1 * dElapsedTime;
+				ButtonTimer -= 1 * dElapsedTime;
 				if (ButtonTimer <= 0) {
 					for (int x = 0; x < 32; x++) {
 						for (int y = 0; y < 24; y++) {
@@ -992,10 +995,10 @@ bool CPlayer2D::IsMidAir(void)
 		}
 		if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
 		{
-			cout << "ismidair ";
+		
 			return true;
 		}
-		cout << "isnotmidair ";
+
 		return false;
 	}
 }
@@ -1060,11 +1063,10 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		}
 		else if ((cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) <= 1))
 		{
-			cout << "ismidair ";
 			CooldownTimer = 100;
 		}
 		else {
-			cout << "isnotmidair ";
+	
 			CooldownTimer = 0;
 		}
 		
@@ -1234,16 +1236,18 @@ void CPlayer2D::InteractWithMap(void)
 		}
 		break;
 	case 205:
-		ButtonTimer = 120;
-		cSoundController->PlaySoundByID(72);
-		for (int x = 0; x < 32; x++) {
-			for (int y = 0; y < 24; y++) {
+		if (ButtonTimer <= 0) {
+			ButtonTimer = 30;
+			cSoundController->PlaySoundByID(72);
+			for (int x = 0; x < 32; x++) {
+				for (int y = 0; y < 24; y++) {
 
-				if (cMap2D->GetMapInfo(y, x) == 205) {
-					cMap2D->SetMapInfo(y, x, 206);
-				}
-				if (cMap2D->GetMapInfo(y, x) == 20) {
-					cMap2D->SetMapInfo(y, x, 207);
+					if (cMap2D->GetMapInfo(y, x) == 205) {
+						cMap2D->SetMapInfo(y, x, 206);
+					}
+					if (cMap2D->GetMapInfo(y, x) == 20) {
+						cMap2D->SetMapInfo(y, x, 207);
+					}
 				}
 			}
 		}

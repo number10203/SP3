@@ -332,7 +332,53 @@ bool CScene2D::Update(const double dElapsedTime)
 		return false;
 	}
 
-	
+	if (cPlayer2D->ButtonTimer > 0 && enemyRespawned == false) {
+		enemyRespawned = true;
+		cout << "enemyrespawned";
+		enemyVector.clear();
+		while (true)
+		{
+			CEnemy2D3* cEnemy2D3 = new CEnemy2D3();
+			CEnemy2D2* cEnemy2D2 = new CEnemy2D2();
+			CEnemy2D* cEnemy2D = new CEnemy2D();
+			// Pass shader to cEnemy2D
+			cEnemy2D3->SetShader("2DColorShader");
+			cEnemy2D2->SetShader("2DColorShader");
+			cEnemy2D->SetShader("2DColorShader");
+			// Initialise the instance
+			if (cEnemy2D->Init() == true)
+			{
+				cEnemy2D->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D);
+			}
+			else if (cEnemy2D2->Init() == true)
+			{
+				cEnemy2D2->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D2);
+			}
+			else if (cEnemy2D3->Init() == true)
+			{
+				cEnemy2D3->SetPlayer2D(cPlayer2D);
+				enemyVector.push_back(cEnemy2D3);
+			}
+			else
+			{
+				// Break out of this loop if the enemy has all been loaded
+				break;
+			}
+			for (int i = 0; i < enemyVector.size(); i++)
+			{
+				// Call the CEnemy2D's PreRender()
+				enemyVector[i]->PreRender();
+				// Call the CEnemy2D's Render()
+				enemyVector[i]->Render();
+				// Call the CEnemy2D's PostRender()
+				enemyVector[i]->PostRender();
+			}
+		}
+	}
+	else if (cPlayer2D->ButtonTimer <= 0 && enemyRespawned == true)
+		enemyRespawned = false;
 	cSoundController->PlaySoundByID(1);
 
 	return true;

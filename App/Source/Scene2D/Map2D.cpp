@@ -234,7 +234,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 	}
 
 	// Load the Spa texture
-	if (LoadTexture("Image/Scene2D_Spa.tga", 20) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Hook_Block.tga", 20) == false)
 	{
 		std::cout << "Failed to load Scene2D_Spa tile texture" << std::endl;
 		return false;

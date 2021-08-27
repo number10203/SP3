@@ -98,5 +98,7 @@ protected:
 	CScene2D(void);
 	// Destructor
 	virtual ~CScene2D(void);
+
+	bool enemyRespawned = false;
 };
 

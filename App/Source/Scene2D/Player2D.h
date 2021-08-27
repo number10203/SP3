@@ -66,7 +66,7 @@ public:
 	// PostRender
 	void PostRender(void);
 	
-
+	float ButtonTimer;
 protected:
 	enum DIRECTION
 	{
@@ -119,7 +119,7 @@ protected:
 	// Cooldown Timer
 	float CooldownTimer;
 
-	float ButtonTimer;
+	
 
 	// Constructor
 	CPlayer2D(void);
