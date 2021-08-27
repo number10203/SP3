@@ -1184,8 +1184,7 @@ void CPlayer2D::InteractWithMap(void)
 	{
 	case 203:
 		// Decrease the health by 1
-		cInventoryItem = cInventoryManager->GetItem("Health");
-		cInventoryItem->Remove(1);
+		CGameManager::GetInstance()->bPlayerTouched = true;
 		if (CGameManager::GetInstance()->bPlayerDeath == false)
 		{
 			cSoundController->PlaySoundByID(60);
