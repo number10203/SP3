@@ -32,14 +32,14 @@ class CMap2D;
 // Include Player2D
 #include "Player2D.h"
 
-class CProjectile2D3 : public CEntity2D
+class CProjectile2D : public CEntity2D
 {
 public:
 	// Constructor
-	CProjectile2D3(void);
+	CProjectile2D(void);
 
 	// Destructor
-	virtual ~CProjectile2D3(void);
+	virtual ~CProjectile2D(void);
 
 	// Init
 	bool Init(void);
@@ -93,7 +93,7 @@ protected:
 	enum FSM
 	{
 		IDLE = 0,
-		AWAKE = 1,
+		PATROL = 1,
 		ATTACK = 2,
 		NUM_FSM
 	};
@@ -146,7 +146,7 @@ protected:
 	int iFSMCounter;
 
 	// Max count in a state
-	const int iMaxFSMCounter = 160;
+	const int iMaxFSMCounter = 60;
 
 	// Load a texture
 	bool LoadTexture(const char* filename, GLuint& iTextureID);

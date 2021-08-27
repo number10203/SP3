@@ -26,11 +26,11 @@
 #include "Map2D.h"
 // Include CPlayer2D
 #include "Player2D.h"
-// Include CEnemy2D
+// Include CProjectile2D
 #include "Enemy2D.h"
-// Include CEnemy2D2
+// Include CProjectile2D2
 #include "Enemy2D2.h"
-// Include CEnemy2D3
+// Include CProjectile2D3
 #include "Enemy2D3.h"
 
 // Include vector
@@ -85,7 +85,7 @@ protected:
 	CMap2D* cMap2D;
 	// The handler containing the instance of CPlayer2Ds
 	CPlayer2D* cPlayer2D;
-	// A vector containing the instance of CEnemy2Ds
+	// A vector containing the instance of CProjectile2Ds
 	vector<CEntity2D*> enemyVector;
 	// Keyboard Controller singleton instance
 	CKeyboardController* cKeyboardController;

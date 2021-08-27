@@ -5,6 +5,8 @@
  */
 #include "Player2D.h"
 
+#include "Projectile2D.h"
+
 #include <iostream>
 using namespace std;
 
@@ -548,14 +550,41 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 				{
-					/*if ((Grapple_Left == false) && (Grapple_Right == true))
+					if (ability_dir == ARIGHT)
 					{
-						cout << "Grappling Right" << endl;
+						if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 0)
+						{
+							cout << "Shooting Right" << endl;
+							//cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x + 1, 104);
+
+							CProjectile2D* aProjectile2D = new CProjectile2D();
+							aProjectile2D->Seti32vec2Index();
+						}
 					}
-					else if ((Grapple_Left == true) && (Grapple_Right == false))
+					else if (ability_dir == ALEFT)
 					{
-						cout << "Grappling Left" << endl;
-					}*/
+						if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x - 1) == 0)
+						{
+							cout << "Shooting Left" << endl;
+							//cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x - 1, 104);
+						}
+					}
+					else if (ability_dir == AUP)
+					{
+						if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 0)
+						{
+							cout << "Shooting Up" << endl;
+							//cMap2D->SetMapInfo(i32vec2Index.y + 1, i32vec2Index.x, 104);
+						}
+					}
+					else if (ability_dir == ADOWN)
+					{
+						if (cMap2D->GetMapInfo(i32vec2Index.y - 1, i32vec2Index.x - 1) == 0)
+						{
+							cout << "Shooting Down" << endl;
+							//cMap2D->SetMapInfo(i32vec2Index.y - 1, i32vec2Index.x, 104);
+						}
+					}
 				}
 
 				break;

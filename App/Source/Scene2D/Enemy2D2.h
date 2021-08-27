@@ -1,5 +1,5 @@
 /**
- CEnemy2D
+ CProjectile2D
  By: Toh Da Jun
  Date: Mar 2020
  */
@@ -32,14 +32,14 @@ class CMap2D;
 // Include Player2D
 #include "Player2D.h"
 
-class CEnemy2D2 : public CEntity2D
+class CProjectile2D2 : public CEntity2D
 {
 public:
 	// Constructor
-	CEnemy2D2(void);
+	CProjectile2D2(void);
 
 	// Destructor
-	virtual ~CEnemy2D2(void);
+	virtual ~CProjectile2D2(void);
 
 	// Init
 	bool Init(void);
