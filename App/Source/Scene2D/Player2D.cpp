@@ -1119,7 +1119,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		// Get the displacement from the physics engine
 		glm::vec2 v2Displacement = cPhysics2D.GetDisplacement();
 
-		// Store the current i32vec2Index.y
+		// Store the current i32vec2Index.x
 		int iIndex_XAxis_OLD = i32vec2Index.x;
 
 		i32vec2NumMicroSteps.x++;
@@ -1132,7 +1132,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		Constraint(UP);
 
 		// Iterate through all rows until the proposed row
-		// Check if the player will hit a tile; stop rising if so.
+		// Check if the player will hit a tile; stop moving right if so.
 		int iIndex_XAxis_Proposed = i32vec2Index.x;
 		for (int i = iIndex_XAxis_OLD; i >= iIndex_XAxis_Proposed; i--)
 		{
@@ -1146,7 +1146,6 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 					i32vec2Index.x = i - 1;
 				// Set the Physics to idle status
 				i32vec2NumMicroSteps.x = 0;
-				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
 			DeGrapple = true;
@@ -1162,7 +1161,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		// Get the displacement from the physics engine
 		glm::vec2 v2Displacement = cPhysics2D.GetDisplacement();
 
-		// Store the current i32vec2Index.y
+		// Store the current i32vec2Index.x
 		int iIndex_XAxis_OLD = i32vec2Index.x;
 
 		i32vec2NumMicroSteps.x--;
@@ -1175,7 +1174,7 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 		Constraint(UP);
 
 		// Iterate through all rows until the proposed row
-		// Check if the player will hit a tile; stop rising if so.
+		// Check if the player will hit a tile; stop moving left if so.
 		int iIndex_XAxis_Proposed = i32vec2Index.x;
 		for (int i = iIndex_XAxis_OLD; i >= iIndex_XAxis_Proposed; i--)
 		{
@@ -1189,7 +1188,6 @@ void CPlayer2D::UpdateJumpFall(const double dElapsedTime)
 					i32vec2Index.x = i + 1;
 				// Set the Physics to idle status
 				i32vec2NumMicroSteps.x = 0;
-				//bgvccPhysics2D.SetStatus(CPhysics2D::STATUS::IDLE);
 				break;
 			}
 			DeGrapple = true;

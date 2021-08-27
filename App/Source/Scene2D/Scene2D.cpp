@@ -2,6 +2,11 @@
 #include <iostream>
 using namespace std;
 
+// Include Mesh Builder
+#include "Primitives/MeshBuilder.h"
+// Include ImageLoader
+#include "System\ImageLoader.h"
+
 // Include Shader Manager
 #include "RenderControl\ShaderManager.h"
 
@@ -17,6 +22,7 @@ CScene2D::CScene2D(void)
 	, cGUI_Scene2D(NULL)
 	, cGameManager(NULL)
 	, cSoundController(NULL)
+	, background(NULL)
 {
 }
 
@@ -193,7 +199,10 @@ bool CScene2D::Init(int level)
 	cGUI_Scene2D = CGUI_Scene2D::GetInstance();
 	cGUI_Scene2D->Init();
 
-	
+	// Sets the background
+	background = new CBackgroundEntity("Image/Menus/GameBackground.png");
+	background->SetShader("2DShader");
+	background->Init();
 
 	// Load the sounds into CSoundController
 	cSoundController = CSoundController::GetInstance();
@@ -332,6 +341,9 @@ bool CScene2D::Update(const double dElapsedTime)
 		return false;
 	}
 
+	
+	
+
 	if (cPlayer2D->ButtonTimer > 0 && enemyRespawned == false) {
 		enemyRespawned = true;
 		cout << "enemyrespawned";
@@ -381,6 +393,8 @@ bool CScene2D::Update(const double dElapsedTime)
 		enemyRespawned = false;
 	cSoundController->PlaySoundByID(1);
 
+	
+
 	return true;
 }
 
@@ -405,6 +419,10 @@ void CScene2D::PreRender(void)
  */
 void CScene2D::Render(void)
 {
+
+	//Draw the background
+	background->Render();
+
 	for (int i = 0; i < enemyVector.size(); i++)
 	{
 		// Call the CEnemy2D's PreRender()
@@ -442,12 +460,15 @@ void CScene2D::Render(void)
 	// Call the cGUI_Scene2D's PostRender()
 	cGUI_Scene2D->PostRender();
 
+	
+
 	// Call the CPlayer2D's PreRender()
 	cPlayer2D->PreRender();
 	// Call the CPlayer2D's Render()
 	cPlayer2D->Render();
 	// Call the CPlayer2D's PostRender()
 	cPlayer2D->PostRender();
+
 
 }
 
