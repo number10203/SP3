@@ -24,6 +24,7 @@ CScene2D::CScene2D(void)
 	, cSoundController(NULL)
 	, background(NULL)
 {
+	BackgroundChange = 0;
 }
 
 /**
@@ -200,7 +201,7 @@ bool CScene2D::Init(int level)
 	cGUI_Scene2D->Init();
 
 	// Sets the background
-	background = new CBackgroundEntity("Image/Menus/GameBackground.png");
+	background = new CBackgroundEntity("Image/Background/CityBackground.png");
 	background->SetShader("2DShader");
 	background->Init();
 
@@ -248,6 +249,9 @@ bool CScene2D::Init(int level)
 */
 bool CScene2D::Update(const double dElapsedTime)
 {
+	
+	Swap();
+
 
 	// Call the cPlayer2D's update method before Map2D as we want to capture the inputs before map2D update
   	cPlayer2D->Update(dElapsedTime);
@@ -479,4 +483,40 @@ void CScene2D::Render(void)
  */
 void CScene2D::PostRender(void)
 {
+}
+
+void CScene2D::Swap(void)
+{
+	if (CGameManager::GetInstance()->currDimem == 0 && BackgroundChange != 0)
+	{
+		BackgroundChange = 0;
+		// Sets the background
+		background = new CBackgroundEntity("Image/Background/CityBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
+	else if (CGameManager::GetInstance()->currDimem == 1 && BackgroundChange != 1)
+	{
+		BackgroundChange = 1;
+		// Sets the background
+		background = new CBackgroundEntity("Image/Background/MedievalBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
+	else if (CGameManager::GetInstance()->currDimem == 2 && BackgroundChange != 2)
+	{
+		BackgroundChange = 2;
+		// Sets the background
+		background = new CBackgroundEntity("Image/Background/CaveBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
+	else if (CGameManager::GetInstance()->currDimem == 3 && BackgroundChange != 3)
+	{
+		BackgroundChange = 3;
+		// Sets the background
+		background = new CBackgroundEntity("Image/Background/SkyBackground.png");
+		background->SetShader("2DShader");
+		background->Init();
+	}
 }

@@ -77,6 +77,9 @@ public:
 	// PostRender
 	void PostRender(void);
 
+	// Background Swapper
+	void Swap(void);
+
 protected:
 	// The handler containing the instance of the 2D Map
 	CMap2D* cMap2D;
@@ -107,5 +110,6 @@ protected:
 	virtual ~CScene2D(void);
 
 	bool enemyRespawned = false;
+	int BackgroundChange;
 };
 

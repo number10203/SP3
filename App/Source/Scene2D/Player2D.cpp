@@ -352,7 +352,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 				}
 				else if (CGameManager::GetInstance()->currDimem == SKY)
 				{
-					animatedSprites->PlayAnimation("right", -1, 1.0f);
+					animatedSprites->PlayAnimation("skyright", -1, 1.0f);
 					cSoundController->PlaySoundByID(65);
 				}
 
