@@ -550,6 +550,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
 				{
+					cSoundController->PlaySoundByID(66);
 					if ((Grapple_Left == false) && (Grapple_Right == true))
 					{
 						//Move towards the hookblock
@@ -568,6 +569,7 @@ void CPlayer2D::Update(const double dElapsedTime)
 						cout << "De-Grappled" << endl;
 						cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 						DeGrapple = !DeGrapple;
+						cSoundController->PlaySoundByID(67);
 					}
 				}
 				break;
