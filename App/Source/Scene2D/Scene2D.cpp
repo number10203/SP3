@@ -395,8 +395,6 @@ bool CScene2D::Update(const double dElapsedTime)
 		enemyRespawned = false;
 	cSoundController->PlaySoundByID(1);
 
-	
-
 	return true;
 }
 

@@ -1241,7 +1241,9 @@ void CPlayer2D::InteractWithMap(void)
 			cSoundController->PlaySoundByID(72);
 			for (int x = 0; x < 32; x++) {
 				for (int y = 0; y < 24; y++) {
-
+					if (cMap2D->GetMapInfo(y, x) == 60) {
+						cMap2D->SetMapInfo(y+1, x, 102);
+					}
 					if (cMap2D->GetMapInfo(y, x) == 205) {
 						cMap2D->SetMapInfo(y, x, 206);
 					}

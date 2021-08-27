@@ -119,6 +119,11 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load black tile texture" << std::endl;
 		return false;
 	}
+	if (LoadTexture("Image/Tiles/Special/TGA/Black.tga", 60) == false)
+	{
+		std::cout << "Failed to load enemyspawner tile texture" << std::endl;
+		return false;
+	}
 	if (LoadTexture("Image/Tiles/Special/TGA/Phase_Block.tga", 19) == false)
 	{
 		std::cout << "Failed to load Phase block tile texture" << std::endl;
