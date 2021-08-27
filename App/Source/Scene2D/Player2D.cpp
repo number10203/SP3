@@ -427,8 +427,12 @@ void CPlayer2D::Update(const double dElapsedTime)
 
 			if (CooldownTimer <= 0)
 			{
+				currentColor = glm::vec4(1.0, 1.0, 1.0, 0.5);
+
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_U))
 				{
+					currentColor = glm::vec4(1.0, 0.0, 1.0, 0.5);
+
 					CGameManager::GetInstance()->currDimem = HOME;
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 					CooldownTimer = 1;
@@ -436,6 +440,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_I))
 				{
+					currentColor = glm::vec4(0.0, 1.0, 0.0, 0.5);
+
 					CGameManager::GetInstance()->currDimem = MEDI;
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 					CooldownTimer = 1;
@@ -443,6 +449,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_O))
 				{
+					currentColor = glm::vec4(0.2, 0.2, 0.2, 0.5);
+
 					CGameManager::GetInstance()->currDimem = CAVE;
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::FALL);
 					CooldownTimer = 1;
@@ -450,6 +458,8 @@ void CPlayer2D::Update(const double dElapsedTime)
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_P))
 				{
+					currentColor = glm::vec4(0.2, 0.6, 0.0, 0.5);
+
 					CGameManager::GetInstance()->currDimem = SKY;
 					cPhysics2D.SetStatus(CPhysics2D::STATUS::RISE);
 					CooldownTimer = 100;
