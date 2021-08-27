@@ -489,6 +489,8 @@ void CScene2D::Swap(void)
 	{
 		BackgroundChange = 0;
 		// Sets the background
+		delete background;
+		background = NULL;
 		background = new CBackgroundEntity("Image/Background/CityBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
@@ -497,6 +499,8 @@ void CScene2D::Swap(void)
 	{
 		BackgroundChange = 1;
 		// Sets the background
+		delete background;
+		background = NULL;
 		background = new CBackgroundEntity("Image/Background/MedievalBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
@@ -505,6 +509,8 @@ void CScene2D::Swap(void)
 	{
 		BackgroundChange = 2;
 		// Sets the background
+		delete background;
+		background = NULL;
 		background = new CBackgroundEntity("Image/Background/CaveBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
@@ -513,6 +519,8 @@ void CScene2D::Swap(void)
 	{
 		BackgroundChange = 3;
 		// Sets the background
+		delete background;
+		background = NULL;
 		background = new CBackgroundEntity("Image/Background/SkyBackground.png");
 		background->SetShader("2DShader");
 		background->Init();
