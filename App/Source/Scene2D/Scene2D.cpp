@@ -300,7 +300,6 @@ bool CScene2D::Update(const double dElapsedTime)
 		CGameStateManager::GetInstance()->LevelNow++;
 		cSoundController->PlaySoundByID(12);
 		cMap2D->SetCurrentLevel(cMap2D->GetCurrentLevel() + 1);
-		cout << "Next Level" << endl;
 		cPlayer2D->Reset();
 		enemyVector.clear();
 		while (true)
@@ -359,7 +358,6 @@ bool CScene2D::Update(const double dElapsedTime)
 
 	if (cPlayer2D->ButtonTimer > 0 && enemyRespawned == false) {
 		enemyRespawned = true;
-		cout << "enemyrespawned";
 		enemyVector.clear();
 		while (true)
 		{
