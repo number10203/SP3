@@ -822,6 +822,8 @@ void CPlayer2D::Constraint(DIRECTION eDirection)
 	{
 		if (i32vec2Index.y < 0)
 		{
+			cInventoryItem = cInventoryManager->GetItem("Health");
+			cInventoryItem->Remove(50);
 			i32vec2Index.y = 0;
 			i32vec2NumMicroSteps.y = 0;
 		}
