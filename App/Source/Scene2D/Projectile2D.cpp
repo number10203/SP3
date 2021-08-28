@@ -123,10 +123,7 @@ bool CProjectile2D::Init(void)
 	}
 
 	//CS: Create the animated sprite and setup the animation 
-	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(3, 3, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
-	animatedSprites->AddAnimation("right", 0, 3);
-	animatedSprites->AddAnimation("idle", 3, 6);
-	animatedSprites->AddAnimation("left", 6, 9);
+	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(1, 1, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
 	
 	//CS: Play the "idle" animation as default
 	animatedSprites->PlayAnimation("idle", -1, 1.0f);
