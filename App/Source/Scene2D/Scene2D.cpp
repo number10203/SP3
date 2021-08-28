@@ -261,6 +261,7 @@ bool CScene2D::Update(const double dElapsedTime)
 	
 	Swap();
 
+	cSoundController->PlaySoundByID(1);
 
 	// Call the cPlayer2D's update method before Map2D as we want to capture the inputs before map2D update
   	cPlayer2D->Update(dElapsedTime);
@@ -404,7 +405,6 @@ bool CScene2D::Update(const double dElapsedTime)
 	}
 	else if (cPlayer2D->ButtonTimer <= 0 && enemyRespawned == true)
 		enemyRespawned = false;
-	cSoundController->PlaySoundByID(1);
 
 	return true;
 }
