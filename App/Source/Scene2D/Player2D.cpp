@@ -596,10 +596,12 @@ void CPlayer2D::Update(const double dElapsedTime)
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_LEFT))
 				{
 					ability_dir = ALEFT;
+					cSoundController->PlaySoundByID(68);
 				}
 				else if (cKeyboardController->IsKeyPressed(GLFW_KEY_RIGHT))
 				{
 					ability_dir = ARIGHT;
+					cSoundController->PlaySoundByID(69);
 				}
 
 				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
