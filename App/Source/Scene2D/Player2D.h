@@ -69,6 +69,8 @@ public:
 	void KillSound();
 	
 	float ButtonTimer;
+	
+	bool Shoot = false;
 protected:
 	enum DIRECTION
 	{

@@ -202,22 +202,6 @@ bool CScene2D::Init(int level)
 			break;
 		}
 	}
-	
-	//bulletVector.clear();
-	//while (true)
-	//{
-	//	// Initialise the instance
-	//	if (aProjectile2D->Init() == true)
-	//	{
-	//		cEnemy2D->SetPlayer2D(cPlayer2D);
-	//		enemyVector.push_back(cEnemy2D);
-	//	}
-	//	else
-	//	{
-	//		// Break out of this loop if the enemy has all been loaded
-	//		break;
-	//	}
-	//}
 
 	// Setup the shaders
 	CShaderManager::GetInstance()->Add("textShader", "Shader//text.vs", "Shader//text.fs");
@@ -427,6 +411,39 @@ bool CScene2D::Update(const double dElapsedTime)
 	}
 	else if (cPlayer2D->ButtonTimer <= 0 && enemyRespawned == true)
 		enemyRespawned = false;
+
+	if (cPlayer2D->Shoot == true) {
+		bulletVector.clear();
+		while (true)
+		{
+			CProjectile2D* cBullet2D = new CProjectile2D();
+			// Pass shader to cEnemy2D
+			cBullet2D->SetShader("2DColorShader");
+			// Initialise the instance
+			if (cBullet2D->Init() == true)
+			{
+				cout << "it spawns" << endl;
+				cBullet2D->SetPlayer2D(cPlayer2D);
+				bulletVector.push_back(cBullet2D);
+			}
+			else
+			{
+				// Break out of this loop if the enemy has all been loaded
+				break;
+			}
+			for (int i = 0; i < bulletVector.size(); i++)
+			{
+				// Call the CEnemy2D's PreRender()
+				bulletVector[i]->PreRender();
+				// Call the CEnemy2D's Render()
+				bulletVector[i]->Render();
+				// Call the CEnemy2D's PostRender()
+				bulletVector[i]->PostRender();
+			}
+		}
+		cout << "not anymore" << endl;
+		cPlayer2D->Shoot = false;
+	}
 
 	return true;
 }
