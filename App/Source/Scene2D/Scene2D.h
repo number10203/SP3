@@ -33,6 +33,8 @@
 // Include CEnemy2D3
 #include "Enemy2D3.h"
 
+#include "Projectile2D.h"
+
 // Include vector
 #include <vector>
 
@@ -89,6 +91,8 @@ protected:
 	vector<CEntity2D*> enemyVector;
 	// Keyboard Controller singleton instance
 	CKeyboardController* cKeyboardController;
+
+	vector<CEntity2D*> bulletVector;
 
 	// A transformation matrix for controlling where to render the entities
 	glm::mat4 transform;

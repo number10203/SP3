@@ -557,9 +557,10 @@ void CPlayer2D::Update(const double dElapsedTime)
 							cout << "Shooting Right" << endl;
 							//cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x + 1, 104);
 
-							//CProjectile2D* aProjectile2D = new CProjectile2D();
-							//aProjectile2D->Seti32vec2Index();
-						}
+							CProjectile2D* aProjectile2D = new CProjectile2D();
+							aProjectile2D->SetShader("2DColorShader");
+							aProjectile2D->Seti32vec2Index(i32vec2Index.y, i32vec2Index.x + 1);
+						} 
 					}
 					else if (ability_dir == ALEFT)
 					{

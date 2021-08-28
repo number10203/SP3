@@ -61,6 +61,13 @@ CScene2D::~CScene2D(void)
 	}
 	enemyVector.clear();
 
+	for (int i = 0; i < bulletVector.size(); i++)
+	{
+		delete bulletVector[i];
+		bulletVector[i] = NULL;
+	}
+	bulletVector.clear();
+
 	if (cPlayer2D)
 	{
 		cPlayer2D->Destroy();
@@ -188,6 +195,22 @@ bool CScene2D::Init(int level)
 		{
 			cEnemy2D3->SetPlayer2D(cPlayer2D);
 			enemyVector.push_back(cEnemy2D3);
+		}
+		else
+		{
+			// Break out of this loop if the enemy has all been loaded
+			break;
+		}
+	}
+	
+	bulletVector.clear();
+	while (true)
+	{
+		// Initialise the instance
+		if (aProjectile2D->Init() == true)
+		{
+			cEnemy2D->SetPlayer2D(cPlayer2D);
+			enemyVector.push_back(cEnemy2D);
 		}
 		else
 		{
@@ -353,7 +376,10 @@ bool CScene2D::Update(const double dElapsedTime)
 		return false;
 	}
 
-	
+	if (cGameManager->bEnemyDies == true)
+	{
+
+	}
 	
 
 	if (cPlayer2D->ButtonTimer > 0 && enemyRespawned == false) {

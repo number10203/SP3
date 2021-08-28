@@ -116,7 +116,7 @@ bool CProjectile2D::Init(void)
 	quadMesh = CMeshBuilder::GenerateQuad(glm::vec4(1, 1, 1, 1), cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
 
 	// Load the enemy2D texture
-	if (LoadTexture("Image/Enemy/Staclemite.png", iTextureID) == false)
+	if (LoadTexture("Image/Enemy/Bullet.png", iTextureID) == false)
 	{
 		std::cout << "Failed to load Staclemite tile texture" << std::endl;
 		return false;

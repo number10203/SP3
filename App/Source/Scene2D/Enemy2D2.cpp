@@ -759,12 +759,15 @@ bool CEnemy2D2::InteractWithPlayer(void)
 		((i32vec2Index.y >= i32vec2PlayerPos.y - 0.5) &&
 		(i32vec2Index.y <= i32vec2PlayerPos.y + 0.5)))
 	{
-		//cout << "Gotcha!" << endl;
-		CGameManager::GetInstance()->bPlayerStabbed = true;
-		CSoundController::GetInstance()->PlaySoundByID(90);
-		// Since the player has been caught, then reset the FSM
-		//sCurrentFSM = IDLE;
-		//iFSMCounter = 0;
+		if (CGameManager::GetInstance()->currDimem == 0)
+		{
+			CGameManager::GetInstance()->bPlayerTouched = false;
+			CGameManager::GetInstance()->bEnemyDies = true;
+		}
+		else
+		{
+			CGameManager::GetInstance()->bPlayerTouched = true;
+		}
 		return true;
 	}
 	return false;
