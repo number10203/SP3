@@ -483,6 +483,16 @@ void CScene2D::Render(void)
 		enemyVector[i]->PostRender();
 	}
 
+	for (int i = 0; i < bulletVector.size(); i++)
+	{
+		// Call the CEnemy2D's PreRender()
+		bulletVector[i]->PreRender();
+		// Call the CEnemy2D's Render()
+		bulletVector[i]->Render();
+		// Call the CEnemy2D's PostRender()
+		bulletVector[i]->PostRender();
+	}
+
 	
 	
 	// Call the Map2D's PreRender()
@@ -501,6 +511,16 @@ void CScene2D::Render(void)
 		enemyVector[i]->Render();
 		// Call the CEnemy2D's PostRender()
 		enemyVector[i]->PostRender();
+	}
+
+	for (int i = 0; i < bulletVector.size(); i++)
+	{
+		// Call the CEnemy2D's PreRender()
+		bulletVector[i]->PreRender();
+		// Call the CEnemy2D's Render()
+		bulletVector[i]->Render();
+		// Call the CEnemy2D's PostRender()
+		bulletVector[i]->PostRender();
 	}
 
 	// Call the cGUI_Scene2D's PreRender()
