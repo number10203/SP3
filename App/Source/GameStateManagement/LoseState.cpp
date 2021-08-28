@@ -146,24 +146,15 @@ bool CLoseState::Update(const double dElapsedTime)
 			CKeyboardController::GetInstance()->Reset();
 
 			// Load the menu state
+			//cout << "Quitting the game from MenuState" << endl;
 
-			CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
+			return false;
 		}
 		ImGui::End();
 	}
 
 	//For keyboard controls
-	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_SPACE))
-	{
-		// Reset the CKeyboardController
-		CKeyboardController::GetInstance()->Reset();
-
-		// Load the menu state
-		//cout << "Back to Menu" << endl;
-		CGameStateManager::GetInstance()->SetActiveGameState("MenuState");
-		return true;
-	}
-	else if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE))
+	if (CKeyboardController::GetInstance()->IsKeyReleased(GLFW_KEY_ESCAPE))
 	{
 		// Reset the CKeyboardController
 		CKeyboardController::GetInstance()->Reset();
