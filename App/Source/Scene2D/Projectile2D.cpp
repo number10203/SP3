@@ -118,7 +118,7 @@ bool CProjectile2D::Init(void)
 	// Load the enemy2D texture
 	if (LoadTexture("Image/Enemy/Bullet.png", iTextureID) == false)
 	{
-		std::cout << "Failed to load Staclemite tile texture" << std::endl;
+		std::cout << "Failed to load Bullet tile texture" << std::endl;
 		return false;
 	}
 
@@ -126,7 +126,7 @@ bool CProjectile2D::Init(void)
 	animatedSprites = CMeshBuilder::GenerateSpriteAnimation(1, 1, cSettings->TILE_WIDTH, cSettings->TILE_HEIGHT);
 	
 	//CS: Play the "idle" animation as default
-	animatedSprites->PlayAnimation("idle", -1, 1.0f);
+	//animatedSprites->PlayAnimation("idle", -1, 1.0f);
 
 
 	//CS: Init the color to white

@@ -417,6 +417,7 @@ bool CScene2D::Update(const double dElapsedTime)
 		while (true)
 		{
 			CProjectile2D* cBullet2D = new CProjectile2D();
+			//cBullet2D->
 			// Pass shader to cEnemy2D
 			cBullet2D->SetShader("2DColorShader");
 			// Initialise the instance
