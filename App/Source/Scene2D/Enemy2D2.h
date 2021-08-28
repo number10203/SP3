@@ -32,14 +32,14 @@ class CMap2D;
 // Include Player2D
 #include "Player2D.h"
 
-class CProjectile2D2 : public CEntity2D
+class CEnemy2D2 : public CEntity2D
 {
 public:
 	// Constructor
-	CProjectile2D2(void);
+	CEnemy2D2(void);
 
 	// Destructor
-	virtual ~CProjectile2D2(void);
+	virtual ~CEnemy2D2(void);
 
 	// Init
 	bool Init(void);

@@ -29,7 +29,7 @@ using namespace std;
 /**
  @brief Constructor This constructor has protected access modifier as this class will be a Singleton
  */
-CProjectile2D2::CProjectile2D2(void)
+CEnemy2D2::CEnemy2D2(void)
 	: bIsActive(false)
 	, cMap2D(NULL)
 	, cSettings(NULL)
@@ -57,7 +57,7 @@ CProjectile2D2::CProjectile2D2(void)
 /**
  @brief Destructor This destructor has protected access modifier as this class will be a Singleton
  */
-CProjectile2D2::~CProjectile2D2(void)
+CEnemy2D2::~CEnemy2D2(void)
 {
 	// Delete the quadMesh
 	if (quadMesh)
@@ -88,7 +88,7 @@ CProjectile2D2::~CProjectile2D2(void)
 /**
   @brief Initialise this instance
   */
-bool CProjectile2D2::Init(void)
+bool CEnemy2D2::Init(void)
 {
 	// Get the handler to the CSettings instance
 	cSettings = CSettings::GetInstance();
@@ -152,7 +152,7 @@ bool CProjectile2D2::Init(void)
 /**
  @brief Update this instance
  */
-void CProjectile2D2::Update(const double dElapsedTime)
+void CEnemy2D2::Update(const double dElapsedTime)
 {
 	if (CGameManager::GetInstance()->bLevelPaused == false)
 	{
@@ -314,7 +314,7 @@ void CProjectile2D2::Update(const double dElapsedTime)
 /**
  @brief Set up the OpenGL display environment before rendering
  */
-void CProjectile2D2::PreRender(void)
+void CEnemy2D2::PreRender(void)
 {
 	if (!bIsActive)
 		return;
@@ -333,7 +333,7 @@ void CProjectile2D2::PreRender(void)
 /**
  @brief Render this instance
  */
-void CProjectile2D2::Render(void)
+void CEnemy2D2::Render(void)
 {
 	if (!bIsActive)
 		return;
@@ -370,7 +370,7 @@ void CProjectile2D2::Render(void)
 /**
  @brief PostRender Set up the OpenGL display environment after rendering.
  */
-void CProjectile2D2::PostRender(void)
+void CEnemy2D2::PostRender(void)
 {
 	if (!bIsActive)
 		return;
@@ -384,7 +384,7 @@ void CProjectile2D2::PostRender(void)
 @param iIndex_XAxis A const int variable which stores the index in the x-axis
 @param iIndex_YAxis A const int variable which stores the index in the y-axis
 */
-void CProjectile2D2::Seti32vec2Index(const int iIndex_XAxis, const int iIndex_YAxis)
+void CEnemy2D2::Seti32vec2Index(const int iIndex_XAxis, const int iIndex_YAxis)
 {
 	this->i32vec2Index.x = iIndex_XAxis;
 	this->i32vec2Index.y = iIndex_YAxis;
@@ -395,7 +395,7 @@ void CProjectile2D2::Seti32vec2Index(const int iIndex_XAxis, const int iIndex_YA
 @param iNumMicroSteps_XAxis A const int variable storing the current microsteps in the X-axis
 @param iNumMicroSteps_YAxis A const int variable storing the current microsteps in the Y-axis
 */
-void CProjectile2D2::Seti32vec2NumMicroSteps(const int iNumMicroSteps_XAxis, const int iNumMicroSteps_YAxis)
+void CEnemy2D2::Seti32vec2NumMicroSteps(const int iNumMicroSteps_XAxis, const int iNumMicroSteps_YAxis)
 {
 	this->i32vec2NumMicroSteps.x = iNumMicroSteps_XAxis;
 	this->i32vec2NumMicroSteps.y = iNumMicroSteps_YAxis;
@@ -405,7 +405,7 @@ void CProjectile2D2::Seti32vec2NumMicroSteps(const int iNumMicroSteps_XAxis, con
  @brief Set the handle to cPlayer to this class instance
  @param cPlayer2D A CPlayer2D* variable which contains the pointer to the CPlayer2D instance
  */
-void CProjectile2D2::SetPlayer2D(CPlayer2D* cPlayer2D)
+void CEnemy2D2::SetPlayer2D(CPlayer2D* cPlayer2D)
 {
 	this->cPlayer2D = cPlayer2D;
 
@@ -418,7 +418,7 @@ void CProjectile2D2::SetPlayer2D(CPlayer2D* cPlayer2D)
 @brief Load a texture, assign it a code and store it in MapOfTextureIDs.
 @param filename A const char* variable which contains the file name of the texture
 */
-bool CProjectile2D2::LoadTexture(const char* filename, GLuint& iTextureID)
+bool CEnemy2D2::LoadTexture(const char* filename, GLuint& iTextureID)
 {
 	// Variables used in loading the texture
 	int width, height, nrChannels;
@@ -460,7 +460,7 @@ bool CProjectile2D2::LoadTexture(const char* filename, GLuint& iTextureID)
  @brief Constraint the enemy2D's position within a boundary
  @param eDirection A DIRECTION enumerated data type which indicates the direction to check
  */
-void CProjectile2D2::Constraint(DIRECTION eDirection)
+void CEnemy2D2::Constraint(DIRECTION eDirection)
 {
 	if (eDirection == LEFT)
 	{
@@ -504,7 +504,7 @@ void CProjectile2D2::Constraint(DIRECTION eDirection)
  @brief Check if a position is possible to move into
  @param eDirection A DIRECTION enumerated data type which indicates the direction to check
  */
-bool CProjectile2D2::CheckPosition(DIRECTION eDirection)
+bool CEnemy2D2::CheckPosition(DIRECTION eDirection)
 {
 	if (eDirection == LEFT)
 	{
@@ -622,7 +622,7 @@ bool CProjectile2D2::CheckPosition(DIRECTION eDirection)
 }
 
 // Check if the enemy2D is in mid-air
-bool CProjectile2D2::IsMidAir(void)
+bool CEnemy2D2::IsMidAir(void)
 {
 	// if the player is at the bottom row, then he is not in mid-air for sure
 	if (i32vec2Index.y == 0)
@@ -639,7 +639,7 @@ bool CProjectile2D2::IsMidAir(void)
 }
 
 // Update Jump or Fall
-void CProjectile2D2::UpdateJumpFall(const double dElapsedTime)
+void CEnemy2D2::UpdateJumpFall(const double dElapsedTime)
 {
 	if (cPhysics2D.GetStatus() == CPhysics2D::STATUS::JUMP)
 	{
@@ -748,7 +748,7 @@ void CProjectile2D2::UpdateJumpFall(const double dElapsedTime)
 /**
  @brief Let enemy2D interact with the player.
  */
-bool CProjectile2D2::InteractWithPlayer(void)
+bool CEnemy2D2::InteractWithPlayer(void)
 {
 	glm::i32vec2 i32vec2PlayerPos = cPlayer2D->i32vec2Index;
 	
@@ -775,7 +775,7 @@ bool CProjectile2D2::InteractWithPlayer(void)
 /**
  @brief Update the enemy's direction.
  */
-void CProjectile2D2::UpdateDirection(void)
+void CEnemy2D2::UpdateDirection(void)
 {
 	// Set the destination to the player
 	i32vec2Destination = cPlayer2D->i32vec2Index;
@@ -802,7 +802,7 @@ void CProjectile2D2::UpdateDirection(void)
 /**
  @brief Flip horizontal direction. For patrol use only
  */
-void CProjectile2D2::FlipHorizontalDirection(void)
+void CEnemy2D2::FlipHorizontalDirection(void)
 {
 	i32vec2Direction.x *= -1;
 }
@@ -810,7 +810,7 @@ void CProjectile2D2::FlipHorizontalDirection(void)
 /**
 @brief Update position.
 */
-void CProjectile2D2::UpdatePosition(void)
+void CEnemy2D2::UpdatePosition(void)
 {
 	// Store the old position
 	i32vec2OldIndex = i32vec2Index;
