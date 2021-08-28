@@ -1373,5 +1373,5 @@ void CPlayer2D::UpdateHealthLives(void)
 
 void CPlayer2D::KillSound()
 {
-	cSoundController->PlaySoundByID(2);
+	cSoundController->PlaySoundByID(92);
 }
