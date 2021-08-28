@@ -263,6 +263,8 @@ bool CScene2D::Init(int level)
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerSkyWalkSound.ogg"), 65, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerStartGrappleSound.ogg"), 66, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\PlayerEndGrappleSound.ogg"), 67, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\GrappleLeftLoad.ogg"), 68, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Player\\GrappleRightLoad.ogg"), 69, true);
 	// COLLECTIBLES 70 - 90 
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\UnlockDoorSound.ogg"), 70, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Collect\\HealSound.ogg"), 71, true);
@@ -282,6 +284,7 @@ bool CScene2D::Update(const double dElapsedTime)
 	
 	Swap();
 
+	cSoundController->PlaySoundByID(1);
 
 	// Call the cPlayer2D's update method before Map2D as we want to capture the inputs before map2D update
   	cPlayer2D->Update(dElapsedTime);
@@ -428,7 +431,6 @@ bool CScene2D::Update(const double dElapsedTime)
 	}
 	else if (cPlayer2D->ButtonTimer <= 0 && enemyRespawned == true)
 		enemyRespawned = false;
-	cSoundController->PlaySoundByID(1);
 
 	return true;
 }
