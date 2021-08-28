@@ -97,6 +97,7 @@ protected:
 		CHASE = 2,
 		ATTACK = 3,
 		RECOVER = 4,
+		DEAD = 5,
 		NUM_FSM
 	};
 

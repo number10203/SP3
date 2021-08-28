@@ -203,21 +203,21 @@ bool CScene2D::Init(int level)
 		}
 	}
 	
-	bulletVector.clear();
-	while (true)
-	{
-		// Initialise the instance
-		if (aProjectile2D->Init() == true)
-		{
-			cEnemy2D->SetPlayer2D(cPlayer2D);
-			enemyVector.push_back(cEnemy2D);
-		}
-		else
-		{
-			// Break out of this loop if the enemy has all been loaded
-			break;
-		}
-	}
+	//bulletVector.clear();
+	//while (true)
+	//{
+	//	// Initialise the instance
+	//	if (aProjectile2D->Init() == true)
+	//	{
+	//		cEnemy2D->SetPlayer2D(cPlayer2D);
+	//		enemyVector.push_back(cEnemy2D);
+	//	}
+	//	else
+	//	{
+	//		// Break out of this loop if the enemy has all been loaded
+	//		break;
+	//	}
+	//}
 
 	// Setup the shaders
 	CShaderManager::GetInstance()->Add("textShader", "Shader//text.vs", "Shader//text.fs");
@@ -272,6 +272,7 @@ bool CScene2D::Init(int level)
 	// ENEMIES 90 - 100
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Enemy\\GuardianStabSound.ogg"), 90, true);
 	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Enemy\\SentryDetectSound.ogg"), 91, true);
+	cSoundController->LoadSound(FileSystem::getPath("Sounds\\Enemy\\EnemiesDies.ogg"), 92, true);
 	
 	return true;
 }
@@ -377,11 +378,6 @@ bool CScene2D::Update(const double dElapsedTime)
 		cSoundController->StopAllSounds();
 		cSoundController->PlaySoundByID(10);
 		return false;
-	}
-
-	if (cGameManager->bEnemyDies == true)
-	{
-
 	}
 	
 

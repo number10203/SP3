@@ -65,6 +65,8 @@ public:
 
 	// PostRender
 	void PostRender(void);
+
+	void KillSound();
 	
 	float ButtonTimer;
 protected:

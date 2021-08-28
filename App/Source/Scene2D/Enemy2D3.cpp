@@ -186,6 +186,12 @@ void CEnemy2D3::Update(const double dElapsedTime)
 			CSoundController::GetInstance()->PlaySoundByID(91);
 			CGameManager::GetInstance()->bPlayerDeath = true;
 			break;
+		case DEAD:
+			i32vec2Index.x = -1;
+			i32vec2Index.y = -1;
+			cPlayer2D->KillSound();
+			iFSMCounter++;
+			break;
 		default:
 			break;
 		}
@@ -655,7 +661,7 @@ bool CEnemy2D3::InteractWithPlayer(void)
 		if (CGameManager::GetInstance()->currDimem == 0)
 		{
 			CGameManager::GetInstance()->bPlayerTouched = false;
-			CGameManager::GetInstance()->bEnemyDies = true;
+			sCurrentFSM = DEAD;
 		}
 		else
 		{

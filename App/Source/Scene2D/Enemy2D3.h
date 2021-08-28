@@ -95,6 +95,7 @@ protected:
 		IDLE = 0,
 		AWAKE = 1,
 		ATTACK = 2,
+		DEAD = 3,
 		NUM_FSM
 	};
 

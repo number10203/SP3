@@ -193,6 +193,12 @@ void CEnemy2D::Update(const double dElapsedTime)
 			}
 			iFSMCounter++;
 			break;
+		case DEAD:
+			i32vec2Index.x = -1;
+			i32vec2Index.y = -1;
+			cPlayer2D->KillSound();
+			iFSMCounter++;
+			break;
 		//case ATTACK:
 		//	if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
 		//	{
@@ -726,7 +732,7 @@ bool CEnemy2D::InteractWithPlayer(void)
 		if (CGameManager::GetInstance()->currDimem == 0)
 		{
 			CGameManager::GetInstance()->bPlayerTouched = false;
-			CGameManager::GetInstance()->bEnemyDies = true;
+			sCurrentFSM = DEAD;
 		}
 		else
 		{
