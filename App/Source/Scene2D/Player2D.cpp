@@ -548,45 +548,45 @@ void CPlayer2D::Update(const double dElapsedTime)
 				}
 
 
-				if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
-				{
-					if (ability_dir == ARIGHT)
-					{
-						if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 0)
-						{
-							cout << "Shooting Right" << endl;
-							cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x + 1, 21);
-							Shoot = true;
-							//CProjectile2D* aProjectile2D = new CProjectile2D();
-							//aProjectile2D->SetShader("2DColorShader");
-							//aProjectile2D->Seti32vec2Index(i32vec2Index.y, i32vec2Index.x + 1);
-						} 
-					}
-					else if (ability_dir == ALEFT)
-					{
-						if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x - 1) == 0)
-						{
-							cout << "Shooting Left" << endl;
-							//cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x - 1, 104);
-						}
-					}
-					else if (ability_dir == AUP)
-					{
-						if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 0)
-						{
-							cout << "Shooting Up" << endl;
-							//cMap2D->SetMapInfo(i32vec2Index.y + 1, i32vec2Index.x, 104);
-						}
-					}
-					else if (ability_dir == ADOWN)
-					{
-						if (cMap2D->GetMapInfo(i32vec2Index.y - 1, i32vec2Index.x - 1) == 0)
-						{
-							cout << "Shooting Down" << endl;
-							//cMap2D->SetMapInfo(i32vec2Index.y - 1, i32vec2Index.x, 104);
-						}
-					}
-				}
+				//if (cKeyboardController->IsKeyPressed(GLFW_KEY_SPACE))
+				//{
+				//	if (ability_dir == ARIGHT)
+				//	{
+				//		if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x + 1) == 0)
+				//		{
+				//			cout << "Shooting Right" << endl;
+				//			cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x + 1, 21);
+				//			Shoot = true;
+				//			//CProjectile2D* aProjectile2D = new CProjectile2D();
+				//			//aProjectile2D->SetShader("2DColorShader");
+				//			//aProjectile2D->Seti32vec2Index(i32vec2Index.y, i32vec2Index.x + 1);
+				//		} 
+				//	}
+				//	else if (ability_dir == ALEFT)
+				//	{
+				//		if (cMap2D->GetMapInfo(i32vec2Index.y, i32vec2Index.x - 1) == 0)
+				//		{
+				//			cout << "Shooting Left" << endl;
+				//			//cMap2D->SetMapInfo(i32vec2Index.y, i32vec2Index.x - 1, 104);
+				//		}
+				//	}
+				//	else if (ability_dir == AUP)
+				//	{
+				//		if (cMap2D->GetMapInfo(i32vec2Index.y + 1, i32vec2Index.x) == 0)
+				//		{
+				//			cout << "Shooting Up" << endl;
+				//			//cMap2D->SetMapInfo(i32vec2Index.y + 1, i32vec2Index.x, 104);
+				//		}
+				//	}
+				//	else if (ability_dir == ADOWN)
+				//	{
+				//		if (cMap2D->GetMapInfo(i32vec2Index.y - 1, i32vec2Index.x - 1) == 0)
+				//		{
+				//			cout << "Shooting Down" << endl;
+				//			//cMap2D->SetMapInfo(i32vec2Index.y - 1, i32vec2Index.x, 104);
+				//		}
+				//	}
+				//}
 
 				break;
 
