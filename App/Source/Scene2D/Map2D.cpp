@@ -148,7 +148,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Cloud1 tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Scene2D_Spikes.tga", 203) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Scene2D_Spikes.tga", 203) == false)
 	{
 		std::cout << "Failed to load Scene2D_Spikes tile texture" << std::endl;
 		return false;
@@ -449,12 +449,12 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 	}
 
 	// Load the Exit texture
-	if (LoadTexture("Image/Scene2D_Exit.tga", 201) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Scene2D_Exit.tga", 201) == false)
 	{
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/Scene2D_LockedExit.tga", 202) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/Scene2D_LockedExit.tga", 202) == false)
 	{
 		std::cout << "Failed to load lockedExit tile texture" << std::endl;
 		return false;
@@ -464,7 +464,7 @@ bool CMap2D::Init(	const unsigned int uiNumLevels,
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
 	}
-	if (LoadTexture("Image/WinTile.tga", 208) == false)
+	if (LoadTexture("Image/Tiles/Special/TGA/WinTile.tga", 208) == false)
 	{
 		std::cout << "Failed to load Exit tile texture" << std::endl;
 		return false;
