@@ -443,10 +443,10 @@ void CPlayer2D::Update(const double dElapsedTime)
 			//	}
 			//}
 			//debug code
-			if (cKeyboardController->IsKeyPressed(GLFW_KEY_L))
-			{
-				CGameManager::GetInstance()->bLevelCompleted = true;
-			}
+			//if (cKeyboardController->IsKeyPressed(GLFW_KEY_L))
+			//{
+			//	CGameManager::GetInstance()->bLevelCompleted = true;
+			//}
 
 			// DIMENSION SWAPPING
 

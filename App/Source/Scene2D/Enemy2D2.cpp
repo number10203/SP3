@@ -171,6 +171,7 @@ void CEnemy2D2::Update(const double dElapsedTime)
 				//cout << "GOING TO AWAKE" << endl;
 			}
 			iFSMCounter++;
+			InteractWithPlayer();
 			break;
 		case AWAKE:
 			animatedSprites->PlayAnimation("awake", -1, 1.0f);
@@ -188,6 +189,7 @@ void CEnemy2D2::Update(const double dElapsedTime)
 				//cout << "GOING TO CHASE" << endl;
 			}
 			iFSMCounter++;
+			InteractWithPlayer();
 			break;
 		case CHASE:
 			if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f && 
@@ -230,6 +232,7 @@ void CEnemy2D2::Update(const double dElapsedTime)
 				//cout << "GOING TO AWAKE" << endl;
 			}
 			iFSMCounter++;
+			InteractWithPlayer();
 			break;
 		case DEAD:
 			i32vec2Index.x = -1;
@@ -237,69 +240,7 @@ void CEnemy2D2::Update(const double dElapsedTime)
 			cPlayer2D->KillSound();
 			iFSMCounter++;
 			break;
-		//case ATTACK:
-		//	if (cPhysics2D.CalculateDistance(i32vec2Index, cPlayer2D->i32vec2Index) < 5.0f)
-		//	{
-		//		// Calculate a path to the player
-		//		//cMap2D->PrintSelf();
-		//		//cout << "StartPos: " << i32vec2Index.x << ", " << i32vec2Index.y << endl;
-		//		//cout << "TargetPos: " << cPlayer2D->i32vec2Index.x << ", " 
-		//		//		<< cPlayer2D->i32vec2Index.y << endl;
-		//		auto path = cMap2D->PathFind(i32vec2Index,
-		//			cPlayer2D->i32vec2Index,
-		//			heuristic::euclidean,
-		//			10);
-		//		//cout << "=== Printing out the path ===" << endl;
 
-		//		// Calculate new destination
-		//		bool bFirstPosition = true;
-		//		for (const auto& coord : path)
-		//		{
-		//			//std::cout << coord.x << "," << coord.y << "\n";
-		//			if (bFirstPosition == true)
-		//			{
-		//				// Set a destination
-		//				i32vec2Destination = coord;
-		//				// Calculate the direction between enemy2D and this destination
-		//				i32vec2Direction = i32vec2Destination - i32vec2Index;
-		//				bFirstPosition = false;
-		//			}
-		//			else
-		//			{
-		//				if ((coord - i32vec2Destination) == i32vec2Direction)
-		//				{
-		//					// Set a destination
-		//					i32vec2Destination = coord;
-		//				}
-		//				else
-		//					break;
-		//			}
-		//		}
-
-		//		//cout << "i32vec2Destination : " << i32vec2Destination.x 
-		//		//		<< ", " << i32vec2Destination.y << endl;
-		//		//cout << "i32vec2Direction : " << i32vec2Direction.x 
-		//		//		<< ", " << i32vec2Direction.y << endl;
-		//		//system("pause");
-
-		//		// Attack
-		//		// Update direction to move towards for attack
-		//		//UpdateDirection();
-
-		//		// Update the Enemy2D's position for attack
-		//		UpdatePosition();
-		//	}
-		//	else
-		//	{
-		//		if (iFSMCounter > iMaxFSMCounter)
-		//		{
-		//			sCurrentFSM = PATROL;
-		//			iFSMCounter = 0;
-		//			cout << "ATTACK : Reset counter: " << iFSMCounter << endl;
-		//		}
-		//		iFSMCounter++;
-		//	}
-		//	break;
 		default:
 			break;
 		}
@@ -765,14 +706,15 @@ bool CEnemy2D2::InteractWithPlayer(void)
 		((i32vec2Index.y >= i32vec2PlayerPos.y - 0.5) &&
 		(i32vec2Index.y <= i32vec2PlayerPos.y + 0.5)))
 	{
-		if (CGameManager::GetInstance()->currDimem == 0)
+		if (sCurrentFSM != ATTACK)
 		{
-			CGameManager::GetInstance()->bPlayerTouched = false;
-			sCurrentFSM = DEAD;
+			CGameManager::GetInstance()->bPlayerStabbed = false;
+			if (CGameManager::GetInstance()->currDimem == 0)
+				sCurrentFSM = DEAD;
 		}
 		else
 		{
-			CGameManager::GetInstance()->bPlayerTouched = true;
+			CGameManager::GetInstance()->bPlayerStabbed = true;
 		}
 		return true;
 	}

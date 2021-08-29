@@ -732,6 +732,7 @@ bool CEnemy2D::InteractWithPlayer(void)
 		if (CGameManager::GetInstance()->currDimem == 0)
 		{
 			CGameManager::GetInstance()->bPlayerTouched = false;
+			cout << "dead" << endl;
 			sCurrentFSM = DEAD;
 		}
 		else
